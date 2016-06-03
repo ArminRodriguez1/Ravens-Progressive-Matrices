@@ -156,7 +156,7 @@ public class TwoByTwoOneObject {
 								int angleBint = Integer.parseInt(angleB); //integer angle
 								int angleDiffAandB = Math.abs(angleAint - angleBint); 
 								
-								//System.out.println("Diff between A and B " + angleDiffAandB);
+								System.out.println("Diff between A and B " + angleDiffAandB);
 								
 								String angleC = ROca.get("angle"); //String angle 
 								int angleCint = Integer.parseInt(angleC); //integer angle
