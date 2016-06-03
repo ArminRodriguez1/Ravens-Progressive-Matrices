@@ -219,7 +219,7 @@ public class TwoByTwoOneObject {
 									int angleDiff = Math.abs(angleCint - angle6iint);
 									System.out.println("Diff 6 and C " + angleDiff);
 
-									if ((angleDiffAandB == angleDiff) && (RO6ia.get("fill").equals(fillinC))) {
+									if ((angleDiffAandB == angleDiff) && (RO6ea.get("fill").equals(fillinC))) {
 										tempAns = 6;
 									}
 								} else {

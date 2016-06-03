@@ -169,7 +169,7 @@ public class TwoByTwoOneObject {
 									int angleDiff = Math.abs(angleCint - angle1dint);
 									System.out.println("Diff 1 and C " + angleDiff);
 									
-									if ((angleDiffAandB == angleDiff) && (RO1da.get("fill").equals(fillinC)))  { //decide whether to add fill component or not
+									if ((angleDiffAandB == angleDiff)) &&   { //decide whether to add fill component or not
 										tempAns = 1;
 									}
 								} if (ROca.containsKey("angle") && (RO2ea.containsKey("angle"))) {
@@ -179,7 +179,7 @@ public class TwoByTwoOneObject {
 									int angleDiff = Math.abs(angleCint - angle2eint);
 									System.out.println("Diff 2 and C " + angleDiff);
 
-									if ((angleDiffAandB == angleDiff) && (RO2ea.get("fill").equals(fillinC))) {
+									if (angleDiffAandB == angleDiff) {
 										tempAns = 2;
 									}
 								} if (ROca.containsKey("angle") && (RO3fa.containsKey("angle"))) {
@@ -189,7 +189,7 @@ public class TwoByTwoOneObject {
 									int angleDiff = Math.abs(angleCint - angle3fint);
 									System.out.println("Diff 3 and C " + angleDiff);
 
-									if ((angleDiffAandB == angleDiff) && (RO3fa.get("fill").equals(fillinC))) {
+									if (angleDiffAandB == angleDiff) {
 										tempAns = 3;
 									}
 								} if (ROca.containsKey("angle") && (RO4ga.containsKey("angle"))) {
@@ -199,7 +199,7 @@ public class TwoByTwoOneObject {
 									int angleDiff = Math.abs(angleCint - angle4gint);
 									System.out.println("Diff 4 and C " + angleDiff);
 
-									if ((angleDiffAandB == angleDiff) && (RO4ga.get("fill").equals(fillinC))) {
+									if (angleDiffAandB == angleDiff) {
 										tempAns = 4;
 									}
 								} if (ROca.containsKey("angle") && (RO5ha.containsKey("angle"))) {
@@ -209,7 +209,7 @@ public class TwoByTwoOneObject {
 									int angleDiff = Math.abs(angleCint - angle5hint);
 									System.out.println("Diff 5 and C " + angleDiff);
 
-									if ((angleDiffAandB == angleDiff) && (RO5ha.get("fill").equals(fillinC))) {
+									if (angleDiffAandB == angleDiff) {
 										tempAns = 5;
 									}
 								} if (ROca.containsKey("angle") && (RO6ia.containsKey("angle"))){
@@ -219,7 +219,7 @@ public class TwoByTwoOneObject {
 									int angleDiff = Math.abs(angleCint - angle6iint);
 									System.out.println("Diff 6 and C " + angleDiff);
 
-									if ((angleDiffAandB == angleDiff) && (RO6ia.get("fill").equals(fillinC))) {
+									if (angleDiffAandB == angleDiff) {
 										tempAns = 6;
 									}
 								} else {
