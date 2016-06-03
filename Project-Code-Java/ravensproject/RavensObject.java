@@ -12,7 +12,7 @@ import java.util.HashMap;
 /**
  * A single object in a RavensFigure -- typically, a single shape in a frame,
  * such as a triangle or a circle -- comprised of a list of RavensAttributes.
- * 
+ *  
  */
 public class RavensObject {
     private String name;
