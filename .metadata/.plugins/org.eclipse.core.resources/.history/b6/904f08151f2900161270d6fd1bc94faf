@@ -1,0 +1,54 @@
+package ravensproject;
+
+import java.util.HashMap;
+
+public class OneObject {
+	
+	private RavensProblem problem;
+	private int ans = -1;
+	
+	public OneObject(RavensProblem problem) {
+		this.problem = problem;
+	}
+	
+	//this method checks for the size of the hash map of the figure and returns its value
+	public int checkForOneObject() {
+		int numberOfObjects = 0;
+		HashMap<String, RavensFigure> RF = problem.getFigures();
+		
+		//these are the Ravens Figure from the problem
+		RavensFigure RFA = RF.get("A");
+		
+		//get the Ravens Figure from the problem figures
+		HashMap<String, RavensObject> ROA = RFA.getObjects();
+		
+		//check for the size of the ROA HashMap and return true if it is one
+		if (ROA.size() != 0) {
+			numberOfObjects = ROA.size();
+		} 
+		return numberOfObjects;
+	}
+	
+	
+	
+	HashMap<String, RavensFigure> RF = problem.getFigures();
+	
+	//these are the Ravens Figure from the problem
+	RavensFigure RFA = RF.get("A");
+	RavensFigure RFB = RF.get("B");
+	RavensFigure RFC = RF.get("C");
+	
+	//these are the Ravens Figure from the solution
+	RavensFigure RF1 = RF.get("1");
+	RavensFigure RF2 = RF.get("2");
+	RavensFigure RF3 = RF.get("3");
+	RavensFigure RF4 = RF.get("4");
+	RavensFigure RF5 = RF.get("5");
+	RavensFigure RF6 = RF.get("6");
+	
+	
+	
+	
+	
+}
+
