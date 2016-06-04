@@ -1,6 +1,9 @@
 package ravensproject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,7 +21,7 @@ public class TwoByTwoOneObject {
 		this.problem = problem;
 	}
 
-	public int test() {
+	public int OneObjectRPM() {
 
 		//check if the problem has verbal or not
 		if (problem.hasVerbal()) {
@@ -79,7 +82,26 @@ public class TwoByTwoOneObject {
 			HashMap<String, String> RO4ga = RO4g.getAttributes();
 			HashMap<String, String> RO5ha = RO5h.getAttributes();
 			HashMap<String, String> RO6ia = RO6i.getAttributes();
-
+			
+			
+			
+			
+			//test
+			List<Map> test = new ArrayList();
+			test.add(RO1da);
+			test.add(RO2ea);
+			test.add(RO3fa);
+			test.add(RO4ga);
+			test.add(RO5ha);
+			test.add(RO6ia);
+			
+			System.out.println("Printing the test array: " + test);
+			System.out.println("Print first containt for test " + test.get(0) + "Print last for test " + test.get(5) +
+					"Print the size: " + test.size());
+			
+			//return test;
+			
+			
 			if (ROaa.equals(ROba)) {
 				if (ROca.equals(RO1da)) {
 					tempAns = 1;

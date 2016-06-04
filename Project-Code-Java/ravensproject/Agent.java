@@ -1,6 +1,8 @@
 package ravensproject;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // Uncomment these lines to access image processing.
 //import java.awt.Image;
@@ -54,18 +56,18 @@ public class Agent {
 
 		//check if the problem has verbal or not
 		if (problem.hasVerbal()) {
-			
+
 			//these are the Ravens Figure from the problem
 			HashMap<String, RavensFigure> RF = problem.getFigures();
-			System.out.println("");
-			System.out.println("Total number of RF: "+ RF.size());
+			//System.out.println("");
+			//System.out.println("Total number of RF: "+ RF.size());
 
 			RavensFigure RFA = RF.get("A");
 			//get the Ravens Figure from the problem figures
 			HashMap<String, RavensObject> ROA = RFA.getObjects();
 			int numberOfObjects = ROA.size(); //number of objects in Figure A
-			System.out.println("");
-			System.out.println("The size of the hash map/number of objects is: " + numberOfObjects);
+			//System.out.println("");
+			//System.out.println("The size of the hash map/number of objects is: " + numberOfObjects);
 
 			/*
 			 * 2 by 2 RPM problem have 9 Ravens Figure and 3 by 3 RPM have 16 Ravens Figure.
@@ -73,25 +75,51 @@ public class Agent {
 			 */
 
 			if (RF.size() == 9) {
-				ans = OneObject(numberOfObjects, problem); //2 by 2 RPM with one objects per figure
+				if (numberOfObjects == 1) {
+					ans = OneObject(problem); //2 by 2 RPM with one objects per figure
+				} else if (numberOfObjects == 2) {
+					ans = TwoObjects(problem);
+				}
+			} else {
+				print23(problem);
+				ans = -1;
 			}
 		}
 		return ans;
 	}
 
-	
+
 	/*
 	 * This method solves for 2 by 2 RPM that has one object in it
 	 */
-	  
-	public int OneObject(int numberOfObjects, RavensProblem problem) {
-		if (numberOfObjects == 1) {
-			TwoByTwoOneObject oneobject = new TwoByTwoOneObject(problem);
-			ans = oneobject.test();
-		} else {
-			ans = -1;
-		}
+
+	public int OneObject(RavensProblem problem) {
+
+		TwoByTwoOneObject oneObject = new TwoByTwoOneObject(problem);
+		ans = oneObject.OneObjectRPM();
+
 		return ans;
 	}
+
+	public int TwoObjects(RavensProblem problem) {
+		TwoByTwoTwoObjects twoObjects = new TwoByTwoTwoObjects(problem);
+		//twoObjects.TwoObjectRPM();
+		ans = -1;
+		return ans;
+		
+	}
 	
+	public void print23 (RavensProblem problem) {
+		TwoByTwoTwoObjects twoObjects = new TwoByTwoTwoObjects(problem);
+		List<Map> goo = twoObjects.test(problem);
+		
+		System.out.println("Printing the test array: " + goo);
+		System.out.println("Print first containt for test " + goo.get(0) + "Print last for test " + goo.get(5) +
+				"Print the size: " + goo.size());
+		
+		
+		
+	}
+
+
 }
