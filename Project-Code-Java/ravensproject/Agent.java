@@ -2,8 +2,6 @@ package ravensproject;
 
 import java.util.HashMap;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
 // Uncomment these lines to access image processing.
 //import java.awt.Image;
 //import java.io.File;
@@ -31,6 +29,9 @@ public class Agent {
 	 * main().
 	 * 
 	 */
+	//private RavensProblem problem;
+	private int ans;
+
 	public Agent() {
 
 	}
@@ -50,39 +51,47 @@ public class Agent {
 	public int Solve(RavensProblem problem) {
 		System.out.println("************");
 		System.out.println("Problem name: " + problem.getName());
-		int ans = -1;
 
 		//check if the problem has verbal or not
 		if (problem.hasVerbal()) {
+			
+			//these are the Ravens Figure from the problem
 			HashMap<String, RavensFigure> RF = problem.getFigures();
 			System.out.println("");
-			System.out.println("Size of RF: "+ RF.size());
+			System.out.println("Total number of RF: "+ RF.size());
+
+			RavensFigure RFA = RF.get("A");
+			//get the Ravens Figure from the problem figures
+			HashMap<String, RavensObject> ROA = RFA.getObjects();
+			int numberOfObjects = ROA.size(); //number of objects in Figure A
+			System.out.println("");
+			System.out.println("The size of the hash map/number of objects is: " + numberOfObjects);
+
 			/*
 			 * 2 by 2 RPM problem have 9 Ravens Figure and 3 by 3 RPM have 16 Ravens Figure.
 			 * Find the total number of Ravens Figure and put check accordingly.
 			 */
 
-			if (RF.size() < 10) {
-				//these are the Ravens Figure from the problem
-				RavensFigure RFA = RF.get("A");
-				//get the Ravens Figure from the problem figures
-				HashMap<String, RavensObject> ROA = RFA.getObjects();
-
-				int numberOfObjects = ROA.size();
-				System.out.println("");
-				System.out.println("The size of the hashmap is: " + numberOfObjects);
-
-				if (numberOfObjects == 1) {
-					TwoByTwoOneObject oneobject = new TwoByTwoOneObject(problem);
-					ans = oneobject.test();
-				} else {
-					ans = -1;
-				}
-				System.out.println("");
-				System.out.println("The answer is: " + ans);
-				System.out.println("");
+			if (RF.size() == 9) {
+				ans = OneObject(numberOfObjects, problem); //2 by 2 RPM with one objects per figure
 			}
 		}
 		return ans;
 	}
+
+	
+	/*
+	 * This method solves for 2 by 2 RPM that has one object in it
+	 */
+	  
+	public int OneObject(int numberOfObjects, RavensProblem problem) {
+		if (numberOfObjects == 1) {
+			TwoByTwoOneObject oneobject = new TwoByTwoOneObject(problem);
+			ans = oneobject.test();
+		} else {
+			ans = -1;
+		}
+		return ans;
+	}
+	
 }

@@ -225,6 +225,61 @@ public class TwoByTwoOneObject {
 								} else {
 									tempAns = -1;
 								}
+							} else if (!ROba.containsKey("angle")) { //case where the figure B doesn't have angle
+								String shapeA = ROaa.get("shape");
+								String shapeC = ROca.get("shape");
+								String shapeB = ROba.get("shape");
+								
+								String shapeAFill = ROaa.get("fill");
+								String shapeCFill = ROca.get("fill");
+								String shapeBFill = ROba.get("fill");
+								
+								String shapeAAlign = ROaa.get("alignment");
+								String shapeBAlign = ROba.get("alignment");
+								String shapeCAlign = ROca.get("alignment");
+
+
+								if ((shapeA.equals(shapeC)) && !(shapeAAlign.equals(shapeCAlign)) && (shapeAFill.equals(shapeCFill))) { //check if the shape of  A and C are reflection of each other
+									String shape1 = RO1da.get("shape");
+									String shape1Fill = RO1da.get("fill");
+									String shape1Align = RO1da.get("alignment");
+									
+									String shape2 = RO2ea.get("shape");
+									String shape2Fill = RO2ea.get("fill");
+									String shape2Align = RO2ea.get("alignment");
+									
+									String shape3 = RO3fa.get("shape");
+									String shape3Fill = RO3fa.get("fill");
+									String shape3Align = RO3fa.get("alignment");
+									
+									String shape4 = RO4ga.get("shape");
+									String shape4Fill = RO4ga.get("fill");
+									String shape4Align = RO4ga.get("alignment");
+									
+									String shape5 = RO5ha.get("shape");
+									String shape5Fill = RO5ha.get("fill");
+									String shape5Align = RO5ha.get("alignment");
+									
+									String shape6 = RO6ia.get("shape");
+									String shape6Fill = RO6ia.get("fill");
+									String shape6Align = RO6ia.get("alignment");
+									
+									if((shape1.equals(shapeB)) && !(shape1Align.equals(shapeBAlign)) && (shape1Fill.equals(shapeBFill))){
+										tempAns = 1;
+									} else if((shape2.equals(shapeB)) && !(shape2Align.equals(shapeBAlign)) && (shape2Fill.equals(shapeBFill))){
+										tempAns = 2;
+									} else if((shape3.equals(shapeB)) && !(shape3Align.equals(shapeBAlign)) && (shape3Fill.equals(shapeBFill))){
+										tempAns = 3;
+									} else if((shape4.equals(shapeB)) && !(shape4Align.equals(shapeBAlign)) && (shape4Fill.equals(shapeBFill))){
+										tempAns = 4;
+									} else if((shape5.equals(shapeB)) && !(shape5Align.equals(shapeBAlign)) && (shape5Fill.equals(shapeBFill))){
+										tempAns = 5;
+									} else if((shape6.equals(shapeB)) && !(shape6Align.equals(shapeBAlign)) && (shape6Fill.equals(shapeBFill))){
+										tempAns = 6;
+									} else {
+										tempAns = -1;
+									}
+								}
 							}
 						}
 					}
