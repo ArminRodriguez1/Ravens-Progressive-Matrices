@@ -1,0 +1,171 @@
+package ravensproject;
+
+import java.util.*;
+
+public class TwoByTwoTwoObjects {
+
+	private RavensProblem problem;
+	private int tempAns;
+
+	public TwoByTwoTwoObjects(RavensProblem problem){
+		this.problem = problem;
+	}
+
+	public int TwoObjectRPM() {
+		List<Map> resultAttribute = test(problem);
+		System.out.println("Printing the test array: " + resultAttribute);
+		System.out.println("Print first containt for test " + resultAttribute.get(0) + "Print last for test " + resultAttribute.get(5) +
+				"Print the size: " + resultAttribute.size());
+		return -1;
+	}
+
+	public List<Map> test(RavensProblem problem) {
+		HashMap<String, RavensFigure> RF = problem.getFigures();
+
+		//these are the Ravens Figure from the problem
+		RavensFigure RFA = RF.get("A");
+		RavensFigure RFB = RF.get("B");
+		RavensFigure RFC = RF.get("C");
+
+		//these are the Ravens Figure from the solution
+		RavensFigure RF1 = RF.get("1");
+		RavensFigure RF2 = RF.get("2");
+		RavensFigure RF3 = RF.get("3");
+		RavensFigure RF4 = RF.get("4");
+		RavensFigure RF5 = RF.get("5");
+		RavensFigure RF6 = RF.get("6");
+
+		//get the Ravens Figure from the problem figures
+		HashMap<String, RavensObject> ROA = RFA.getObjects();
+		HashMap<String, RavensObject> ROB = RFB.getObjects();
+		HashMap<String, RavensObject> ROC = RFC.getObjects();   
+
+		//get the Ravens Figure from the problem solutions
+		HashMap<String, RavensObject> RO1 = RF1.getObjects();
+		HashMap<String, RavensObject> RO2 = RF2.getObjects();
+		HashMap<String, RavensObject> RO3 = RF3.getObjects();
+		HashMap<String, RavensObject> RO4 = RF4.getObjects();
+		HashMap<String, RavensObject> RO5 = RF5.getObjects();
+		HashMap<String, RavensObject> RO6 = RF6.getObjects();
+
+		//get the Ravens Objects from Ravens Figure
+		RavensObject ROa = ROA.get("a");    	
+		RavensObject ROb = ROA.get("b");  
+		RavensObject ROc = ROB.get("c");
+		RavensObject ROd = ROB.get("d");    	
+		RavensObject ROe = ROC.get("e");    	
+		RavensObject ROf = ROC.get("f");
+		RavensObject ROg = RO1.get("g");    	
+		RavensObject ROh = RO1.get("h");    	
+		RavensObject ROi = RO2.get("i");
+		RavensObject ROj = RO2.get("j");    	
+		RavensObject ROk = RO3.get("k");    	
+		RavensObject ROl = RO3.get("l");
+		RavensObject ROm = RO4.get("m");    	
+		RavensObject ROn = RO4.get("n");    	
+		RavensObject ROo = RO5.get("o");
+		RavensObject ROp = RO5.get("p");    	
+		RavensObject ROq = RO6.get("q");    
+		RavensObject ROr = RO6.get("r");    
+		
+		System.out.println("Print ROc " + ROc);
+		System.out.println("Print ROd " + ROd);
+		System.out.println("Print ROe " + ROe);
+		System.out.println("Print ROf " + ROf);
+		System.out.println("Print ROg " + ROg);
+		System.out.println("Print ROh " + ROh);
+		System.out.println("Print ROi " + ROi);
+		System.out.println("Print ROj " + ROj);
+		System.out.println("Print ROk " + ROk);
+		System.out.println("Print ROl " + ROl);
+		System.out.println("Print ROm " + ROm);
+		System.out.println("Print ROn " + ROn);
+		System.out.println("Print ROo " + ROo);
+		System.out.println("Print ROp " + ROp);
+		System.out.println("Print ROq " + ROq);
+		System.out.println("Print ROr " + ROr);
+
+
+
+		//get attributes for the Ravens Objects
+		
+		if (ROa.getAttributes() != null) {
+			HashMap<String, String> ROaa = ROa.getAttributes();
+		}
+		if (ROb.hashCode() != 0) {
+			HashMap<String, String> ROba = ROb.getAttributes();
+		} 
+		if (ROc.hashCode() != 0) {
+			HashMap<String, String> ROca = ROc.getAttributes();
+		} 
+		if (ROd.hashCode() !=0){
+			HashMap<String, String> ROda = ROd.getAttributes();
+		} 
+		if (ROe.hashCode() !=0) {
+			HashMap<String, String> ROea = ROe.getAttributes();
+		} 
+		if (ROf.hashCode() !=0) {
+			HashMap<String, String> ROfa = ROf.getAttributes();
+		} 
+		if (ROg.hashCode() !=0) {
+			HashMap<String, String> ROga = ROg.getAttributes();
+		} 
+		if (ROh.hashCode() !=0) {
+			HashMap<String, String> ROha = ROh.getAttributes();
+		} 
+		if (ROi.hashCode() !=0) {
+			HashMap<String, String> ROia = ROi.getAttributes();
+		} 
+		if (ROj.hashCode() !=0) {
+			HashMap<String, String> ROja = ROj.getAttributes();
+		} 
+		if (ROk.hashCode() !=0) {
+			HashMap<String, String> ROka = ROk.getAttributes();
+		} 
+		if (ROl.hashCode() !=0) {
+			HashMap<String, String> ROla = ROl.getAttributes();
+		} 
+		if (ROm.hashCode() !=0) {
+			HashMap<String, String> ROma = ROm.getAttributes();
+		} 
+		
+		
+		
+		HashMap<String, String> ROna = ROn.getAttributes();
+		HashMap<String, String> ROoa = ROo.getAttributes();
+		HashMap<String, String> ROpa = ROp.getAttributes();
+		HashMap<String, String> ROqa = ROq.getAttributes();
+		
+	
+		List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
+		resultAttribute.add(ROga);
+		resultAttribute.add(ROha);
+		resultAttribute.add(ROia);
+		resultAttribute.add(ROja);
+		resultAttribute.add(ROka);
+		resultAttribute.add(ROla);
+		resultAttribute.add(ROma);
+		resultAttribute.add(ROna);
+		resultAttribute.add(ROoa);
+		resultAttribute.add(ROpa);
+		resultAttribute.add(ROqa);
+		//resultAttribute.add(ROra);
+		
+		System.out.println("Printing the test array: " + resultAttribute);
+		System.out.println("Print first containt for test " + resultAttribute.get(0) + "Print last for test " + resultAttribute.get(5) +
+				"Print the size: " + resultAttribute.size());
+
+		return resultAttribute;
+	}
+
+	private int FigureAEqualsB() {//if figure A equals object B, then object D is equal to object C
+		
+		
+		
+		
+		
+		return -1;
+	}
+
+
+}

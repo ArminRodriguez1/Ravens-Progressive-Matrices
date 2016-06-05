@@ -74,6 +74,7 @@ public class TwoByTwoOneObject {
 			HashMap<String, String> ROca = ROc.getAttributes();
 
 			//System.out.println("ROaa: " + ROaa);
+			//System.out.println("one object, ROca: " + ROca);
 
 			//get attributes for the solution objects
 			HashMap<String, String> RO1da = RO1d.getAttributes();
@@ -83,7 +84,8 @@ public class TwoByTwoOneObject {
 			HashMap<String, String> RO5ha = RO5h.getAttributes();
 			HashMap<String, String> RO6ia = RO6i.getAttributes();
 			
-			
+			//System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
+
 			
 			
 			//test
@@ -95,15 +97,16 @@ public class TwoByTwoOneObject {
 			test.add(RO5ha);
 			test.add(RO6ia);
 			
-			System.out.println("Printing the test array: " + test);
-			System.out.println("Print first containt for test " + test.get(0) + "Print last for test " + test.get(5) +
-					"Print the size: " + test.size());
+//			System.out.println("Printing the test array: " + test);
+//			System.out.println("Print first containt for test " + test.get(0) + "Print last for test " + test.get(5) +
+//					"Print the size: " + test.size());
 			
 			//return test;
 			
 			
-			if (ROaa.equals(ROba)) {
+			if (ROaa.equals(ROba)) { //if figure A equals object B, then object D is equal to object C
 				if (ROca.equals(RO1da)) {
+					System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
 					tempAns = 1;
 				} else if (ROca.equals(RO2ea)) {
 					tempAns = 2;
@@ -118,7 +121,7 @@ public class TwoByTwoOneObject {
 				} else {
 					tempAns = -1;
 				}
-			} else if (ROaa.equals(ROca)) {
+			} else if (ROaa.equals(ROca)) { //if object c is equal to object a, then object d is equal to object b
 				if (ROba.equals(RO1da)) {
 					tempAns = 1;
 				} else if (ROba.equals(RO2ea)) {

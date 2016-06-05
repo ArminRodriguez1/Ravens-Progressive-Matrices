@@ -3,4 +3,8 @@
 <fullyQualifiedTypeName name="ravensproject.RavensObject"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="ravensproject.TwoByTwoTwoObjects"/>
+<fullyQualifiedTypeName name="ravensproject.RavensProblem"/>
 </qualifiedTypeNameHistroy>
