@@ -24,8 +24,6 @@ public class TwoByTwoTwoObjects {
 		if ((ROaa.equals(ROca))) {
 			tempAns = FigureAEqualsB();
 			//System.out.println("temp ans: " + tempAns);
-		} else {
-			tempAns = -1;
 		}
 		return tempAns;
 	}

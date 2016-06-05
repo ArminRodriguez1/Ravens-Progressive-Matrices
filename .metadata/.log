@@ -785,3 +785,8 @@ java.lang.NullPointerException
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
+
+!ENTRY org.eclipse.ui 4 0 2016-06-05 14:52:20.696
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException

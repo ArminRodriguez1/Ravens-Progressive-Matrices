@@ -24,8 +24,6 @@ public class TwoByTwoTwoObjects {
 		if ((ROaa.equals(ROca))) {
 			tempAns = FigureAEqualsB();
 			//System.out.println("temp ans: " + tempAns);
-		} else {
-			tempAns = -1;
 		}
 		return tempAns;
 	}
@@ -45,13 +43,10 @@ public class TwoByTwoTwoObjects {
 			if ((ROea.equals(resultAttribute.get(i)))) {
 				String shapeObjectf = "";
 				String angleObjectf = "";
-
-				if (ROfa.get("shape")!=null){
-					shapeObjectf = ROfa.get("shape");
-				} 
-				if (ROfa.get("angle")!=null){
-					angleObjectf = ROfa.get("angle");
-				}
+				
+				
+				shapeObjectf = ROfa.get("shape");
+				angleObjectf = ROfa.get("angle");
 
 				String shapeObjectAns ="";
 				String angleObjectAns = "";

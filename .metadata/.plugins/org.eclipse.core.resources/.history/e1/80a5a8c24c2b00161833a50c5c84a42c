@@ -24,8 +24,6 @@ public class TwoByTwoTwoObjects {
 		if ((ROaa.equals(ROca))) {
 			tempAns = FigureAEqualsB();
 			//System.out.println("temp ans: " + tempAns);
-		} else {
-			tempAns = -1;
 		}
 		return tempAns;
 	}
@@ -43,15 +41,8 @@ public class TwoByTwoTwoObjects {
 			//System.out.println("value of i " + b + ": " + resultAttribute.get(i+1));
 
 			if ((ROea.equals(resultAttribute.get(i)))) {
-				String shapeObjectf = "";
-				String angleObjectf = "";
-
-				if (ROfa.get("shape")!=null){
-					shapeObjectf = ROfa.get("shape");
-				} 
-				if (ROfa.get("angle")!=null){
-					angleObjectf = ROfa.get("angle");
-				}
+				String shapeObjectf = ROfa.get("shape");
+				String angleObjectf = ROfa.get("angle");
 
 				String shapeObjectAns ="";
 				String angleObjectAns = "";
@@ -145,18 +136,17 @@ public class TwoByTwoTwoObjects {
 			ROk = RO3.get("k");    	
 			ROl = RO3.get("l");
 		}
-		if (RO4!=null){
-			ROm = RO4.get("m");    	
-			ROn = RO4.get("n");
-		} 
-		if (RO5!=null){
-			ROo = RO5.get("o");
-			ROp = RO5.get("p");
-		}
-		if (RO6!=null){
-			ROq = RO6.get("q");    
-			ROr = RO6.get("r");
-		}
+
+
+		    	
+		    	
+		
+		ROm = RO4.get("m");    	
+		ROn = RO4.get("n");    	
+		ROo = RO5.get("o");
+		ROp = RO5.get("p");    	
+		ROq = RO6.get("q");    
+		ROr = RO6.get("r");    
 
 		//		System.out.println("Print ROa: " + ROa);
 		//		System.out.println("Print ROb: " + ROb);

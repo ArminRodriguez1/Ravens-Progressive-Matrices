@@ -25,7 +25,7 @@ public class TwoByTwoTwoObjects {
 			tempAns = FigureAEqualsB();
 			//System.out.println("temp ans: " + tempAns);
 		} else {
-			tempAns = -1;
+			tempAns = -1
 		}
 		return tempAns;
 	}
