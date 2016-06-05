@@ -260,7 +260,7 @@ public class TwoByTwoTwoObjects {
 		resultAttribute.add(ROra);
 
 		//		System.out.println("Printing the test array: " + resultAttribute);
-		//		System.out.println("Print first containt for test " + resultAttribute.get(0) + "Print last for test " + resultAttribute.get(5) +
+		//		System.out.println("Print first contait for test " + resultAttribute.get(0) + "Print last for test " + resultAttribute.get(5) +
 		//				"Print the size: " + resultAttribute.size());
 
 		return resultAttribute;

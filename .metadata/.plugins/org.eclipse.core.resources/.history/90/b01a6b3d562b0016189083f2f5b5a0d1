@@ -16,17 +16,16 @@ public class TwoByTwoTwoObjects {
 
 	public int TwoObjectRPM() {
 		List<Map> resultAttribute = getObjectAttributes(problem);
-		System.out.println("Print ROaa form the two object method: " + ROaa);
-		System.out.println("Print ROca from the two object method: " + ROca);
-		System.out.println("Compare ROaa to ROca: " + ROaa.equals(ROca));
-		System.out.println("Compare ROba to ROda: " + ROba.equals(ROda));
-		System.out.println("Compare the if entry: " + ((ROaa.equals(ROca)) && (ROba.equals(ROda))));
-
-		
-		
+		//		System.out.println("Print ROaa form the two object method: " + ROaa);
+		//		System.out.println("Print ROca from the two object method: " + ROca);
+		//		System.out.println("Compare ROaa to ROca: " + ROaa.equals(ROca));
+		//		System.out.println("Compare ROba to ROda: " + ROba.equals(ROda));
+		//		System.out.println("Compare the if entry: " + ((ROaa.equals(ROca)) && (ROba.equals(ROda))));
 		if ((ROaa.equals(ROca))) {
 			tempAns = FigureAEqualsB();
-			System.out.println("temp ans: " + tempAns);
+			//System.out.println("temp ans: " + tempAns);
+		} else {
+			tempAns = -1;
 		}
 		return tempAns;
 	}
@@ -34,34 +33,40 @@ public class TwoByTwoTwoObjects {
 	private int FigureAEqualsB() {//if figure A equals object B, then object D is equal to object C
 		List<Map> resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
-		System.out.println("ROea: " + ROea);
-		System.out.println("ROfa: " + ROfa);
+		//System.out.println("ROea: " + ROea);
+		//System.out.println("ROfa: " + ROfa);
 		for (int i = 0; i < resultAttribute.size(); i=i+2){
-			int b = i +1;
+			//int b = i +1;
 			ans+=1;
 			//System.out.println("print the if statement criteria: " + ((ROea.equals(resultAttribute.get(i))) && (ROfa.equals(resultAttribute.get(i+1)))));
 			System.out.println("value of i " + i + ": " + resultAttribute.get(i));
 			//System.out.println("value of i " + b + ": " + resultAttribute.get(i+1));
-			
+
 			if ((ROea.equals(resultAttribute.get(i)))) {
-				String shapeObjectf = ROfa.get("shape");
-				String angleObjectf = ROfa.get("angle");
-				
-				String shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
-				String angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
-				
-				if (shapeObjectAns.equals(shapeObjectAns) && angleObjectf.equals(angleObjectAns)) {
-					
+				String shapeObjectf = "";
+				String angleObjectf = "";
+
+				if (ROfa.get("shape")!=null){
+					shapeObjectf = ROfa.get("shape");
+				} 
+				if (ROfa.get("angle")!=null){
+					angleObjectf = ROfa.get("angle");
 				}
-				
-				
- 				System.out.println(shapeObjectf);
-				System.out.println(angleObjectf);
-				System.out.println("**");
-				System.out.println(shapeObjectAns);
-				System.out.println(angleObjectAns);
-				System.out.println("print the ans: " + ans);
-				break;
+
+				String shapeObjectAns ="";
+				String angleObjectAns = "";
+
+				if (resultAttribute.get(i+1) != null){
+					shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
+				}
+				if (resultAttribute.get(i+1) != null) {
+					angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
+				}
+
+				if ((shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
+					System.out.println(ans);
+					break;
+				}
 			}
 		}
 		return ans;
@@ -97,24 +102,61 @@ public class TwoByTwoTwoObjects {
 		HashMap<String, RavensObject> RO6 = RF6.getObjects();
 
 		//get the Ravens Objects from Ravens Figure
-		RavensObject ROa = ROA.get("a");    	
-		RavensObject ROb = ROA.get("b");  
-		RavensObject ROc = ROB.get("c");
-		RavensObject ROd = ROB.get("d");    	
-		RavensObject ROe = ROC.get("e");    	
-		RavensObject ROf = ROC.get("f");
-		RavensObject ROg = RO1.get("g");    	
-		RavensObject ROh = RO1.get("h");    	
-		RavensObject ROi = RO2.get("i");
-		RavensObject ROj = RO2.get("j");    	
-		RavensObject ROk = RO3.get("k");    	
-		RavensObject ROl = RO3.get("l");
-		RavensObject ROm = RO4.get("m");    	
-		RavensObject ROn = RO4.get("n");    	
-		RavensObject ROo = RO5.get("o");
-		RavensObject ROp = RO5.get("p");    	
-		RavensObject ROq = RO6.get("q");    
-		RavensObject ROr = RO6.get("r");    
+		RavensObject ROa = null;
+		RavensObject ROb = null;
+		RavensObject ROc = null; 
+		RavensObject ROd = null; 
+		RavensObject ROe = null; 
+		RavensObject ROf = null; 
+		RavensObject ROg = null; 
+		RavensObject ROh = null; 
+		RavensObject ROi = null; 
+		RavensObject ROj = null; 
+		RavensObject ROk = null; 
+		RavensObject ROl = null; 
+		RavensObject ROm = null; 
+		RavensObject ROn = null; 
+		RavensObject ROo = null; 
+		RavensObject ROp = null; 
+		RavensObject ROq = null; 
+		RavensObject ROr = null;
+
+		if (ROA!=null) {
+			ROa = ROA.get("a");    	
+			ROb = ROA.get("b");
+		} 
+		if (ROB!=null){
+			ROc = ROB.get("c");
+			ROd = ROB.get("d");
+		}
+		if (ROC!=null){
+			ROe = ROC.get("e");    	
+			ROf = ROC.get("f");
+		}
+		if (RO1!=null){
+			ROg = RO1.get("g");    	
+			ROh = RO1.get("h");
+		}
+		if (RO2!=null){
+			ROi = RO2.get("i");
+			ROj = RO2.get("j");
+		}
+		if (RO3!=null) {
+			ROk = RO3.get("k");    	
+			ROl = RO3.get("l");
+		}
+		if (RO4!=null){
+			ROm = RO4.get("m");    	
+			ROn = RO4.get("n");
+		} 
+		if (RO5!=null){
+			ROo = RO5.get("o");
+			ROp = RO5.get("p");
+		}
+		if (RO6!=null){
+			ROq = RO6.get("q");    
+			ROr = RO6.get("r");
+		}
 
 		//		System.out.println("Print ROa: " + ROa);
 		//		System.out.println("Print ROb: " + ROb);
@@ -203,7 +245,7 @@ public class TwoByTwoTwoObjects {
 			ROra = ROr.getAttributes();
 		}
 
-		List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
+		List<Map> resultAttribute = new List(); //array list for the result object attributes
 		resultAttribute.add(ROga);
 		resultAttribute.add(ROha);
 		resultAttribute.add(ROia);
