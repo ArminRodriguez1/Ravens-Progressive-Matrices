@@ -18,15 +18,18 @@ public class TwoByTwoOneObject {
 	private int tempAns;
 
 	//hash map for Ravens Figure
-	HashMap<String, RavensFigure> RF;
+	private HashMap<String, RavensFigure> RF;
 	//Ravens figure
-	RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6;
+	private RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6;
 	//Hash map of Ravens object
-	HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
+	private HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
 	//Ravens object
-	RavensObject ROa, ROb,ROc, RO1d, RO2e, RO3f, RO4g, RO5h, RO6i;
+	private RavensObject ROa, ROb,ROc, RO1d, RO2e, RO3f, RO4g, RO5h, RO6i;
 	//attributes for Ravens object
-	HashMap<String, String> ROaa, ROba,ROca, RO1da, RO2ea, RO3fa, RO4ga, RO5ha, RO6ia;
+	private HashMap<String, String> ROaa, ROba,ROca, RO1da, RO2ea, RO3fa, RO4ga, RO5ha, RO6ia;
+	//map of the Ravens object and its attributes in a list
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List<Map> test = new ArrayList();
 
 	public TwoByTwoOneObject(RavensProblem problem) {
 		this.problem = problem;
@@ -54,7 +57,7 @@ public class TwoByTwoOneObject {
 			//get the Ravens Figure from the problem figures
 			ROA = RFA.getObjects();
 			ROB = RFB.getObjects();
-			HashMap<String, RavensObject> ROC = RFC.getObjects();   
+			ROC = RFC.getObjects();   
 
 			//get the Ravens Figure from the problem solutions
 			RO1 = RF1.getObjects();
@@ -74,8 +77,7 @@ public class TwoByTwoOneObject {
 			if (ROC!=null){
 				ROc = ROC.get("c");
 			}
-			//System.out.println("name of the ravens object ROa: " + ROa.getAttributes().containsValue("square"));
-
+			
 			//get the Ravens Objects from the Ravens Figure in solution
 			if (RO1!=null){
 				RO1d = RO1.get("d");
@@ -107,9 +109,6 @@ public class TwoByTwoOneObject {
 				ROca = ROc.getAttributes();
 			}
 
-			//System.out.println("ROaa: " + ROaa);
-			//System.out.println("one object, ROca: " + ROca);
-
 			//get attributes for the solution objects
 			if (RO1d!=null) {
 				RO1da = RO1d.getAttributes();
@@ -130,23 +129,12 @@ public class TwoByTwoOneObject {
 				RO6ia = RO6i.getAttributes();
 			}
 
-			//System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
-
-			//test
-			List<Map> test = new ArrayList();
 			test.add(RO1da);
 			test.add(RO2ea);
 			test.add(RO3fa);
 			test.add(RO4ga);
 			test.add(RO5ha);
 			test.add(RO6ia);
-
-			//			System.out.println("Printing the test array: " + test);
-			//			System.out.println("Print first containt for test " + test.get(0) + "Print last for test " + test.get(5) +
-			//					"Print the size: " + test.size()); 
-
-			//return test;
-
 
 			if (ROaa.equals(ROba)) { //if figure A equals object B, then object D is equal to object C
 				if (ROca.equals(RO1da)) {
@@ -186,13 +174,6 @@ public class TwoByTwoOneObject {
 
 				String shapeofC = ROca.get("shape"); //find the shape and look for the same shape
 				String fillinC = ROca.get("fill"); //find if the shape is filled or not and look for the opposite fill
-
-				//			    System.out.println("Value of octagon, triangle, pac-man and angle: " + ((ROaa.containsValue("octagon") || ROaa.containsValue("right triangle") 
-				//				|| ROaa.containsValue("pac-man")) && !ROaa.containsKey("angle")));
-
-				//System.out.println("value of shape of C: " + shapeofC + " value of fill in C: " + fillinC);
-				//System.out.println("print the value of the bool for B-09: " + ((((ROaa.containsValue("no") && ROba.containsValue("yes"))) || ((ROaa.containsValue("yes") && ROba.containsValue("no"))))));
-
 
 				if (!ROaa.containsKey("angle")) { //cases without any rotations
 					if (((ROaa.containsValue("no") && ROba.containsValue("yes"))) || ((ROaa.containsValue("yes") && ROba.containsValue("no")))) { //check for fill in A and no fill in B or vice versa
@@ -236,7 +217,7 @@ public class TwoByTwoOneObject {
 									int angle1dint = Integer.parseInt(angle1d); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle1dint);
-									System.out.println("Diff 1 and C " + angleDiff);
+									//System.out.println("Diff 1 and C " + angleDiff);
 
 									if ((angleDiffAandB == angleDiff) && (RO1da.get("fill").equals(fillinC)))  { //decide whether to add fill component or not
 										tempAns = 1;
@@ -246,7 +227,7 @@ public class TwoByTwoOneObject {
 									int angle2eint = Integer.parseInt(angle2e); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle2eint);
-									System.out.println("Diff 2 and C " + angleDiff);
+									//System.out.println("Diff 2 and C " + angleDiff);
 
 									if ((angleDiffAandB == angleDiff) && (RO2ea.get("fill").equals(fillinC))) {
 										tempAns = 2;
@@ -256,7 +237,7 @@ public class TwoByTwoOneObject {
 									int angle3fint = Integer.parseInt(angle3f); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle3fint);
-									System.out.println("Diff 3 and C " + angleDiff);
+									//System.out.println("Diff 3 and C " + angleDiff);
 
 									if ((angleDiffAandB == angleDiff) && (RO3fa.get("fill").equals(fillinC))) {
 										tempAns = 3;
@@ -266,7 +247,7 @@ public class TwoByTwoOneObject {
 									int angle4gint = Integer.parseInt(angle4g); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle4gint);
-									System.out.println("Diff 4 and C " + angleDiff);
+									//System.out.println("Diff 4 and C " + angleDiff);
 
 									if ((angleDiffAandB == angleDiff) && (RO4ga.get("fill").equals(fillinC))) {
 										tempAns = 4;
@@ -276,7 +257,7 @@ public class TwoByTwoOneObject {
 									int angle5hint = Integer.parseInt(angle5h); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle5hint);
-									System.out.println("Diff 5 and C " + angleDiff);
+									//System.out.println("Diff 5 and C " + angleDiff);
 
 									if ((angleDiffAandB == angleDiff) && (RO5ha.get("fill").equals(fillinC))) {
 										tempAns = 5;
@@ -286,7 +267,7 @@ public class TwoByTwoOneObject {
 									int angle6iint = Integer.parseInt(angle6i); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle6iint);
-									System.out.println("Diff 6 and C " + angleDiff);
+									//System.out.println("Diff 6 and C " + angleDiff);
 
 									if ((angleDiffAandB == angleDiff) && (RO6ia.get("fill").equals(fillinC))) {
 										tempAns = 6;
