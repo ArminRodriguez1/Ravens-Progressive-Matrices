@@ -65,70 +65,35 @@ public class TwoByTwoOneObject {
 			RO6 = RF6.getObjects();
 
 			//get the Ravens Objects from Ravens Figure
-			if (ROA!=null){
-			ROa = ROA.get("a");
-			}
-			if (ROB!=null){
-				ROb = ROB.get("b");    	
-			}
-			if (ROC!=null){
+			ROa = ROA.get("a");    	
+			ROb = ROB.get("b");    	
 			ROc = ROC.get("c");
-			}
+
 			//System.out.println("name of the ravens object ROa: " + ROa.getAttributes().containsValue("square"));
 
 			//get the Ravens Objects from the Ravens Figure in solution
-			if (RO1!=null){
 			RO1d = RO1.get("d");
-			}
-			if (RO2!=null){
-				RO2e = RO2.get("e");
-			}
-			if (RO3!=null){
-				RO3f = RO3.get("f");
-			}
-			if (RO4!=null){
-				RO4g = RO4.get("g");
-			}
-			if (RO5!=null){
-				RO5h = RO5.get("h");
-			}
-			if (RO6!=null){
-				RO6i = RO6.get("i");
-			}
+			RO2e = RO2.get("e");
+			RO3f = RO3.get("f");
+			RO4g = RO4.get("g");
+			RO5h = RO5.get("h");
+			RO6i = RO6.get("i");
 
 			//get attributes for the Ravens Objects
-			if (ROa!=null) {
-				ROaa = ROa.getAttributes();
-			}
-			if (ROb!=null) {
-				ROba = ROb.getAttributes();
-			}
-			if (ROc!=null) {
-				ROca = ROc.getAttributes();
-			}
+			ROaa = ROa.getAttributes();
+			ROba = ROb.getAttributes();
+			ROca = ROc.getAttributes();
 
 			//System.out.println("ROaa: " + ROaa);
 			//System.out.println("one object, ROca: " + ROca);
 
 			//get attributes for the solution objects
-			if (RO1d!=null) {
-				RO1da = RO1d.getAttributes();
-			}
-			if (RO2e!=null) {
-				RO2ea = RO2e.getAttributes();
-			}
-			if (RO3f!=null) {
-				RO3fa = RO3f.getAttributes();
-			}
-			if (RO4g!=null) {
-				RO4ga = RO4g.getAttributes();
-			}
-			if (RO5h!=null) {
-				RO5ha = RO5h.getAttributes();
-			}
-			if (RO6i!=null) {
-				RO6ia = RO6i.getAttributes();
-			}
+			RO1da = RO1d.getAttributes();
+			RO2ea = RO2e.getAttributes();
+			RO3fa = RO3f.getAttributes();
+			RO4ga = RO4g.getAttributes();
+			RO5ha = RO5h.getAttributes();
+			RO6ia = RO6i.getAttributes();
 			
 			//System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
 
@@ -145,7 +110,7 @@ public class TwoByTwoOneObject {
 			
 //			System.out.println("Printing the test array: " + test);
 //			System.out.println("Print first containt for test " + test.get(0) + "Print last for test " + test.get(5) +
-//					"Print the size: " + test.size()); 
+//					"Print the size: " + test.size());
 			
 			//return test;
 			

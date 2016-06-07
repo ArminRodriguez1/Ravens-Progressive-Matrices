@@ -77,9 +77,7 @@ public class Agent {
 			if (RF.size() == 9) {
 				if (numberOfObjects == 1) {
 					ans = OneObject(problem); //2 by 2 RPM with one objects per figure
-				} else {
-					ans = -1;
-				}
+				} 
 			} else {
 				ans = -1;
 			}

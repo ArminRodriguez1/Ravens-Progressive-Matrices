@@ -97,38 +97,20 @@ public class TwoByTwoOneObject {
 			}
 
 			//get attributes for the Ravens Objects
-			if (ROa!=null) {
-				ROaa = ROa.getAttributes();
-			}
-			if (ROb!=null) {
-				ROba = ROb.getAttributes();
-			}
-			if (ROc!=null) {
-				ROca = ROc.getAttributes();
-			}
+			ROaa = ROa.getAttributes();
+			ROba = ROb.getAttributes();
+			ROca = ROc.getAttributes();
 
 			//System.out.println("ROaa: " + ROaa);
 			//System.out.println("one object, ROca: " + ROca);
 
 			//get attributes for the solution objects
-			if (RO1d!=null) {
-				RO1da = RO1d.getAttributes();
-			}
-			if (RO2e!=null) {
-				RO2ea = RO2e.getAttributes();
-			}
-			if (RO3f!=null) {
-				RO3fa = RO3f.getAttributes();
-			}
-			if (RO4g!=null) {
-				RO4ga = RO4g.getAttributes();
-			}
-			if (RO5h!=null) {
-				RO5ha = RO5h.getAttributes();
-			}
-			if (RO6i!=null) {
-				RO6ia = RO6i.getAttributes();
-			}
+			RO1da = RO1d.getAttributes();
+			RO2ea = RO2e.getAttributes();
+			RO3fa = RO3f.getAttributes();
+			RO4ga = RO4g.getAttributes();
+			RO5ha = RO5h.getAttributes();
+			RO6ia = RO6i.getAttributes();
 			
 			//System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
 
@@ -145,7 +127,7 @@ public class TwoByTwoOneObject {
 			
 //			System.out.println("Printing the test array: " + test);
 //			System.out.println("Print first containt for test " + test.get(0) + "Print last for test " + test.get(5) +
-//					"Print the size: " + test.size()); 
+//					"Print the size: " + test.size());
 			
 			//return test;
 			
