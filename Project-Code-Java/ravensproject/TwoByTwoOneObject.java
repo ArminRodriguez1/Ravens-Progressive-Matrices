@@ -16,17 +16,6 @@ public class TwoByTwoOneObject {
 
 	private RavensProblem problem;
 	private int tempAns;
-	
-	//hash map for Ravens Figure
-	HashMap<String, RavensFigure> RF;
-	//Ravens figure
-	RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6;
-	//Hash map of Ravens object
-	HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
-	//Ravens object
-	RavensObject ROa, ROb,ROc, RO1d, RO2e, RO3f, RO4g, RO5h, RO6i;
-	//attributes for Ravens object
-	HashMap<String, String> ROaa, ROba,ROca, RO1da, RO2ea, RO3fa, RO4ga, RO5ha, RO6ia;
 
 	public TwoByTwoOneObject(RavensProblem problem) {
 		this.problem = problem;
@@ -36,35 +25,36 @@ public class TwoByTwoOneObject {
 
 		//check if the problem has verbal or not
 		if (problem.hasVerbal()) {
-			RF = problem.getFigures();
+			HashMap<String, RavensFigure> RF = problem.getFigures();
 
 			//these are the Ravens Figure from the problem
-			RFA = RF.get("A");
-			RFB = RF.get("B");
-			RFC = RF.get("C");
+			RavensFigure RFA = RF.get("A");
+			RavensFigure RFB = RF.get("B");
+			RavensFigure RFC = RF.get("C");
 
 			//these are the Ravens Figure from the solution
-			RF1 = RF.get("1");
-			RF2 = RF.get("2");
-			RF3 = RF.get("3");
-			RF4 = RF.get("4");
-			RF5 = RF.get("5");
-			RF6 = RF.get("6");
+			RavensFigure RF1 = RF.get("1");
+			RavensFigure RF2 = RF.get("2");
+			RavensFigure RF3 = RF.get("3");
+			RavensFigure RF4 = RF.get("4");
+			RavensFigure RF5 = RF.get("5");
+			RavensFigure RF6 = RF.get("6");
 
 			//get the Ravens Figure from the problem figures
-			ROA = RFA.getObjects();
-			ROB = RFB.getObjects();
+			HashMap<String, RavensObject> ROA = RFA.getObjects();
+			HashMap<String, RavensObject> ROB = RFB.getObjects();
 			HashMap<String, RavensObject> ROC = RFC.getObjects();   
 
 			//get the Ravens Figure from the problem solutions
-			RO1 = RF1.getObjects();
-			RO2 = RF2.getObjects();
-			RO3 = RF3.getObjects();
-			RO4 = RF4.getObjects();
-			RO5 = RF5.getObjects();
-			RO6 = RF6.getObjects();
+			HashMap<String, RavensObject> RO1 = RF1.getObjects();
+			HashMap<String, RavensObject> RO2 = RF2.getObjects();
+			HashMap<String, RavensObject> RO3 = RF3.getObjects();
+			HashMap<String, RavensObject> RO4 = RF4.getObjects();
+			HashMap<String, RavensObject> RO5 = RF5.getObjects();
+			HashMap<String, RavensObject> RO6 = RF6.getObjects();
 
 			//get the Ravens Objects from Ravens Figure
+<<<<<<< HEAD
 			if (ROA!=null){
 			ROa = ROA.get("a");
 			}
@@ -106,11 +96,32 @@ public class TwoByTwoOneObject {
 			if (ROc!=null) {
 				ROca = ROc.getAttributes();
 			}
+=======
+			RavensObject ROa = ROA.get("a");    	
+			RavensObject ROb = ROB.get("b");    	
+			RavensObject ROc = ROC.get("c");
+
+			//System.out.println("name of the ravens object ROa: " + ROa.getAttributes().containsValue("square"));
+
+			//get the Ravens Objects from the Ravens Figure in solution
+			RavensObject RO1d = RO1.get("d");
+			RavensObject RO2e = RO2.get("e");
+			RavensObject RO3f = RO3.get("f");
+			RavensObject RO4g = RO4.get("g");
+			RavensObject RO5h = RO5.get("h");
+			RavensObject RO6i = RO6.get("i");
+
+			//get attributes for the Ravens Objects
+			HashMap<String, String> ROaa = ROa.getAttributes();
+			HashMap<String, String> ROba = ROb.getAttributes();
+			HashMap<String, String> ROca = ROc.getAttributes();
+>>>>>>> parent of 738b901... 2 by 2 null pointer in server
 
 			//System.out.println("ROaa: " + ROaa);
 			//System.out.println("one object, ROca: " + ROca);
 
 			//get attributes for the solution objects
+<<<<<<< HEAD
 			if (RO1d!=null) {
 				RO1da = RO1d.getAttributes();
 			}
@@ -129,6 +140,14 @@ public class TwoByTwoOneObject {
 			if (RO6i!=null) {
 				RO6ia = RO6i.getAttributes();
 			}
+=======
+			HashMap<String, String> RO1da = RO1d.getAttributes();
+			HashMap<String, String> RO2ea = RO2e.getAttributes();
+			HashMap<String, String> RO3fa = RO3f.getAttributes();
+			HashMap<String, String> RO4ga = RO4g.getAttributes();
+			HashMap<String, String> RO5ha = RO5h.getAttributes();
+			HashMap<String, String> RO6ia = RO6i.getAttributes();
+>>>>>>> parent of 738b901... 2 by 2 null pointer in server
 			
 			//System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
 

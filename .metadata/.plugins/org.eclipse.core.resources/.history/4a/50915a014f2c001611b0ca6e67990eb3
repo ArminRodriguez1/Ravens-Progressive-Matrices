@@ -7,35 +7,21 @@ public class TwoByTwoTwoObjects {
 	private RavensProblem problem;
 	private int tempAns;
 
-	//hash map for Ravens Figure
-	HashMap<String, RavensFigure> RF;
-	//Ravens figure
-	RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6;
-	//Hash map of Ravens object
-	HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
-	//Ravens object
-	RavensObject ROa, ROb,ROc, ROd, ROe, ROf, ROg, ROh, ROi, ROj, ROk, ROl, ROm, ROn, ROo, ROp, ROq, ROr;
-
-	//hash map of object name and attributes
-	HashMap<String, String> ROaa, ROba, ROca, ROda, ROea, ROfa, ROga, ROha, ROia, ROja, ROka, ROla, ROma, ROna, ROoa, ROpa, ROqa, ROra;
-	//map of the Ravens object and its attributes in a list
-	List<Map> resultAttribute;
-	
-	private String shapeObjectf, angleObjectf;
-	private String shapeObjectAns, angleObjectAns;
+	HashMap<String, String> ROaa, ROba, ROca, ROda, ROea, ROfa, ROga, ROha, ROia, ROja, ROka, ROla, ROma,
+	ROna, ROoa, ROpa, ROqa, ROra;
 
 	public TwoByTwoTwoObjects(RavensProblem problem){
 		this.problem = problem;
 	}
 
 	public int TwoObjectRPM() {
-		resultAttribute = getObjectAttributes(problem);
+		List<Map> resultAttribute = getObjectAttributes(problem);
 		//		System.out.println("Print ROaa form the two object method: " + ROaa);
 		//		System.out.println("Print ROca from the two object method: " + ROca);
 		//		System.out.println("Compare ROaa to ROca: " + ROaa.equals(ROca));
 		//		System.out.println("Compare ROba to ROda: " + ROba.equals(ROda));
 		//		System.out.println("Compare the if entry: " + ((ROaa.equals(ROca)) && (ROba.equals(ROda))));
-		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca))) {
+		if ((ROaa.equals(ROca))) {
 			tempAns = FigureAEqualsB();
 			//System.out.println("temp ans: " + tempAns);
 		} else {
@@ -45,81 +31,95 @@ public class TwoByTwoTwoObjects {
 	}
 
 	private int FigureAEqualsB() {//if figure A equals object B, then object D is equal to object C
-		resultAttribute = getObjectAttributes(problem);
+		List<Map> resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
-		//		System.out.println("ROaa: " + ROaa);
-		//		System.out.println("ROca: " + ROca);
-		
-	      try{
-	  		if(ROaa!=null && ROca!=null && (ROaa.get("shape").equals(ROca.get("shape"))) && ((ROda!=null))) {
-				for (int i = 0; i < resultAttribute.size(); i=i+2){
-					//int b = i +1;
-					ans+=1;
-					//System.out.println("print the if statement criteria: " + ((ROea.equals(resultAttribute.get(i))) && (ROfa.equals(resultAttribute.get(i+1)))));
-					//System.out.println("value of i " + i + ": " + resultAttribute.get(i));
-					//System.out.println("value of i " + b + ": " + resultAttribute.get(i+1));
+		//System.out.println("ROea: " + ROea);
+		//System.out.println("ROfa: " + ROfa);
+		for (int i = 0; i < resultAttribute.size(); i=i+2){
+			//int b = i +1;
+			ans+=1;
+			//System.out.println("print the if statement criteria: " + ((ROea.equals(resultAttribute.get(i))) && (ROfa.equals(resultAttribute.get(i+1)))));
+			System.out.println("value of i " + i + ": " + resultAttribute.get(i));
+			//System.out.println("value of i " + b + ": " + resultAttribute.get(i+1));
 
-					if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { //can only compare on the object e to make it more generic
+			if ((ROea.equals(resultAttribute.get(i)))) {
+				String shapeObjectf = "";
+				String angleObjectf = "";
 
-						if (ROfa!=null){
-							shapeObjectf = ROfa.get("shape");
-						} 
-						if (ROfa!=null){
-							angleObjectf = ROfa.get("angle");
-						}
-
-					
-						if (resultAttribute.get(i+1) != null){
-							shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
-						}
-						if (resultAttribute.get(i+1) != null) {
-							angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
-						}
-
-						if (shapeObjectf!=null && angleObjectAns!= null && (shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
-							System.out.println(ans);
-							break;
-						}
-					}
+				if (ROfa.get("shape")!=null){
+					shapeObjectf = ROfa.get("shape");
+				} 
+				if (ROfa.get("angle")!=null){
+					angleObjectf = ROfa.get("angle");
 				}
-			} else {
-				ans = -1;
+
+				String shapeObjectAns ="";
+				String angleObjectAns = "";
+
+				if (resultAttribute.get(i+1) != null){
+					shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
+				}
+				if (resultAttribute.get(i+1) != null) {
+					angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
+				}
+
+				if ((shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
+					System.out.println(ans);
+					break;
+				}
 			}
-	       }catch(ArrayIndexOutOfBoundsException e){
-	          System.out.println("Exception thrown  :" + e);
-	       }
+		}
 		return ans;
 	}
 
 	public List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
-		RF = problem.getFigures();
+		HashMap<String, RavensFigure> RF = problem.getFigures();
 
 		//these are the Ravens Figure from the problem
-		RFA = RF.get("A");
-		RFB = RF.get("B");
-		RFC = RF.get("C");
+		RavensFigure RFA = RF.get("A");
+		RavensFigure RFB = RF.get("B");
+		RavensFigure RFC = RF.get("C");
 
 		//these are the Ravens Figure from the solution
-		RF1 = RF.get("1");
-		RF2 = RF.get("2");
-		RF3 = RF.get("3");
-		RF4 = RF.get("4");
-		RF5 = RF.get("5");
-		RF6 = RF.get("6");
+		RavensFigure RF1 = RF.get("1");
+		RavensFigure RF2 = RF.get("2");
+		RavensFigure RF3 = RF.get("3");
+		RavensFigure RF4 = RF.get("4");
+		RavensFigure RF5 = RF.get("5");
+		RavensFigure RF6 = RF.get("6");
 
 		//get the Ravens Figure from the problem figures
-		ROA = RFA.getObjects();
-		ROB = RFB.getObjects();
-		ROC = RFC.getObjects();   
+		HashMap<String, RavensObject> ROA = RFA.getObjects();
+		HashMap<String, RavensObject> ROB = RFB.getObjects();
+		HashMap<String, RavensObject> ROC = RFC.getObjects();   
 
 		//get the Ravens Figure from the problem solutions
-		RO1 = RF1.getObjects();
-		RO2 = RF2.getObjects();
-		RO3 = RF3.getObjects();
-		RO4 = RF4.getObjects();
-		RO5 = RF5.getObjects();
-		RO6 = RF6.getObjects();
+		HashMap<String, RavensObject> RO1 = RF1.getObjects();
+		HashMap<String, RavensObject> RO2 = RF2.getObjects();
+		HashMap<String, RavensObject> RO3 = RF3.getObjects();
+		HashMap<String, RavensObject> RO4 = RF4.getObjects();
+		HashMap<String, RavensObject> RO5 = RF5.getObjects();
+		HashMap<String, RavensObject> RO6 = RF6.getObjects();
 
+		//get the Ravens Objects from Ravens Figure
+		RavensObject ROa = null;
+		RavensObject ROb = null;
+		RavensObject ROc = null; 
+		RavensObject ROd = null; 
+		RavensObject ROe = null; 
+		RavensObject ROf = null; 
+		RavensObject ROg = null; 
+		RavensObject ROh = null; 
+		RavensObject ROi = null; 
+		RavensObject ROj = null; 
+		RavensObject ROk = null; 
+		RavensObject ROl = null; 
+		RavensObject ROm = null; 
+		RavensObject ROn = null; 
+		RavensObject ROo = null; 
+		RavensObject ROp = null; 
+		RavensObject ROq = null; 
+		RavensObject ROr = null;
 
 		if (ROA!=null) {
 			ROa = ROA.get("a");    	
