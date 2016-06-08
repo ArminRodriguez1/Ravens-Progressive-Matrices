@@ -31,19 +31,12 @@ public class TwoByTwoTwoObjects {
 
 	public int TwoObjectRPM() {
 		resultAttribute = getObjectAttributes(problem);
-		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
-			System.out.println("Value of ROda: " + ROda);
+		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca))) {
 			tempAns = FigureAEqualsB();
 		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
-			System.out.println("Value of ROfa: " + ROfa);
 			tempAns = FigureAEqualsC();
-		} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
-			System.out.println("Value of ROda: " + ROda);
-			tempAns = FigureBDeletesA();
-		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
-			System.out.println("Value of ROfa: " + ROfa);
-			tempAns = FigureCDeletesA();
-		} else {
+		}
+		else {
 			tempAns = -1;
 		}
 		return tempAns;
@@ -53,93 +46,62 @@ public class TwoByTwoTwoObjects {
 		resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
-		try{
-			for (int i = 0; i < resultAttribute.size(); i=i+2){
-				ans+=1;
+	      try{
+	  		if(ROaa!=null && ROca!=null && (ROaa.get("shape").equals(ROca.get("shape"))) && ((ROda!=null))) {
+				for (int i = 0; i < resultAttribute.size(); i=i+2){
+					ans+=1;
 
-				if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { //can only compare on the object e to make it more generic
-					if (ROfa!=null){
-						shapeObjectf = ROfa.get("shape");
-						angleObjectf = ROfa.get("angle");
-					}
-					if (resultAttribute.get(i+1) != null){
-						shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
-						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
-					}
-					if (shapeObjectf!=null && angleObjectAns!= null && (shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
-						break;
+					if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { //can only compare on the object e to make it more generic
+						if (ROfa!=null){
+							shapeObjectf = ROfa.get("shape");
+							angleObjectf = ROfa.get("angle");
+						}
+						if (resultAttribute.get(i+1) != null){
+							shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
+							angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
+						}
+						if (shapeObjectf!=null && angleObjectAns!= null && (shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
+							//System.out.println(ans);
+							break;
+						}
 					}
 				}
+			} else {
+				ans = -1;
 			}
 		}catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
+	          System.out.println("Exception thrown  :" + e);
+	       }
 		return ans;
 	}
-
+	
 	private int FigureAEqualsC() {//if figure A equals figure C, then Figure D is equal to Figure C
 		resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
-		try{
-			for (int i = 0; i < resultAttribute.size(); i=i+2){
-				ans+=1;
+	      try{
+				for (int i = 0; i < resultAttribute.size(); i=i+2){
+					ans+=1;
 
-				if (ROca!=null && resultAttribute.get(i)!= null && (ROca.equals(resultAttribute.get(i)))) { //can only compare on the object c to make it more generic
-					if (ROda!=null){
-						shapeObjectd = ROda.get("shape");
-						angleObjectd = ROda.get("angle");
+					if (ROca!=null && resultAttribute.get(i)!= null && (ROca.equals(resultAttribute.get(i)))) { //can only compare on the object c to make it more generic
+						if (ROda!=null){
+							shapeObjectd = ROda.get("shape");
+							angleObjectd = ROda.get("angle");
+						}
+						if (resultAttribute.get(i+1) != null){
+							shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
+							angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
+						}
+						if (shapeObjectd!=null && angleObjectAns!= null && (shapeObjectd.equals(shapeObjectAns)) && (angleObjectd.equals(angleObjectAns))) {
+							break;
+						}
+					} else {
+						ans = -1;
 					}
-					if (resultAttribute.get(i+1) != null){
-						shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
-						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
-					}
-					if (shapeObjectd!=null && angleObjectAns!= null && (shapeObjectd.equals(shapeObjectAns)) && (angleObjectd.equals(angleObjectAns))) {
-						break;
-					}
-				} 
-			}
+				}
 		} catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
-		return ans;
-	}
-
-	private int FigureCDeletesA() {//if figure C has inside object deleted
-		resultAttribute = getObjectAttributes(problem);
-		int ans = 0;
-
-		try{
-			for (int i = 0; i < resultAttribute.size(); i=i+2){
-				ans+=1;
-				if (ROca!=null && resultAttribute.get(i)!= null && (ROca.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
-					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
-						break;
-					}
-				} 
-			}
-		}catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
-		return ans;
-	}
-
-	private int FigureBDeletesA() {//if figure B has inside object deleted
-		resultAttribute = getObjectAttributes(problem);
-		int ans = 0;
-
-		try{
-			for (int i = 0; i < resultAttribute.size(); i=i+2){
-				ans+=1;
-				if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
-					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
-						break;
-					}
-				} 
-			}
-		}catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
+	          System.out.println("Exception thrown  :" + e);
+	       }
 		return ans;
 	}
 

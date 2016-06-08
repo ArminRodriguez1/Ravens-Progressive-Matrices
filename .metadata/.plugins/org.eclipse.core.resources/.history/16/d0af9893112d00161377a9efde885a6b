@@ -32,17 +32,9 @@ public class TwoByTwoTwoObjects {
 	public int TwoObjectRPM() {
 		resultAttribute = getObjectAttributes(problem);
 		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
-			System.out.println("Value of ROda: " + ROda);
 			tempAns = FigureAEqualsB();
 		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
-			System.out.println("Value of ROfa: " + ROfa);
 			tempAns = FigureAEqualsC();
-		} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
-			System.out.println("Value of ROda: " + ROda);
-			tempAns = FigureBDeletesA();
-		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
-			System.out.println("Value of ROfa: " + ROfa);
-			tempAns = FigureCDeletesA();
 		} else {
 			tempAns = -1;
 		}
@@ -123,23 +115,23 @@ public class TwoByTwoTwoObjects {
 		}
 		return ans;
 	}
-
+	
 	private int FigureBDeletesA() {//if figure B has inside object deleted
 		resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
-		try{
-			for (int i = 0; i < resultAttribute.size(); i=i+2){
-				ans+=1;
-				if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
-					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
-						break;
-					}
-				} 
-			}
+	      try{
+				for (int i = 0; i < resultAttribute.size(); i=i+2){
+					ans+=1;
+					if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
+						if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
+							break;
+						}
+					} 
+				}
 		}catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
+	          System.out.println("Exception thrown  :" + e);
+	       }
 		return ans;
 	}
 
