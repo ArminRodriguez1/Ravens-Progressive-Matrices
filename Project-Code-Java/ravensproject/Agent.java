@@ -4,8 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 // Uncomment these lines to access image processing.
 //import java.awt.Image;
@@ -60,6 +58,7 @@ public class Agent {
 	public int Solve(RavensProblem problem) {
 		System.out.println("************");
 		System.out.println("Problem name: " + problem.getName());
+		printDateTime();
 		System.out.println("");
 
 		//check if the problem has verbal or not
@@ -91,7 +90,6 @@ public class Agent {
 				ans = -1;
 			}
 		}
-		printDateTime();
 		return ans;
 	}
 

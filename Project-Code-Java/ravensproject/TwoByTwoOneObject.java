@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 /**
- * This class solves for the RPM that have only one object 
+ * This class solves for the RPM that have only one object
  * in a figure. This class only deals with 2 by 2 RPMs.
  */
 
@@ -35,6 +35,8 @@ public class TwoByTwoOneObject {
 		this.problem = problem;
 	}
 
+	
+	//TO DO: decompose this
 	public int OneObjectRPM() {
 
 		//check if the problem has verbal or not
@@ -57,7 +59,7 @@ public class TwoByTwoOneObject {
 			//get the Ravens Figure from the problem figures
 			ROA = RFA.getObjects();
 			ROB = RFB.getObjects();
-			ROC = RFC.getObjects();   
+			ROC = RFC.getObjects();
 
 			//get the Ravens Figure from the problem solutions
 			RO1 = RF1.getObjects();
@@ -72,12 +74,12 @@ public class TwoByTwoOneObject {
 				ROa = ROA.get("a");
 			}
 			if (ROB!=null){
-				ROb = ROB.get("b");    	
+				ROb = ROB.get("b");
 			}
 			if (ROC!=null){
 				ROc = ROC.get("c");
 			}
-			
+
 			//get the Ravens Objects from the Ravens Figure in solution
 			if (RO1!=null){
 				RO1d = RO1.get("d");
@@ -138,7 +140,7 @@ public class TwoByTwoOneObject {
 
 			if (ROaa.equals(ROba)) { //if figure A equals object B, then object D is equal to object C
 				if (ROca.equals(RO1da)) {
-					System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
+					//System.out.println("Compare ROca to RO1da in first class: " + ROca.equals(RO1da) );
 					tempAns = 1;
 				} else if (ROca.equals(RO2ea)) {
 					tempAns = 2;
@@ -169,7 +171,7 @@ public class TwoByTwoOneObject {
 				}  else {
 					tempAns = -1;
 				}
-			} else if ((ROaa.containsValue("octagon") || ROaa.containsValue("right triangle") 
+			} else if ((ROaa.containsValue("octagon") || ROaa.containsValue("right triangle")
 					|| ROaa.containsValue("pac-man"))) { //check for the three odd shapes
 
 				String shapeofC = ROca.get("shape"); //find the shape and look for the same shape
@@ -178,8 +180,8 @@ public class TwoByTwoOneObject {
 				if (!ROaa.containsKey("angle")) { //cases without any rotations
 					if (((ROaa.containsValue("no") && ROba.containsValue("yes"))) || ((ROaa.containsValue("yes") && ROba.containsValue("no")))) { //check for fill in A and no fill in B or vice versa
 						if ((RO1da.get("shape").equals(shapeofC)) && (!(RO1da.get("fill").equals(fillinC)))) {
-							System.out.println("shape of RO1da: " + RO1da.get("shape"));
-							System.out.println("fill of RO1da: " + RO1da.get("fill"));
+//							System.out.println("shape of RO1da: " + RO1da.get("shape"));
+//							System.out.println("fill of RO1da: " + RO1da.get("fill"));
 							tempAns = 1;
 						} else if ((RO2ea.get("shape").equals(shapeofC)) && (!(RO2ea.get("fill").equals(fillinC)))) {
 							tempAns = 2;
@@ -204,11 +206,11 @@ public class TwoByTwoOneObject {
 							if (ROba.containsKey("angle")) { //check if B has been rotated or not or has angle or not
 								String angleB = ROba.get("angle"); //String angle
 								int angleBint = Integer.parseInt(angleB); //integer angle
-								int angleDiffAandB = Math.abs(angleAint - angleBint); 
+								int angleDiffAandB = Math.abs(angleAint - angleBint);
 
 								//System.out.println("Diff between A and B " + angleDiffAandB);
 
-								String angleC = ROca.get("angle"); //String angle 
+								String angleC = ROca.get("angle"); //String angle
 								int angleCint = Integer.parseInt(angleC); //integer angle
 
 								//compare the difference between C and results to angleDiffAandB. They should be the same
@@ -223,7 +225,7 @@ public class TwoByTwoOneObject {
 										tempAns = 1;
 									}
 								} if (ROca.containsKey("angle") && (RO2ea.containsKey("angle"))) {
-									String angle2e = RO2ea.get("angle"); //String angle 
+									String angle2e = RO2ea.get("angle"); //String angle
 									int angle2eint = Integer.parseInt(angle2e); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle2eint);
@@ -243,7 +245,7 @@ public class TwoByTwoOneObject {
 										tempAns = 3;
 									}
 								} if (ROca.containsKey("angle") && (RO4ga.containsKey("angle"))) {
-									String angle4g = RO4ga.get("angle"); //String angle 
+									String angle4g = RO4ga.get("angle"); //String angle
 									int angle4gint = Integer.parseInt(angle4g); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle4gint);
@@ -263,7 +265,7 @@ public class TwoByTwoOneObject {
 										tempAns = 5;
 									}
 								} if (ROca.containsKey("angle") && (RO6ia.containsKey("angle"))){
-									String angle6i = RO6ia.get("angle"); //String angle 
+									String angle6i = RO6ia.get("angle"); //String angle
 									int angle6iint = Integer.parseInt(angle6i); //integer angle
 
 									int angleDiff = Math.abs(angleCint - angle6iint);
@@ -340,5 +342,3 @@ public class TwoByTwoOneObject {
 		return tempAns;
 	}
 }
-
-

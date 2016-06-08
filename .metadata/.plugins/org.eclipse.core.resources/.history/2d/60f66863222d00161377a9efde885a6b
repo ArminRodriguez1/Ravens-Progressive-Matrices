@@ -1,0 +1,202 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * This class solves for the RPM that have only one object 
+ * in a figure. This class only deals with 2 by 2 RPMs.
+ */
+
+
+public class TwoByTwoOneObject {
+
+	private RavensProblem problem;
+	private int tempAns;
+
+	//hash map for Ravens Figure
+	private HashMap<String, RavensFigure> RF;
+	//Ravens figure
+	private RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6;
+	//Hash map of Ravens object
+	private HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
+	//Ravens object
+	private RavensObject ROa, ROb,ROc, RO1d, RO2e, RO3f, RO4g, RO5h, RO6i;
+	//attributes for Ravens object
+	private HashMap<String, String> ROaa, ROba,ROca, RO1da, RO2ea, RO3fa, RO4ga, RO5ha, RO6ia;
+	//map of the Ravens object and its attributes in a list
+	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
+	private List<Map> resultAttribute1 = new ArrayList(); //array list for the result object attributes
+
+	public TwoByTwoOneObject(RavensProblem problem) {
+		this.problem = problem;
+	}
+
+	public int OneObjectRPM() {
+		resultAttribute1 = getObjectAttributes(problem);
+		System.out.println("Print ROaa: " + ROaa);
+		System.out.println("Print ROba: " + ROba);
+		System.out.println("ROaa equals ROba: " + ROaa.equals(ROba));
+		if(ROaa!=null && ROba!=null && ROaa.equals(ROba)){
+			tempAns = AEqualsB();
+		} else if (RFA!=null && RFC!=null && RFA.equals(RFB)) {
+			tempAns = AEqualsC();
+		}
+		else {
+			tempAns = -1;
+		}
+		return tempAns;
+	}
+
+	private int AEqualsB() { //case of figure A equals to figure B
+		resultAttribute1 = getObjectAttributes(problem);
+		int ans = 0;
+		System.out.println("result att size: " + resultAttribute1.size());
+		
+		try {
+			for (int i=0; i < resultAttribute1.size(); i++){
+				ans+=1;
+				System.out.println("ans " +ans);
+				System.out.println("Result attribute + " + i + " " + resultAttribute1.get(i));
+//				if (ROca.equals(resultAttribute.get(i))){
+//					System.out.println("ROca.equals(resultAttribute.get(i)): " +  ROca.equals(resultAttribute.get(i)));
+//					System.out.println("ans: " + ans);
+//					break;
+//				} else {
+//					ans = -1;
+//				}
+			}
+
+		} catch (NullPointerException e) {
+			System.out.println("Exception thrown :" + e);
+		}
+		return ans;
+	}
+	
+	private int AEqualsC() {
+		resultAttribute1 = getObjectAttributes(problem);
+		int ans = 0;
+
+		try {
+			for (int i=0; i < resultAttribute1.size(); i++){
+				ans+=1;
+				if (ROba.equals(resultAttribute1.get(i))){
+					break;
+				} else {
+					ans = -1;
+				}
+			}
+
+		} catch (NullPointerException e) {
+			System.out.println("Exception thrown :" + e);
+		}
+		return ans;
+	}
+
+	@SuppressWarnings({ "rawtypes" })
+	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
+		RF = problem.getFigures();
+
+		//these are the Ravens Figure from the problem
+		RFA = RF.get("A");
+		RFB = RF.get("B");
+		RFC = RF.get("C");
+
+		//these are the Ravens Figure from the solution
+		RF1 = RF.get("1");
+		RF2 = RF.get("2");
+		RF3 = RF.get("3");
+		RF4 = RF.get("4");
+		RF5 = RF.get("5");
+		RF6 = RF.get("6");
+
+		//get the Ravens Figure from the problem figures
+		ROA = RFA.getObjects();
+		ROB = RFB.getObjects();
+		ROC = RFC.getObjects();   
+
+		//get the Ravens Figure from the problem solutions
+		RO1 = RF1.getObjects();
+		RO2 = RF2.getObjects();
+		RO3 = RF3.getObjects();
+		RO4 = RF4.getObjects();
+		RO5 = RF5.getObjects();
+		RO6 = RF6.getObjects();
+
+		//get the Ravens Objects from Ravens Figure
+		if (ROA!=null){
+			ROa = ROA.get("a");
+		}
+		if (ROB!=null){
+			ROb = ROB.get("b");    	
+		}
+		if (ROC!=null){
+			ROc = ROC.get("c");
+		}
+
+		//get the Ravens Objects from the Ravens Figure in solution
+		if (RO1!=null){
+			RO1d = RO1.get("d");
+		}
+		if (RO2!=null){
+			RO2e = RO2.get("e");
+		}
+		if (RO3!=null){
+			RO3f = RO3.get("f");
+		}
+		if (RO4!=null){
+			RO4g = RO4.get("g");
+		}
+		if (RO5!=null){
+			RO5h = RO5.get("h");
+		}
+		if (RO6!=null){
+			RO6i = RO6.get("i");
+		}
+
+		//get attributes for the Ravens Objects
+		if (ROa!=null) {
+			ROaa = ROa.getAttributes();
+		}
+		if (ROb!=null) {
+			ROba = ROb.getAttributes();
+		}
+		if (ROc!=null) {
+			ROca = ROc.getAttributes();
+		}
+
+		//get attributes for the solution objects
+		if (RO1d!=null) {
+			RO1da = RO1d.getAttributes();
+		}
+		if (RO2e!=null) {
+			RO2ea = RO2e.getAttributes();
+		}
+		if (RO3f!=null) {
+			RO3fa = RO3f.getAttributes();
+		}
+		if (RO4g!=null) {
+			RO4ga = RO4g.getAttributes();
+		}
+		if (RO5h!=null) {
+			RO5ha = RO5h.getAttributes();
+		}
+		if (RO6i!=null) {
+			RO6ia = RO6i.getAttributes();
+		}
+
+		resultAttribute1.add(RO1da);
+		resultAttribute1.add(RO2ea);
+		resultAttribute1.add(RO3fa);
+		resultAttribute1.add(RO4ga);
+		resultAttribute1.add(RO5ha);
+		resultAttribute1.add(RO6ia);
+
+		return resultAttribute1;
+	}
+}
+
+

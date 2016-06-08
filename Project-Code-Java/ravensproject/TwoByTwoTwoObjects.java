@@ -32,19 +32,20 @@ public class TwoByTwoTwoObjects {
 	public int TwoObjectRPM() {
 		resultAttribute = getObjectAttributes(problem);
 		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
-			System.out.println("Value of ROda: " + ROda);
 			tempAns = FigureAEqualsB();
+			//System.out.println("temp ans " + tempAns);
 		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
-			System.out.println("Value of ROfa: " + ROfa);
 			tempAns = FigureAEqualsC();
+			//System.out.println("temp ans " + tempAns);
 		} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
-			System.out.println("Value of ROda: " + ROda);
 			tempAns = FigureBDeletesA();
+			//System.out.println("temp ans " + tempAns);
 		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
-			System.out.println("Value of ROfa: " + ROfa);
 			tempAns = FigureCDeletesA();
+			//System.out.println("temp ans " + tempAns);
 		} else {
 			tempAns = -1;
+			//System.out.println("temp ans " + tempAns);
 		}
 		return tempAns;
 	}
@@ -69,7 +70,7 @@ public class TwoByTwoTwoObjects {
 					if (shapeObjectf!=null && angleObjectAns!= null && (shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
 						break;
 					}
-				}
+				} 
 			}
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
@@ -97,7 +98,9 @@ public class TwoByTwoTwoObjects {
 					if (shapeObjectd!=null && angleObjectAns!= null && (shapeObjectd.equals(shapeObjectAns)) && (angleObjectd.equals(angleObjectAns))) {
 						break;
 					}
-				} 
+				} else {
+					ans = -1;
+				}
 			}
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
@@ -116,9 +119,11 @@ public class TwoByTwoTwoObjects {
 					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
 						break;
 					}
+				} else {
+					ans = -1;
 				} 
-			}
-		}catch(NullPointerException e){
+			} 
+		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
 		return ans;
@@ -135,14 +140,17 @@ public class TwoByTwoTwoObjects {
 					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
 						break;
 					}
+				} else {
+					ans = -1;
 				} 
 			}
-		}catch(NullPointerException e){
+		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
 		return ans;
 	}
 
+	//TO DO: decompose this
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
 		RF = problem.getFigures();
