@@ -1,0 +1,188 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * This class solves for the RPM that have only one object
+ * in a figure. This class only deals with 2 by 2 RPMs.
+ */
+
+
+public class TwoByTwoOneObject {
+
+	private RavensProblem problem;
+	private int tempAns;
+
+	//hash map for Ravens Figure
+	private HashMap<String, RavensFigure> RF;
+	//Ravens figure
+	private RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6;
+	//Hash map of Ravens object
+	private HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
+	//Ravens object
+	private RavensObject ROa, ROb,ROc, RO1d, RO2e, RO3f, RO4g, RO5h, RO6i;
+	//attributes for Ravens object
+	private HashMap<String, String> ROaa, ROba,ROca, RO1da, ROea, ROfa, ROga, ROha, ROia;
+	//map of the Ravens object and its attributes in a list
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List<Map> test = new ArrayList();
+
+	public TwoByTwoOneObject(RavensProblem problem) {
+		this.problem = problem;
+	}
+
+	
+	public int TwoObjectRPM() {
+		resultAttribute = getObjectAttributes(problem);
+		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
+			tempAns = FigureAEqualsB();
+			//System.out.println("temp ans " + tempAns);
+		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
+			tempAns = FigureAEqualsC();
+			//System.out.println("temp ans " + tempAns);
+		} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
+			tempAns = FigureBDeletesA();
+			//System.out.println("temp ans " + tempAns);
+		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
+			tempAns = FigureCDeletesA();
+			//System.out.println("temp ans " + tempAns);
+		} else {
+			tempAns = -1;
+			//System.out.println("temp ans " + tempAns);
+		}
+		return tempAns;
+	}
+	
+	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
+		RF = problem.getFigures();
+
+		//these are the Ravens Figure from the problem
+		RFA = RF.get("A");
+		RFB = RF.get("B");
+		RFC = RF.get("C");
+
+		//these are the Ravens Figure from the solution
+		RF1 = RF.get("1");
+		RF2 = RF.get("2");
+		RF3 = RF.get("3");
+		RF4 = RF.get("4");
+		RF5 = RF.get("5");
+		RF6 = RF.get("6");
+
+		//get the Ravens Figure from the problem figures
+		ROA = RFA.getObjects();
+		ROB = RFB.getObjects();
+		ROC = RFC.getObjects();
+
+		//get the Ravens Figure from the problem solutions
+		RO1 = RF1.getObjects();
+		RO2 = RF2.getObjects();
+		RO3 = RF3.getObjects();
+		RO4 = RF4.getObjects();
+		RO5 = RF5.getObjects();
+		RO6 = RF6.getObjects();
+
+
+		if (ROA!=null) {
+			ROa = ROA.get("a");
+		}
+		if (ROB!=null){
+			ROb = ROB.get("b");
+		}
+		if (ROC!=null){
+			ROc = ROC.get("c");
+		}
+
+		if (RO2!=null){
+			ROi = RO2.get("i");
+			ROj = RO2.get("j");
+		}
+		if (RO3!=null) {
+			ROk = RO3.get("k");
+		}
+		if (RO4!=null){
+			ROm = RO4.get("m");
+		}
+		if (RO5!=null){
+			ROo = RO5.get("o");
+		}
+		if (RO6!=null){
+			ROq = RO6.get("q");
+		}
+
+		//get attributes for the Ravens Objects
+
+		if (ROa!=null) {
+			ROaa = ROa.getAttributes();		}
+		if (ROb!=null) {
+			ROba = ROb.getAttributes();
+		}
+		if (ROc!=null) {
+			ROca = ROc.getAttributes();
+		}
+		if (ROd!=null){
+			ROda = ROd.getAttributes();
+		}
+		if (ROe!=null) {
+			ROea = ROe.getAttributes();
+		}
+		if (ROf!=null) {
+			ROfa = ROf.getAttributes();
+		}
+		if (ROg!=null) {
+			ROga = ROg.getAttributes();
+		}
+		if (ROh!=null) {
+			ROha = ROh.getAttributes();
+		}
+		if (ROi!=null) {
+			ROia = ROi.getAttributes();
+		}
+		if (ROj!=null) {
+			ROja = ROj.getAttributes();
+		}
+		if (ROk!=null) {
+			ROka = ROk.getAttributes();
+		}
+		if (ROl!=null) {
+			ROla = ROl.getAttributes();
+		}
+		if (ROm!=null) {
+			ROma = ROm.getAttributes();
+		}
+		if (ROn!=null) {
+			ROna = ROn.getAttributes();
+		}
+		if (ROo!=null) {
+			ROoa = ROo.getAttributes();
+		}
+		if (ROp!=null) {
+			ROpa = ROp.getAttributes();
+		}
+		if (ROq!=null) {
+			ROqa = ROq.getAttributes();
+		}
+		if (ROr!=null) {
+			ROra = ROr.getAttributes();
+		}
+
+		resultAttribute.add(ROga);
+		resultAttribute.add(ROha);
+		resultAttribute.add(ROia);
+		resultAttribute.add(ROja);
+		resultAttribute.add(ROka);
+		resultAttribute.add(ROla);
+		resultAttribute.add(ROma);
+		resultAttribute.add(ROna);
+		resultAttribute.add(ROoa);
+		resultAttribute.add(ROpa);
+		resultAttribute.add(ROqa);
+		resultAttribute.add(ROra);
+
+		return resultAttribute;
+	}
+}

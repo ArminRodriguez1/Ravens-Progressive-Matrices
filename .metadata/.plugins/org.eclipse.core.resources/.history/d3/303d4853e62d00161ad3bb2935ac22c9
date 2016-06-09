@@ -1,0 +1,59 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * This class solves for the RPM that have only one object
+ * in a figure. This class only deals with 2 by 2 RPMs.
+ */
+
+
+public class TwoByTwoOneObject {
+
+	private RavensProblem problem;
+	private int tempAns;
+
+	//hash map for Ravens Figure
+	private HashMap<String, RavensFigure> RF;
+	//Ravens figure
+	private RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6;
+	//Hash map of Ravens object
+	private HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
+	//Ravens object
+	private RavensObject ROa, ROb,ROc, RO1d, RO2e, RO3f, RO4g, RO5h, RO6i;
+	//attributes for Ravens object
+	private HashMap<String, String> ROaa, ROba,ROca, RO1da, ROea, ROfa, ROga, ROha, ROia;
+	//map of the Ravens object and its attributes in a list
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List<Map> test = new ArrayList();
+
+	public TwoByTwoOneObject(RavensProblem problem) {
+		this.problem = problem;
+	}
+
+	
+	public int TwoObjectRPM() {
+		resultAttribute = getObjectAttributes(problem);
+		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
+			tempAns = FigureAEqualsB();
+			//System.out.println("temp ans " + tempAns);
+		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
+			tempAns = FigureAEqualsC();
+			//System.out.println("temp ans " + tempAns);
+		} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
+			tempAns = FigureBDeletesA();
+			//System.out.println("temp ans " + tempAns);
+		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
+			tempAns = FigureCDeletesA();
+			//System.out.println("temp ans " + tempAns);
+		} else {
+			tempAns = -1;
+			//System.out.println("temp ans " + tempAns);
+		}
+		return tempAns;
+	}
+}

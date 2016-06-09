@@ -83,8 +83,14 @@ public class Agent {
 			if (RF.size() == 9) {
 				if (numberOfObjects == 1) {
 					ans = OneObject(problem); //2 by 2 RPM with one objects per figure
+					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
+						ans = -1;
+					}
 				} else if (numberOfObjects == 2) {
 					ans = TwoObjects(problem);
+					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
+						ans = -1;
+					}
 				}
 			} else {
 				ans = -1;
@@ -100,7 +106,7 @@ public class Agent {
 
 	private int OneObject(RavensProblem problem) {
 		TwoByTwoOneObject oneObject = new TwoByTwoOneObject(problem);
-		return oneObject.OneObjectRPM();
+		return oneObject.oneObjectRPM();
 	}
 	
 	/*
@@ -109,7 +115,7 @@ public class Agent {
 
 	private int TwoObjects(RavensProblem problem) {
 		TwoByTwoTwoObjects twoObjects = new TwoByTwoTwoObjects(problem);
-		return twoObjects.TwoObjectRPM();
+		return twoObjects.twoObjectRPM();
 	}
 	
 	//prints current date and time for the execution
