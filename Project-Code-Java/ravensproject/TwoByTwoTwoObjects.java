@@ -21,6 +21,7 @@ public class TwoByTwoTwoObjects {
 	//map of the Ravens object and its attributes in a list
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
+	private List<Map> ravensObjects = new ArrayList(); //array to list the objctes from a Ravens Figure
 
 	private String angleObjecta, angleObjectb, angleObjectc, angleObjectd, angleObjecte, angleObjectf, angleObjectAns1, angleObjectAns2, fillObjectd; //attributes of object f
 	private String shapeObjectf, shapeObjectd, shapeObjectAns, angleObjectAns; //attributes of object from the potential answer
@@ -45,8 +46,7 @@ public class TwoByTwoTwoObjects {
 				tempAns = figureCDeletesA();
 			} else if (ROaa.containsKey("angle")) {//reflection case B-06
 				tempAns = reflection();
-			}
-			else {
+			} else {
 				tempAns = -1;
 			}	
 		} catch(NullPointerException e){
@@ -56,7 +56,7 @@ public class TwoByTwoTwoObjects {
 		return tempAns;
 	}
 
-	private int reflection() {
+	private int reflection() { //B-06
 		int ans = 0;
 
 		try{
@@ -147,7 +147,7 @@ public class TwoByTwoTwoObjects {
 		return -1;
 	}
 
-	private int figureCDeletesA() {//if figure C has inside object deleted
+	private int figureCDeletesA() {//if figure C has inside object deleted, B-11
 		int ans = 0;
 
 		try{
@@ -225,6 +225,13 @@ public class TwoByTwoTwoObjects {
 		RO4 = RF4.getObjects();
 		RO5 = RF5.getObjects();
 		RO6 = RF6.getObjects();
+
+		ravensObjects.add(RO1);
+		ravensObjects.add(RO2);
+		ravensObjects.add(RO3);
+		ravensObjects.add(RO4);
+		ravensObjects.add(RO5);
+		ravensObjects.add(RO6);
 
 
 		if (ROA!=null) {
