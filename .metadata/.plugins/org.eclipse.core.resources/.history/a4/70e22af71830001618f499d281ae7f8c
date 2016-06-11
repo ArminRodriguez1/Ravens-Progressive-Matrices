@@ -58,6 +58,13 @@ public class TwoByTwoTwoObjects {
 	}
 	
 	private int reflection() {
+		
+		
+		return -1;
+	}
+
+	private int figureAEqualsB() {//if figure A equals object B, then object D is equal to object C
+		//resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
 		try{
@@ -81,36 +88,6 @@ public class TwoByTwoTwoObjects {
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		
-		
-		return -1;
-	}
-
-	private int figureAEqualsB() {//if figure A equals object B, then object D is equal to object C
-		//resultAttribute = getObjectAttributes(problem);
-		int ans = 0;
-
-		try{
-			for (int i = 0; i < resultAttribute.size(); i=i+2){
-				ans+=1;
-
-				if ((ROea.equals(resultAttribute.get(i)))) { //can only compare on the object e to make it more generic
-					if (ROfa!=null){
-						shapeObjectf = ROfa.get("shape");
-						angleObjectf = ROfa.get("angle");
-					}
-					if (resultAttribute.get(i+1) != null){
-						shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
-						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
-					}
-					if ((shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
-						return ans;
-					}
-				} 
-			}
-		}catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
 		return -1;
 	}
 
@@ -122,7 +99,7 @@ public class TwoByTwoTwoObjects {
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
 				ans+=1;
 
-				if ((ROca.equals(resultAttribute.get(i)))) { //can only compare on the object c to make it more generic
+				if (ROca!=null && resultAttribute.get(i)!= null && (ROca.equals(resultAttribute.get(i)))) { //can only compare on the object c to make it more generic
 					if (ROda!=null){
 						shapeObjectd = ROda.get("shape");
 						angleObjectd = ROda.get("angle");
@@ -131,7 +108,7 @@ public class TwoByTwoTwoObjects {
 						shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
 						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
 					}
-					if ((shapeObjectd.equals(shapeObjectAns)) && (angleObjectd.equals(angleObjectAns))) {
+					if (shapeObjectd!=null && angleObjectAns!= null && (shapeObjectd.equals(shapeObjectAns)) && (angleObjectd.equals(angleObjectAns))) {
 						return ans;
 					}
 				} 
@@ -148,7 +125,7 @@ public class TwoByTwoTwoObjects {
 		try{
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
 				ans+=1;
-				if ((ROca.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
+				if (ROca!=null && resultAttribute.get(i)!= null && (ROca.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
 					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
 						return ans;
 					}
@@ -166,7 +143,7 @@ public class TwoByTwoTwoObjects {
 		try{
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
 				ans+=1;
-				if ((ROea.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
+				if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
 					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
 						return ans;
 					}
