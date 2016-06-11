@@ -35,7 +35,7 @@ public class TwoByTwoOneObject {
 	private String shapeAns, fillAns; //potential result
 
 	private String angleA, angleB, angleC, angleAns; //angle of C for rotation cases
-	private int angleA_int, angleB_int, angleC_int, angleAns_int, diffAB, diffAC; //angle of C for rotation cases
+	private int angleP_int, angleQ_int, diffAB, diffAC; //angle of C for rotation cases
 
 	public TwoByTwoOneObject(RavensProblem problem) {
 		this.problem = problem;
@@ -45,25 +45,29 @@ public class TwoByTwoOneObject {
 	public int oneObjectRPM() {
 		resultAttribute = getObjectAttributes(problem);
 		shapeChecker();
-
-		if (ROaa.equals(ROba)) {
-			tempAns = figureAEqualsB();
-		} else if (ROaa.equals(ROca)) {
-			tempAns = figureAEqualsC();
-		} else if ((ROaa.get("shape")).equals(ROba.get("shape")) && !ROaa.containsKey("angle")) { // for same shape from A to B but different fill
-			//System.out.println("Shape of ROaa " + ROaa.get("shape") + " and shape of ROba " + ROba.get("shape"));
-			tempAns = figureAEqualsBDiffFill();
-		} else if ((ROaa.get("shape")).equals(ROca.get("shape")) && !ROaa.containsKey("angle")) { // for same shape from A to C but different fill
-			tempAns = figureAEqualsCDiffFill();
-		} else if (ROaa.containsKey("angle") && ROba.containsKey("angle")){ //case of reflection
-			if (!(ROaa.get("fill").equals(ROca.get("fill"))) || !(ROaa.get("fill").equals(ROba.get("fill")))) { //case of reflection of same figures with different fill
-				tempAns = figureReflectionDiffFill();
-			} else { //case of reflection of same figures with same fill
-				tempAns = figureReflection();
+		
+		try {
+			if (ROaa.equals(ROba)) {
+				tempAns = figureAEqualsB();
+			} else if (ROaa.equals(ROca)) {
+				tempAns = figureAEqualsC();
+			} else if ((ROaa.get("shape")).equals(ROba.get("shape")) && !ROaa.containsKey("angle")) { // for same shape from A to B but different fill
+				//System.out.println("Shape of ROaa " + ROaa.get("shape") + " and shape of ROba " + ROba.get("shape"));
+				tempAns = figureAEqualsBDiffFill();
+			} else if ((ROaa.get("shape")).equals(ROca.get("shape")) && !ROaa.containsKey("angle")) { // for same shape from A to C but different fill
+				tempAns = figureAEqualsCDiffFill();
+			} else if (ROaa.containsKey("angle")){ //case of reflection
+				if (!(ROaa.get("fill").equals(ROca.get("fill"))) || !(ROaa.get("fill").equals(ROba.get("fill")))) { //case of reflection of same figures with different fill
+					tempAns = figureReflectionDiffFill();
+				} else { //case of reflection of same figures with same fill
+					tempAns = figureReflection();
+				}
 			}
-		}
-		else {
-			tempAns = -1;
+			else {
+				tempAns = -1;
+			}	
+		} catch(NullPointerException e){
+			System.out.println("Exception thrown  :" + e);
 		}
 		return tempAns;
 	}
@@ -100,7 +104,7 @@ public class TwoByTwoOneObject {
 		return ans;
 	}
 
-	private int figureAEqualsBDiffFill() { //differnet fill on object a and b, no angle
+	private int figureAEqualsBDiffFill() { //different fill on object a and b, no angle
 		int ans = 0;
 
 		try {
@@ -148,20 +152,19 @@ public class TwoByTwoOneObject {
 
 					shapeAns = (String) resultAttribute.get(i).get("shape");
 					fillAns = (String) resultAttribute.get(i).get("fill");
-
 					angleAns = (String) resultAttribute.get(i).get("angle");
-					fillAns = (String) resultAttribute.get(i).get("fill");
 
 					int angleC_diff_angle_Ans = diffAngle(angleC, angleAns);
+					System.out.println("ang diff C and ans " + angleC_diff_angle_Ans);
 
-					if(shapeC.equals(shapeAns) && fillC.equals(fillAns) && (angleC_diff_angle_Ans == diffAB)) {
+					if(shapeC.equals(shapeAns) && fillC.equals(fillAns) && angleC_diff_angle_Ans == diffAB) {
 						return ans;
 					}
 				}
 			} catch(NullPointerException e) {
 				System.out.println("Exception thrown  :" + e);
 			}
-		} else if (diffAC == 270) { //reflection across x axis
+		} else if (diffAC == 270 || diffAC == 90) { //reflection across x axis
 			try {
 				for (int i = 0; i < resultAttribute.size(); i++) {
 					ans+=1;
@@ -169,11 +172,11 @@ public class TwoByTwoOneObject {
 					shapeAns = (String) resultAttribute.get(i).get("shape");
 					fillAns = (String) resultAttribute.get(i).get("fill");
 					angleAns = (String) resultAttribute.get(i).get("angle");
-					angleAns_int = Integer.parseInt(angleAns);
 
-					int angleB_diff_angle_Ans = Math.abs(angleB_int - angleAns_int);
+					int angleB_diff_angle_Ans = diffAngle(angleB, angleAns);
+					System.out.println("angle diff between " + angleB_diff_angle_Ans);
 
-					if(shapeC.equals(shapeAns) && fillC.equals(fillAns) && (angleB_diff_angle_Ans == diffAB)) {
+					if(shapeC.equals(shapeAns) && fillC.equals(fillAns) && angleB_diff_angle_Ans == diffAB) {
 						return ans;
 					}
 				}
@@ -194,9 +197,7 @@ public class TwoByTwoOneObject {
 
 					shapeAns = (String) resultAttribute.get(i).get("shape");
 					fillAns = (String) resultAttribute.get(i).get("fill");
-
 					angleAns = (String) resultAttribute.get(i).get("angle");
-					angleAns_int = Integer.parseInt(angleAns);
 
 					int angleC_diff_angle_Ans = diffAngle(angleC, angleAns);
 
@@ -214,7 +215,6 @@ public class TwoByTwoOneObject {
 
 					shapeAns = (String) resultAttribute.get(i).get("shape");
 					fillAns = (String) resultAttribute.get(i).get("fill");
-
 					angleAns = (String) resultAttribute.get(i).get("angle");
 
 					int angleB_diff_angle_Ans = diffAngle(angleB, angleAns);
@@ -250,12 +250,12 @@ public class TwoByTwoOneObject {
 		}
 	}
 
-	private int diffAngle(String a, String b) { //we get angle as string
-		if (a!=null && b!= null) {
-			angleA_int = Integer.parseInt(a);
-			angleB_int = Integer.parseInt(b);
+	private int diffAngle(String p, String q) { //we get angle as string
+		if (p!=null && p!= null) {
+			angleP_int = Integer.parseInt(p);
+			angleQ_int = Integer.parseInt(q);
 		}
-		int diff = Math.abs(angleA_int - angleB_int);
+		int diff = Math.abs(angleP_int - angleQ_int);
 		return diff;
 	}
 

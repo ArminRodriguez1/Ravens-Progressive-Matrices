@@ -31,22 +31,28 @@ public class TwoByTwoTwoObjects {
 
 	public int twoObjectRPM() {
 		resultAttribute = getObjectAttributes(problem);
-		if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
-			tempAns = figureAEqualsB();
-			//System.out.println("temp ans " + tempAns);
-		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
-			tempAns = figureAEqualsC();
-			//System.out.println("temp ans " + tempAns);
-		} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
-			tempAns = figureBDeletesA();
-			//System.out.println("temp ans " + tempAns);
-		} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
-			tempAns = figureCDeletesA();
-			//System.out.println("temp ans " + tempAns);
-		} else {
-			tempAns = -1;
-			//System.out.println("temp ans " + tempAns);
+		
+		try {
+			if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
+				tempAns = figureAEqualsB();
+				//System.out.println("temp ans " + tempAns);
+			} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
+				tempAns = figureAEqualsC();
+				//System.out.println("temp ans " + tempAns);
+			} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
+				tempAns = figureBDeletesA();
+				//System.out.println("temp ans " + tempAns);
+			} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
+				tempAns = figureCDeletesA();
+				//System.out.println("temp ans " + tempAns);
+			} else {
+				tempAns = -1;
+				//System.out.println("temp ans " + tempAns);
+			}	
+		} catch(NullPointerException e){
+			System.out.println("Exception thrown  :" + e);
 		}
+
 		return tempAns;
 	}
 
@@ -107,7 +113,6 @@ public class TwoByTwoTwoObjects {
 	}
 
 	private int figureCDeletesA() {//if figure C has inside object deleted
-		//resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
 		try{
@@ -126,7 +131,6 @@ public class TwoByTwoTwoObjects {
 	}
 
 	private int figureBDeletesA() {//if figure B has inside object deleted
-		//resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
 		try{
