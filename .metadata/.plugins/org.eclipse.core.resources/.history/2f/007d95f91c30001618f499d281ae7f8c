@@ -196,7 +196,7 @@ public class TwoByTwoOneObject {
 	private int figureReflection() { //A reflects to B or A reflects to C with same fill, reflection means angle
 		int ans = 0;
 
-		if (diffAB == 180) { //reflection across y axis, B-04
+		if (diffAB == 90) { //reflection across y axis
 			try {
 				for (int i = 0; i < resultAttribute.size(); i++) {
 					ans+=1;
@@ -214,7 +214,7 @@ public class TwoByTwoOneObject {
 			} catch(NullPointerException e) {
 				System.out.println("Exception thrown  :" + e);
 			}
-		} else if (diffAC == 0) { //reflection across x axis, B-04
+		} else if (diffAC == 270 || diffAC == 90) { //reflection across x axis
 			try {
 				for (int i = 0; i < resultAttribute.size(); i++) {
 					ans+=1;
@@ -239,7 +239,7 @@ public class TwoByTwoOneObject {
 	private int figureReflectionDiffFill() { //reflection with either fill or no fill, reflection means angle
 		int ans = 0;
 
-		if (!(ROaa.get("fill").equals(ROca.get("fill"))) && (diffAB == 180)) { //reflection across y axis
+		if (!(ROaa.get("fill").equals(ROca.get("fill"))) && (diffAB == 90)) { //reflection across y axis
 			try {
 				for (int i = 0; i < resultAttribute.size(); i++) {
 					ans+=1;
@@ -248,7 +248,7 @@ public class TwoByTwoOneObject {
 					fillAns = (String) resultAttribute.get(i).get("fill");
 					angleAns = (String) resultAttribute.get(i).get("angle");
 
-					int angleC_diff_angle_Ans = sumAngle(angleC, angleAns) % 360;
+					int angleC_diff_angle_Ans = diffAngle(angleC, angleAns);
 
 					if(shapeC.equals(shapeAns) && fillC.equals(fillAns) && angleC_diff_angle_Ans == diffAB) {
 						return ans;
@@ -257,7 +257,7 @@ public class TwoByTwoOneObject {
 			} catch(NullPointerException e) {
 				System.out.println("Exception thrown  :" + e);
 			}
-		} else if (!(ROaa.get("fill").equals(ROba.get("fill"))) && (diffAC == 0)) { //reflection across x axis
+		} else if (!(ROaa.get("fill").equals(ROba.get("fill"))) && (diffAC == 270)) { //reflection across x axis
 			try {
 				for (int i = 0; i < resultAttribute.size(); i++) {
 					ans+=1;
@@ -266,7 +266,7 @@ public class TwoByTwoOneObject {
 					fillAns = (String) resultAttribute.get(i).get("fill");
 					angleAns = (String) resultAttribute.get(i).get("angle");
 
-					int angleB_diff_angle_Ans = sumAngle(angleB, angleAns) % 360;
+					int angleB_diff_angle_Ans = diffAngle(angleB, angleAns);
 
 					if(shapeC.equals(shapeAns) && fillC.equals(fillAns) && (angleB_diff_angle_Ans == diffAB)) {
 						return ans;
@@ -307,7 +307,7 @@ public class TwoByTwoOneObject {
 		int sum = Math.abs(angleP_int + angleQ_int);
 		return sum;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
 		RF = problem.getFigures();

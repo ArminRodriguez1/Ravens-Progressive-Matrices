@@ -183,6 +183,7 @@ public class TwoByTwoTwoObjects {
 		return -1;
 	}
 
+
 	private int sumAngle(String p, String q) { //we get angle as string
 		int sum = 0;
 		try {

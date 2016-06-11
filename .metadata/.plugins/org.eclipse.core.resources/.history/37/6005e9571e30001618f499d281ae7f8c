@@ -307,7 +307,7 @@ public class TwoByTwoOneObject {
 		int sum = Math.abs(angleP_int + angleQ_int);
 		return sum;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
 		RF = problem.getFigures();

@@ -279,23 +279,45 @@ public class TwoByTwoOneObject {
 		return -1;
 	}
 
+//	private void shapeChecker() { //assign the values to various objects
+//		if (ROaa.containsKey("angle") && ROba.containsKey("angle") && ROca.containsKey("angle")){
+//			angleA = ROaa.get("angle");
+//			angleB = ROba.get("angle");
+//			angleC = ROca.get("angle");
+//		}
+//		diffAB = sumAngle(angleA, angleB) % 360;
+//		diffAC = sumAngle(angleA, angleC) % 360;
+//
+//		if (ROba!=null){
+//			shapeB = ROba.get("shape"); //find the shape and look for the same shape
+//			fillB = ROba.get("fill"); //find if the shape is filled or not and look for the opposite fill
+//		}
+//
+//		if (ROca!=null){
+//			shapeC = ROca.get("shape"); //find the shape and look for the same shape
+//			fillC = ROca.get("fill"); //find if the shape is filled or not and look for the opposite fill
+//		}
+//	}
+	
 	private void shapeChecker() { //assign the values to various objects
-		if (ROaa.containsKey("angle") && ROba.containsKey("angle") && ROca.containsKey("angle")){
+		try {
 			angleA = ROaa.get("angle");
 			angleB = ROba.get("angle");
 			angleC = ROca.get("angle");
-		}
+		
 		diffAB = sumAngle(angleA, angleB) % 360;
 		diffAC = sumAngle(angleA, angleC) % 360;
 
-		if (ROba!=null){
+		
 			shapeB = ROba.get("shape"); //find the shape and look for the same shape
 			fillB = ROba.get("fill"); //find if the shape is filled or not and look for the opposite fill
-		}
+		
 
-		if (ROca!=null){
+		
 			shapeC = ROca.get("shape"); //find the shape and look for the same shape
 			fillC = ROca.get("fill"); //find if the shape is filled or not and look for the opposite fill
+		} catch (NullPointerException e) {
+			System.out.println("Exception thrown  :" + e);
 		}
 	}
 
@@ -307,7 +329,7 @@ public class TwoByTwoOneObject {
 		int sum = Math.abs(angleP_int + angleQ_int);
 		return sum;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
 		RF = problem.getFigures();

@@ -257,7 +257,7 @@ public class TwoByTwoOneObject {
 			} catch(NullPointerException e) {
 				System.out.println("Exception thrown  :" + e);
 			}
-		} else if (!(ROaa.get("fill").equals(ROba.get("fill"))) && (diffAC == 0)) { //reflection across x axis
+		} else if (!(ROaa.get("fill").equals(ROba.get("fill"))) && (diffAC == 270)) { //reflection across x axis
 			try {
 				for (int i = 0; i < resultAttribute.size(); i++) {
 					ans+=1;
@@ -307,7 +307,7 @@ public class TwoByTwoOneObject {
 		int sum = Math.abs(angleP_int + angleQ_int);
 		return sum;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
 		RF = problem.getFigures();

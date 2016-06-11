@@ -307,6 +307,18 @@ public class TwoByTwoOneObject {
 		int sum = Math.abs(angleP_int + angleQ_int);
 		return sum;
 	}
+
+	private int sumAngle(String p, String q) { //we get angle as string
+		int sum = 0;
+		try {
+			int angleP_int = Integer.parseInt(p);
+			int angleQ_int = Integer.parseInt(q);
+			sum = Math.abs(angleP_int + angleQ_int);
+		} catch (NullPointerException e){
+			System.out.println("Exception thrown  :" + e);
+		}
+		return sum;
+	}
 	
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
