@@ -33,21 +33,16 @@ public class TwoByTwoTwoObjects {
 		resultAttribute = getObjectAttributes(problem);
 		
 		try {
-			if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda!=null) { //horizontal equals A==C
+			if (ROaa.equals(ROca) && ROda!=null) { //horizontal equals A==C
 				tempAns = figureAEqualsB();
-				//System.out.println("temp ans " + tempAns);
-			} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa!=null) { //vertical equals A==E
+			} else if (ROaa.equals(ROea) && ROfa!=null) { //vertical equals A==E
 				tempAns = figureAEqualsC();
-				//System.out.println("temp ans " + tempAns);
-			} else if (ROaa!=null && ROca!=null && (ROaa.equals(ROca)) && ROda==null) { //A has two objects, B has inside object deleted
+			} else if (ROaa.equals(ROca) && ROda==null) { //A has two objects, B has inside object deleted
 				tempAns = figureBDeletesA();
-				//System.out.println("temp ans " + tempAns);
-			} else if (ROaa!=null && ROea!=null && (ROaa.equals(ROea)) && ROfa==null) { //A has two object, C has inside object deleted
+			} else if (ROaa.equals(ROea) && ROfa==null) { //A has two object, C has inside object deleted
 				tempAns = figureCDeletesA();
-				//System.out.println("temp ans " + tempAns);
 			} else {
 				tempAns = -1;
-				//System.out.println("temp ans " + tempAns);
 			}	
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
@@ -81,7 +76,7 @@ public class TwoByTwoTwoObjects {
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return ans;
+		return -1;
 	}
 
 	private int figureAEqualsC() {//if figure A equals figure C, then Figure D is equal to Figure C
@@ -102,14 +97,14 @@ public class TwoByTwoTwoObjects {
 						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
 					}
 					if (shapeObjectd!=null && angleObjectAns!= null && (shapeObjectd.equals(shapeObjectAns)) && (angleObjectd.equals(angleObjectAns))) {
-						break;
+						return ans;
 					}
 				} 
 			}
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return ans;
+		return -1;
 	}
 
 	private int figureCDeletesA() {//if figure C has inside object deleted
@@ -120,14 +115,14 @@ public class TwoByTwoTwoObjects {
 				ans+=1;
 				if (ROca!=null && resultAttribute.get(i)!= null && (ROca.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
 					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
-						break;
+						return ans;
 					}
 				} 
 			} 
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return ans;
+		return -1;
 	}
 
 	private int figureBDeletesA() {//if figure B has inside object deleted
@@ -138,14 +133,14 @@ public class TwoByTwoTwoObjects {
 				ans+=1;
 				if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { // compare on the object e to make it more generic
 					if (resultAttribute.get(i+1)==null){ //checks the inside of the figure
-						break;
+						return ans;
 					}
 				}  
 			}
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return ans;
+		return -1;
 	}
 
 	//TO DO: decompose this
