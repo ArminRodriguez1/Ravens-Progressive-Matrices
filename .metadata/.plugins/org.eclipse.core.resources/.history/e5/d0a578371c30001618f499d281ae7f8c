@@ -69,19 +69,17 @@ public class TwoByTwoTwoObjects {
 
 			AdiffE = sumAngle(angleObjecta, angleObjecte) % 360;
 			BdiffF = sumAngle(angleObjectb, angleObjectf) % 360;
-			
 			fillObjectd = ROda.get("fill");
 			
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
 				ans+=1;
 				angleObjectAns1 = (String) resultAttribute.get(i).get("angle");
 				angleObjectAns2 = (String) resultAttribute.get(i+1).get("angle");
-				String fillAns2 = (String) resultAttribute.get(i+1).get("fill");
 
 				angleDiff1 = sumAngle(angleObjectAns1, angleObjectc) % 360;
 				angleDiff2= sumAngle(angleObjectAns2, angleObjectd) % 360;
 
-				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(fillAns2)) {
+				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && ) {
 					return ans;
 				}
 			}

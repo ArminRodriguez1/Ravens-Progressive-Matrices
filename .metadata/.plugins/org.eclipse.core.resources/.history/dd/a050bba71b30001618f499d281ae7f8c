@@ -22,10 +22,10 @@ public class TwoByTwoTwoObjects {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
 
-	private String angleObjecta, angleObjectb, angleObjectc, angleObjectd, angleObjecte, angleObjectf, angleObjectAns1, angleObjectAns2, fillObjectd; //attributes of object f
+	private String angleObjecta, angleObjectb, angleObjectc, angleObjectd, angleObjecte, angleObjectf, angleObjectAns1, angleObjectAns2; //attributes of object f
 	private String shapeObjectf, shapeObjectd, shapeObjectAns, angleObjectAns; //attributes of object from the potential answer
 
-	private int angleDiff1, angleDiff2, AdiffE, BdiffF; //difference between angle for c and first object in answer and d and second object
+	private int angleDiff1, angleDiff2; //difference between angle for c and first object in answer and d and second object
 
 	public TwoByTwoTwoObjects(RavensProblem problem){
 		this.problem = problem;
@@ -67,21 +67,20 @@ public class TwoByTwoTwoObjects {
 			angleObjecte = ROea.get("angle");
 			angleObjectf = ROfa.get("angle");
 
-			AdiffE = sumAngle(angleObjecta, angleObjecte) % 360;
-			BdiffF = sumAngle(angleObjectb, angleObjectf) % 360;
-			
-			fillObjectd = ROda.get("fill");
-			
+			int AdiffE = sumAngle(angleObjecta, angleObjecte) % 360;
+			int BdiffF = sumAngle(angleObjectb, angleObjectf) % 360;
+
+
+
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
 				ans+=1;
 				angleObjectAns1 = (String) resultAttribute.get(i).get("angle");
 				angleObjectAns2 = (String) resultAttribute.get(i+1).get("angle");
-				String fillAns2 = (String) resultAttribute.get(i+1).get("fill");
 
 				angleDiff1 = sumAngle(angleObjectAns1, angleObjectc) % 360;
 				angleDiff2= sumAngle(angleObjectAns2, angleObjectd) % 360;
 
-				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(fillAns2)) {
+				if (AdiffE == angleDiff1 && BdiffF == angleDiff2) {
 					return ans;
 				}
 			}
@@ -185,15 +184,18 @@ public class TwoByTwoTwoObjects {
 
 
 	private int sumAngle(String p, String q) { //we get angle as string
-		int sum = 0;
 		try {
 			int angleP_int = Integer.parseInt(p);
 			int angleQ_int = Integer.parseInt(q);
-			sum = Math.abs(angleP_int + angleQ_int);
+
+			int sum = Math.abs(angleP_int + angleQ_int);
+			return sum;
+			
 		} catch (NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
+
 		}
-		return sum;
+		return 0;
 	}
 
 	//TO DO: decompose this

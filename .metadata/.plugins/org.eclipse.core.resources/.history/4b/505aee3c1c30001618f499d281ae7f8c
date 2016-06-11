@@ -81,7 +81,7 @@ public class TwoByTwoTwoObjects {
 				angleDiff1 = sumAngle(angleObjectAns1, angleObjectc) % 360;
 				angleDiff2= sumAngle(angleObjectAns2, angleObjectd) % 360;
 
-				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(fillAns2)) {
+				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(anObject)) {
 					return ans;
 				}
 			}

@@ -22,10 +22,11 @@ public class TwoByTwoTwoObjects {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
 
-	private String angleObjecta, angleObjectb, angleObjectc, angleObjectd, angleObjecte, angleObjectf, angleObjectAns1, angleObjectAns2, fillObjectd; //attributes of object f
-	private String shapeObjectf, shapeObjectd, shapeObjectAns, angleObjectAns; //attributes of object from the potential answer
-
-	private int angleDiff1, angleDiff2, AdiffE, BdiffF; //difference between angle for c and first object in answer and d and second object
+	private String shapeObjectf, angleObjectf, shapeObjectd, angleObjectd; //attributes of object f
+	private String shapeObjectAns, angleObjectAns; //attributes of object from the potential answer
+	private String angleObjectAns1, angleObject2;
+	
+	private int angleP_int, angleQ_int;
 
 	public TwoByTwoTwoObjects(RavensProblem problem){
 		this.problem = problem;
@@ -33,7 +34,7 @@ public class TwoByTwoTwoObjects {
 
 	public int twoObjectRPM() {
 		resultAttribute = getObjectAttributes(problem);
-
+		
 		try {
 			if (ROaa.equals(ROca) && ROda!=null) { //horizontal equals A==C
 				tempAns = figureAEqualsB();
@@ -44,7 +45,7 @@ public class TwoByTwoTwoObjects {
 			} else if (ROaa.equals(ROea) && ROfa==null) { //A has two object, C has inside object deleted
 				tempAns = figureCDeletesA();
 			} else if (ROaa.containsKey("angle")) {//reflection case B-06
-				tempAns = reflection();
+				tempAns = 0;
 			}
 			else {
 				tempAns = -1;
@@ -55,39 +56,33 @@ public class TwoByTwoTwoObjects {
 
 		return tempAns;
 	}
-
+	
 	private int reflection() {
 		int ans = 0;
 
 		try{
-			angleObjecta = ROaa.get("angle");
-			angleObjectb = ROba.get("angle");
-			angleObjectc = ROca.get("angle");
-			angleObjectd = ROda.get("angle");
-			angleObjecte = ROea.get("angle");
-			angleObjectf = ROfa.get("angle");
-
-			AdiffE = sumAngle(angleObjecta, angleObjecte) % 360;
-			BdiffF = sumAngle(angleObjectb, angleObjectf) % 360;
-			
-			fillObjectd = ROda.get("fill");
-			
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
 				ans+=1;
-				angleObjectAns1 = (String) resultAttribute.get(i).get("angle");
-				angleObjectAns2 = (String) resultAttribute.get(i+1).get("angle");
-				String fillAns2 = (String) resultAttribute.get(i+1).get("fill");
 
-				angleDiff1 = sumAngle(angleObjectAns1, angleObjectc) % 360;
-				angleDiff2= sumAngle(angleObjectAns2, angleObjectd) % 360;
-
-				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(fillAns2)) {
-					return ans;
-				}
+				if (ROea!=null && resultAttribute.get(i)!= null && (ROea.equals(resultAttribute.get(i)))) { //can only compare on the object e to make it more generic
+					if (ROfa!=null){
+						shapeObjectf = ROfa.get("shape");
+						angleObjectf = ROfa.get("angle");
+					}
+					if (resultAttribute.get(i+1) != null){
+						shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
+						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
+					}
+					if (shapeObjectf!=null && angleObjectAns!= null && (shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
+						return ans;
+					}
+				} 
 			}
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
+		
+		
 		return -1;
 	}
 
@@ -183,19 +178,16 @@ public class TwoByTwoTwoObjects {
 		return -1;
 	}
 
-
+	
 	private int sumAngle(String p, String q) { //we get angle as string
-		int sum = 0;
-		try {
-			int angleP_int = Integer.parseInt(p);
-			int angleQ_int = Integer.parseInt(q);
-			sum = Math.abs(angleP_int + angleQ_int);
-		} catch (NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
+		if (p!=null && p!= null) {
+			angleP_int = Integer.parseInt(p);
+			angleQ_int = Integer.parseInt(q);
 		}
+		int sum = Math.abs(angleP_int + angleQ_int);
 		return sum;
 	}
-
+	
 	//TO DO: decompose this
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
