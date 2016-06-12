@@ -46,9 +46,6 @@ public class TwoByTwoTwoObjects {
 				tempAns = figureCDeletesA();
 			} else if (ROaa.containsKey("angle")) {//reflection case B-06
 				tempAns = reflection();
-			} else if (ROaa.containsKey("inside")) {//putting this method last as the B-12 is solved already by delete method
-				//System.out.println("etner 10");
-				//tempAns = addition();
 			} else {
 				tempAns = -1;
 			}	
@@ -57,33 +54,6 @@ public class TwoByTwoTwoObjects {
 		}
 
 		return tempAns;
-	}
-
-	private int addition() {//B-10, increase from A to C
-		int ans = 0;
-
-		try {
-			int a = ROA.size();
-			int b = ROB.size();
-			int c = ROC.size();
-			//System.out.println("size of c " + c);
-
-			if (c==a+1) {
-				//System.out.println("enter if for 10 ");
-				for (int i = 0; i < ravensObjects.size(); i++) {
-					//System.out.println("value of i " + i);
-					//System.out.println("size " + ravensObjects.get(i).size());
-					if (c== ravensObjects.get(i).size()) {
-						ans = i+1;
-						return ans;
-					}
-				}
-			}
-		}catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
-
-		return -1;
 	}
 
 	private int reflection() { //B-06

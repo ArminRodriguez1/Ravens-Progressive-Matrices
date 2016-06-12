@@ -48,7 +48,7 @@ public class TwoByTwoTwoObjects {
 				tempAns = reflection();
 			} else if (ROaa.containsKey("inside")) {//putting this method last as the B-12 is solved already by delete method
 				//System.out.println("etner 10");
-				//tempAns = addition();
+				tempAns = addition();
 			} else {
 				tempAns = -1;
 			}	
@@ -74,8 +74,10 @@ public class TwoByTwoTwoObjects {
 					//System.out.println("value of i " + i);
 					//System.out.println("size " + ravensObjects.get(i).size());
 					if (c== ravensObjects.get(i).size()) {
-						ans = i+1;
-						return ans;
+							ans = i+1;
+							return ans;
+							
+						}
 					}
 				}
 			}
