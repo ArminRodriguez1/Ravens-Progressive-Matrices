@@ -21,7 +21,7 @@ public class TwoByTwoTwoObjects {
 	//map of the Ravens object and its attributes in a list
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
-	private List<Map> ravensObjects = new ArrayList(); //array to list the objctes from a Ravens Figure
+	private List<Map> ravensObjects = new ArrayList(); //array to list the objects from a Ravens Figure
 
 	private String angleObjecta, angleObjectb, angleObjectc, angleObjectd, angleObjecte, angleObjectf, angleObjectAns1, angleObjectAns2, fillObjectd; //attributes of object f
 	private String shapeObjectf, shapeObjectd, shapeObjectAns, angleObjectAns; //attributes of object from the potential answer
@@ -114,6 +114,9 @@ public class TwoByTwoTwoObjects {
 				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(fillAns2)) {
 					return ans;
 				}
+//				} else if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && !fillObjectd.equals(fillAns2)) {
+//					return ans;					
+//				}
 			}
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
@@ -243,12 +246,12 @@ public class TwoByTwoTwoObjects {
 		RF5 = RF.get("5");
 		RF6 = RF.get("6");
 
-		//get the Ravens Figure from the problem figures
+		//get the Ravens Objects from the problem figures
 		ROA = RFA.getObjects();
 		ROB = RFB.getObjects();
 		ROC = RFC.getObjects();
 
-		//get the Ravens Figure from the problem solutions
+		//get the Ravens Objects from the problem solutions
 		RO1 = RF1.getObjects();
 		RO2 = RF2.getObjects();
 		RO3 = RF3.getObjects();
@@ -256,6 +259,7 @@ public class TwoByTwoTwoObjects {
 		RO5 = RF5.getObjects();
 		RO6 = RF6.getObjects();
 
+		//add answer ravens objects to 
 		ravensObjects.add(RO1);
 		ravensObjects.add(RO2);
 		ravensObjects.add(RO3);

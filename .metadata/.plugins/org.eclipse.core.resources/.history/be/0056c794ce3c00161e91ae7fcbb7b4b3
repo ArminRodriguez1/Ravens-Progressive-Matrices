@@ -1,0 +1,64 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * This class solves for the RPM that have only one object
+ * in a figure. This class only deals with 2 by 2 RPMs.
+ */
+
+
+public class ThreeByThree2Obj {
+
+	private RavensProblem problem;
+	private int tempAns;
+
+	//hash map for Ravens Figure
+	private HashMap<String, RavensFigure> RF;
+	//Ravens figure
+	private RavensFigure RFE, RFF, RFH, RF1, RF2, RF3, RF4, RF5, RF6, RF7, RF8;
+	
+	private List ravensFigure = new ArrayList();
+	
+	//Hash map of Ravens object
+	private HashMap<String, RavensObject> ROE, ROF, ROH, RO1, RO2, RO3, RO4, RO5, RO6, RO7, RO8;
+	//Ravens object in each figure
+	private RavensObject ROf, ROg, ROh, ROi, ROm, ROn, ROo;
+	//attributes for Ravens object
+	private HashMap<String, String> ROfa, ROga, ROha, ROia, ROma, ROna, ROoa;
+	//map of the Ravens object and its attributes in a list
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
+
+	private String shapeC, fillC, shapeB, fillB; //for the object c
+	private String shapeAns, fillAns, shapeAlignmentAns; //potential result
+
+	private String angleA, angleB, angleC, angleAns, shapeAlignmentA, shapeAlignmentC, shapeAlignmentB; //angle of C for rotation cases
+	private int angleP_int, angleQ_int, diffAB, diffAC; //angle of C for rotation cases
+
+	public ThreeByThree2Obj (RavensProblem problem) {
+		this.problem = problem;
+	}
+
+
+	public int ThreebyThree() {
+			return test1(problem);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	private int test1(RavensProblem problem) { //returns the object attributes in a list
+		
+		for (String figureName : problem.getFigures().keySet()) {
+			RavensFigure thisFigure = problem.getFigures().get(figureName);
+			ravensFigure.add(thisFigure);
+		}
+		
+		System.out.println("This is ravensFigure Arraylist: " + ravensFigure);
+		System.out.println("size " + ravensFigure.get(1).toString());
+		return -1;
+	}
+}

@@ -1,0 +1,113 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * This class solves for the RPM that have only one object
+ * in a figure. This class only deals with 2 by 2 RPMs.
+ */
+
+
+public class ThreeByThree2Obj {
+
+	private RavensProblem problem;
+	private int tempAns;
+
+	//hash map for Ravens Figure
+	private HashMap<String, RavensFigure> RF;
+	//Ravens figure
+	private RavensFigure RFE, RFF, RFH, RF1, RF2, RF3, RF4, RF5, RF6, RF7, RF8;
+	
+	@SuppressWarnings("rawtypes")
+	private List ravensObject = new ArrayList();
+	
+	@SuppressWarnings("rawtypes")
+	private List objectAttribute = new ArrayList();
+	
+	//Hash map of Ravens object
+	private HashMap<String, RavensObject> ROE, ROF, ROH, RO1, RO2, RO3, RO4, RO5, RO6, RO7, RO8;
+	//Ravens object in each figure
+	private RavensObject ROf, ROg, ROh, ROi, ROm, ROn, ROo;
+	//attributes for Ravens object
+	private HashMap<String, String> ROfa, ROga, ROha, ROia, ROma, ROna, ROoa;
+	//map of the Ravens object and its attributes in a list
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
+
+	private String shapeC, fillC, shapeB, fillB; //for the object c
+	private String shapeAns, fillAns, shapeAlignmentAns; //potential result
+
+	private String angleA, angleB, angleC, angleAns, shapeAlignmentA, shapeAlignmentC, shapeAlignmentB; //angle of C for rotation cases
+	private int angleP_int, angleQ_int, diffAB, diffAC; //angle of C for rotation cases
+
+	public ThreeByThree2Obj (RavensProblem problem) {
+		this.problem = problem;
+	}
+
+	@SuppressWarnings("rawtypes")
+	public int ThreebyThree() {
+			RFigures(problem);
+			System.out.println("Size of RFE/no of objects: " + RFE.getObjects().size());
+			List objectsE = RObjects(RFE);
+			List objectsF = RObjects(RFF);
+			System.out.println("Print Ravesn ObjectE: " + objectsE);
+			System.out.println("Object F " + objectsF);
+			
+			objectsE.get(0)
+			
+			//RavensObject roo = (RavensObject) rvObj.get(0);
+		
+			
+			
+			return -1;
+	}
+	
+	
+
+
+	//create ravens figure for question figure and answer choices
+	private void RFigures(RavensProblem problem) { //returns the object attributes in a list
+
+		//these are the Ravens Figure from the problem
+		RFE = problem.getFigures().get("E");
+		//System.out.println("Size of RFE/no of objects: " + RFE.getObjects().size());
+		RFF = problem.getFigures().get("F");
+		RFH = problem.getFigures().get("H");
+
+		//these are the Ravens Figure from the solution
+		RF1 = problem.getFigures().get("1");
+		RF2 = problem.getFigures().get("2");
+		RF3 = problem.getFigures().get("3");
+		RF4 = problem.getFigures().get("4");
+		RF5 = problem.getFigures().get("5");
+		RF6 = problem.getFigures().get("6");
+		RF7 = problem.getFigures().get("7");
+		RF8 = problem.getFigures().get("8");
+	}
+	
+	
+	//returns the list of objects in ravens figure
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List RObjects(RavensFigure rf) {
+		for (String objectName : rf.getObjects().keySet()) {
+			RavensObject robject = rf.getObjects().get(objectName);
+			ravensObject.add(robject);
+		}
+		return ravensObject;
+	}
+	
+	
+//	//returns the list of attributes of objects
+//	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
+//	private List ObjAttributes(RavensObject ro) {
+//		for (String att : ro.getAttributes().keySet()) {
+//			String attValue = ro.getAttributes().get(att);
+//			objectAttribute.add(attValue);
+//		}
+//		return objectAttribute;
+//	}
+}

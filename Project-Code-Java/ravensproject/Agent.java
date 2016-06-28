@@ -2,8 +2,11 @@ package ravensproject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 // Uncomment these lines to access image processing.
@@ -40,6 +43,7 @@ public class Agent {
 	private RavensFigure RFA;
 	private HashMap<String, RavensObject> ROA;
 	Random rand;
+	//private List ravensFigure = new ArrayList();
 
 	public Agent() {
 
@@ -60,37 +64,43 @@ public class Agent {
 	public int Solve(RavensProblem problem) {
 		System.out.println("************");
 		System.out.println("Problem name: " + problem.getName());
-		printDateTime();
+		//printDateTime();
 
 		//check if the problem has verbal or not
 		if (problem.hasVerbal()) {
 			//these are the Ravens Figure from the problem
 			RF = problem.getFigures();
-			System.out.println("Total number of RF: "+ RF.size());
-
-			RFA = RF.get("A");
-			//get the Ravens Figure from the problem figures
-			ROA = RFA.getObjects();
-			int numberOfObjects = ROA.size(); //number of objects in Figure A
-			System.out.println("The size of the hash map/number of objects is: " + numberOfObjects);
-
+			
 			/*
 			 * 2 by 2 RPM problem have 9 Ravens Figure and 3 by 3 RPM have 16 Ravens Figure.
 			 * Find the total number of Ravens Figure and put check accordingly.
 			 */
-
-			if (RF.size() == 9) {
+			System.out.println("Size of the problem " + RF.size());
+			
+			if (RF.size() == 9) { // 2 by 2 RPMs
+				RFA = RF.get("A");
+				//get the Ravens Figure from the problem figures
+				ROA = RFA.getObjects();
+				int numberOfObjects = ROA.size(); //number of objects in Figure A
+				//System.out.println("The size of the hash map/number of objects is: " + numberOfObjects);
+				
 				if (numberOfObjects == 1) {
 					ans = OneObject(problem); //2 by 2 RPM with one objects per figure
+					System.out.println("Answer is " + ans);
 					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
 						ans = -1;
 					}
 				} else if (numberOfObjects == 2) {
 					ans = TwoObjects(problem);
+					System.out.println("Anser is " + ans);
 					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
 						ans = -1;
 					}
 				} 
+			} else if (RF.size() == 16) { // 3 by 3 RPMs
+				ans = ThreeByThree(problem);
+
+				//ans = -1;
 			} else {
 				ans = -1;
 			}
@@ -116,12 +126,11 @@ public class Agent {
 		TwoByTwoTwoObjects twoObjects = new TwoByTwoTwoObjects(problem);
 		return twoObjects.twoObjectRPM();
 	}
-
-	//prints current date and time for the execution
-	//http://www.mkyong.com/java/java-how-to-get-current-date-time-date-and-calender/
-	private void printDateTime(){
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		System.out.println("Executed at: " + dateFormat.format(date));
+	
+	private int ThreeByThree (RavensProblem problem) {
+		ThreeByThree threebythree = new ThreeByThree(problem);
+		return threebythree.ThreeByThreeRPM();
 	}
+	
+	
 }

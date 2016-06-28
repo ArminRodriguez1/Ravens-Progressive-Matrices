@@ -325,12 +325,12 @@ public class TwoByTwoOneObject {
 		RF5 = RF.get("5");
 		RF6 = RF.get("6");
 
-		//get the Ravens Figure from the problem figures
+		//get the Ravens Objects from the problem figures
 		ROA = RFA.getObjects();
 		ROB = RFB.getObjects();
 		ROC = RFC.getObjects();
 
-		//get the Ravens Figure from the problem solutions
+		//get the Ravens Objects from the problem solutions
 		RO1 = RF1.getObjects();
 		RO2 = RF2.getObjects();
 		RO3 = RF3.getObjects();
