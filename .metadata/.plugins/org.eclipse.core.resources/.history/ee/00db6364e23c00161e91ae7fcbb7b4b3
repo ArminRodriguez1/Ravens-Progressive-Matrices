@@ -118,10 +118,6 @@ public class Agent {
 		return twoObjects.twoObjectRPM();
 	}
 	
-	/*
-	 * This method solves for 3 by 3 RPM that has two objects in a figure
-	 */
-	
 	private int ThreeByThree (RavensProblem problem) {
 		ThreeByThree threebythree = new ThreeByThree(problem);
 		return threebythree.ThreeByThreeRPM();

@@ -18,7 +18,6 @@ public class ThreeByThree {
 	private int tempAns;
 
 	//hash map for Ravens Figure
-	@SuppressWarnings("unused")
 	private HashMap<String, RavensFigure> RF;
 	//Ravens figure
 	private RavensFigure RFE, RFF, RFH, RF1, RF2, RF3, RF4, RF5, RF6, RF7, RF8;
@@ -55,9 +54,9 @@ public class ThreeByThree {
 		RObjects();
 
 		try {
-			if (RFE.getObjects().size() == RFF.getObjects().size()) { //when the total number of objects are equal
+			if (RFE.getObjects().size() == RFF.getObjects().size()) {
 				tempAns = equalObjects();
-			} else if (RFE.getObjects().size() != RFF.getObjects().size()) {//when the total number of objects are not equal
+			} else if (RFE.getObjects().size() != RFF.getObjects().size()) {
 				tempAns = increaseObject();
 			}
 		} catch(NullPointerException e){

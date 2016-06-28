@@ -34,7 +34,6 @@ public class TwoByTwoOneObject {
 	private String shapeC, fillC, shapeB, fillB; //for the object c
 	private String shapeAns, fillAns, shapeAlignmentAns; //potential result
 
-	@SuppressWarnings("unused")
 	private String angleA, angleB, angleC, angleAns, shapeAlignmentA, shapeAlignmentC, shapeAlignmentB; //angle of C for rotation cases
 	private int angleP_int, angleQ_int, diffAB, diffAC; //angle of C for rotation cases
 
@@ -125,6 +124,7 @@ public class TwoByTwoOneObject {
 	}
 
 	private int figureAEqualsB(){ //if figure A equals object B, then object D is equal to object C, no angle
+		//System.out.println("result attribute size " + resultAttribute.size());
 		int ans = 0;
 		try {
 			for(int i = 0; i < resultAttribute.size(); i++) {
@@ -140,6 +140,7 @@ public class TwoByTwoOneObject {
 	}
 
 	private int figureAEqualsC(){ //if object c is equal to object a, then object d is equal to object b, no angle
+		//System.out.println("result attribute size " + resultAttribute.size());
 		int ans = 0;
 		try {
 			for(int i = 0; i < resultAttribute.size(); i++) {

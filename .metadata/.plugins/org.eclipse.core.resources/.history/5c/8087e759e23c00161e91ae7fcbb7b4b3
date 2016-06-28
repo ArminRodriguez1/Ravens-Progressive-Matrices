@@ -92,6 +92,8 @@ public class Agent {
 				} 
 			} else if (RF.size() == 16) { // 3 by 3 RPMs
 				ans = ThreeByThree(problem);
+
+				//ans = -1;
 			} else {
 				ans = -1;
 			}
@@ -117,10 +119,6 @@ public class Agent {
 		TwoByTwoTwoObjects twoObjects = new TwoByTwoTwoObjects(problem);
 		return twoObjects.twoObjectRPM();
 	}
-	
-	/*
-	 * This method solves for 3 by 3 RPM that has two objects in a figure
-	 */
 	
 	private int ThreeByThree (RavensProblem problem) {
 		ThreeByThree threebythree = new ThreeByThree(problem);

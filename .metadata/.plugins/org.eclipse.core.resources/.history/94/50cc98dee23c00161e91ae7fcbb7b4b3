@@ -55,9 +55,9 @@ public class ThreeByThree {
 		RObjects();
 
 		try {
-			if (RFE.getObjects().size() == RFF.getObjects().size()) { //when the total number of objects are equal
+			if (RFE.getObjects().size() == RFF.getObjects().size()) { //when the size are equal
 				tempAns = equalObjects();
-			} else if (RFE.getObjects().size() != RFF.getObjects().size()) {//when the total number of objects are not equal
+			} else if (RFE.getObjects().size() != RFF.getObjects().size()) {//when the size are not equal
 				tempAns = increaseObject();
 			}
 		} catch(NullPointerException e){

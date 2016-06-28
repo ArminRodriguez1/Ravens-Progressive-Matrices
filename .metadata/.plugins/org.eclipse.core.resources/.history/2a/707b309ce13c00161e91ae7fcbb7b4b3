@@ -18,10 +18,15 @@ public class ThreeByThree {
 	private int tempAns;
 
 	//hash map for Ravens Figure
-	@SuppressWarnings("unused")
 	private HashMap<String, RavensFigure> RF;
 	//Ravens figure
 	private RavensFigure RFE, RFF, RFH, RF1, RF2, RF3, RF4, RF5, RF6, RF7, RF8;
+
+	//	@SuppressWarnings("rawtypes")
+	//	private List ravensObject = new ArrayList();
+	//	
+	//	@SuppressWarnings("rawtypes")
+	//	private List objectAttribute = new ArrayList();
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<Map> ravensObjects = new ArrayList(); //array to list the objects from a Ravens object
@@ -55,9 +60,9 @@ public class ThreeByThree {
 		RObjects();
 
 		try {
-			if (RFE.getObjects().size() == RFF.getObjects().size()) { //when the total number of objects are equal
+			if (RFE.getObjects().size() == RFF.getObjects().size()) {
 				tempAns = equalObjects();
-			} else if (RFE.getObjects().size() != RFF.getObjects().size()) {//when the total number of objects are not equal
+			} else if (RFE.getObjects().size() != RFF.getObjects().size()) {
 				tempAns = increaseObject();
 			}
 		} catch(NullPointerException e){
@@ -109,7 +114,6 @@ public class ThreeByThree {
 		return -1;
 	}
 
-	
 	//create ravens figure for question figure and answer choices
 	private void RFigures(RavensProblem problem) { //returns the object attributes in a list
 

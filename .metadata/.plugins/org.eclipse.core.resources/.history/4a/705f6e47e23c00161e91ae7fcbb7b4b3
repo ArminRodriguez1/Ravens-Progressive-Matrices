@@ -58,6 +58,7 @@ public class Agent {
 	public int Solve(RavensProblem problem) {
 		System.out.println("************");
 		System.out.println("Problem name: " + problem.getName());
+		//printDateTime();
 
 		//check if the problem has verbal or not
 		if (problem.hasVerbal()) {
@@ -68,7 +69,7 @@ public class Agent {
 			 * 2 by 2 RPM problem have 9 Ravens Figure and 3 by 3 RPM have 16 Ravens Figure.
 			 * Find the total number of Ravens Figure and put check accordingly.
 			 */
-			//System.out.println("Size of the problem " + RF.size());
+			System.out.println("Size of the problem " + RF.size());
 			
 			if (RF.size() == 9) { // 2 by 2 RPMs
 				RFA = RF.get("A");
@@ -92,6 +93,8 @@ public class Agent {
 				} 
 			} else if (RF.size() == 16) { // 3 by 3 RPMs
 				ans = ThreeByThree(problem);
+
+				//ans = -1;
 			} else {
 				ans = -1;
 			}
@@ -117,10 +120,6 @@ public class Agent {
 		TwoByTwoTwoObjects twoObjects = new TwoByTwoTwoObjects(problem);
 		return twoObjects.twoObjectRPM();
 	}
-	
-	/*
-	 * This method solves for 3 by 3 RPM that has two objects in a figure
-	 */
 	
 	private int ThreeByThree (RavensProblem problem) {
 		ThreeByThree threebythree = new ThreeByThree(problem);

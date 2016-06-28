@@ -20,7 +20,7 @@ public class TwoByTwoTwoObjects {
 	//map of the Ravens object and its attributes in a list
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<Map> resultAttribute = new ArrayList(); //array list for the result object attributes
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("rawtypes")
 	private List<Map> ravensObjects = new ArrayList(); //array to list the objects from a Ravens Figure
 
 	private String angleObjecta, angleObjectb, angleObjectc, angleObjectd, angleObjecte, angleObjectf, angleObjectAns1, angleObjectAns2, fillObjectd; //attributes of object f
@@ -47,8 +47,8 @@ public class TwoByTwoTwoObjects {
 			} else if (ROaa.containsKey("angle")) {//reflection case B-06
 				tempAns = reflection();
 			} else if (ROaa.containsKey("inside")) {//putting this method last as the B-12 is solved already by delete method
-				//System.out.println("enter 10");
-				tempAns = addition();
+				//System.out.println("etner 10");
+				//tempAns = addition();
 			} else {
 				tempAns = -1;
 			}	
@@ -66,9 +66,13 @@ public class TwoByTwoTwoObjects {
 			int a = ROA.size();
 			int b = ROB.size();
 			int c = ROC.size();
+			//System.out.println("size of c " + c);
 
 			if (c==a+1) {
+				//System.out.println("enter if for 10 ");
 				for (int i = 0; i < ravensObjects.size(); i++) {
+					//System.out.println("value of i " + i);
+					//System.out.println("size " + ravensObjects.get(i).size());
 					if (c== ravensObjects.get(i).size()) {
 						ans = i+1;
 						return ans;
@@ -78,6 +82,7 @@ public class TwoByTwoTwoObjects {
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
+
 		return -1;
 	}
 
@@ -109,6 +114,9 @@ public class TwoByTwoTwoObjects {
 				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(fillAns2)) {
 					return ans;
 				}
+//				} else if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && !fillObjectd.equals(fillAns2)) {
+//					return ans;					
+//				}
 			}
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
@@ -117,6 +125,7 @@ public class TwoByTwoTwoObjects {
 	}
 
 	private int figureAEqualsB() {//if figure A equals object B, then object D is equal to object C
+		//resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
 		try{
@@ -144,6 +153,7 @@ public class TwoByTwoTwoObjects {
 	}
 
 	private int figureAEqualsC() {//if figure A equals figure C, then Figure D is equal to Figure C
+		//resultAttribute = getObjectAttributes(problem);
 		int ans = 0;
 
 		try{
