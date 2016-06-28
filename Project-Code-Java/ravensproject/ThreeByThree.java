@@ -26,6 +26,10 @@ public class ThreeByThree {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<Map> ravensObjects = new ArrayList(); //array to list the objects from a Ravens object
 
+	private List<RavensObject> objectsE = new ArrayList();
+	private List<RavensObject> objectsF = new ArrayList();
+	private List<RavensObject> objectsG = new ArrayList();
+	
 	//Hash map of Ravens object
 	@SuppressWarnings("unused")
 	private HashMap<String, RavensObject> ROE, ROF, ROH, RO1, RO2, RO3, RO4, RO5, RO6, RO7, RO8;
@@ -43,6 +47,8 @@ public class ThreeByThree {
 
 	@SuppressWarnings("unused")
 	private String angleA, angleB, angleC, angleAns, shapeAlignmentA, shapeAlignmentC, shapeAlignmentB; //angle of C for rotation cases
+	
+	private int sizeE, sizeF, sizeH; //number of objects in figure E, F and H
 
 	public ThreeByThree (RavensProblem problem) {
 		this.problem = problem;
@@ -53,23 +59,89 @@ public class ThreeByThree {
 		//System.out.println("Size of RFE/no of objects: " + RFE.getObjects().size());
 
 		RObjects();
+		NumberOfObjects();
 
 		try {
-			if (RFE.getObjects().size() == RFF.getObjects().size()) { //when the total number of objects are equal
-				tempAns = equalObjects();
-			} else if (RFE.getObjects().size() != RFF.getObjects().size()) {//when the total number of objects are not equal
+			if (sizeE == sizeF) { //when the total number of objects are equal
+				tempAns = equalObjectsSize();
+			} else if (sizeE != sizeF) {//when the total number of objects are not equal
 				tempAns = increaseObject();
 			}
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-
 		return tempAns;
+	}
+	
+	private int equalObjectsSize() { //equal number of objects from left to right but account for the change in the size
+		int ans = 0;
+		NumberOfObjects();
+		RavensObject thisObject1 = null;
+		RavensObject thisObject2 = null;
+		RavensObject thisObject3 = null;
+		
+		try {
+			for (String objectName1 : RFE.getObjects().keySet()) { //objectName1 is for E
+				thisObject1 = RFE.getObjects().get(objectName1);
+				objectsE.add(thisObject1);
+				//System.out.println("size of E " + thisObject1.getAttributes().get("size") );
+			}
 
+			for (String objectName2 : RFF.getObjects().keySet()) { //objectName2 is for F
+				thisObject2 = RFF.getObjects().get(objectName2);
+				objectsF.add(thisObject2);
+				//System.out.println("size of F " + thisObject2.getAttributes().get("size") );
+			}
 
+			for (String objectName3 : RFH.getObjects().keySet()) {//for objectName3 is for H
+				thisObject3 = RFH.getObjects().get(objectName3);
+				objectsG.add(thisObject3);
+				System.out.println("size of H " + thisObject3.getAttributes().get("size") );
+				
+			}
+			
+			//System.out.println("size of H 2 " + objectsG.get(0).getAttributes().get("size"));
+
+			//System.out.println("Enter criteria " + thisObject1.getAttributes().get("size").equals(thisObject2.getAttributes().get("size")));
+			
+		
+			
+			for (int i = 0, j = 0; i < sizeE-1; i++, j++){
+				//System.out.println("value of i " + i);
+				//System.out.println("value of j " + j);
+				if (objectsE.get(i).getAttributes().get("size").equals(objectsF.get(j).getAttributes().get("size"))){//check the outer shape
+					//System.out.println("value of i " + i);
+					//System.out.println("value of j " + j);
+					if (objectsE.get(i+1).getAttributes().get("size").equals(objectsF.get(j+1).getAttributes().get("size"))){//check the inner shape
+						//System.out.println("value of i " + i);
+						//System.out.println("value of j " + j);
+						for (int k = 0; k < ravensObjects.size(); k++) {
+							
+							if (ravensObjects.get(k).size() == sizeH) {//only proceed when the size of the H and the answer choices are the same
+								System.out.println(ravensObjects.get(k).size() + "size H " +sizeH);
+								for (int l = 0; l < sizeH; l++){
+									if(objectsG.get(l).getAttributes().get("size").equals(ravensObjects.get(k).get("size"))) {
+										ans = k+1;
+										return ans;
+									}
+								}
+
+							}
+						}
+
+					}
+				}
+			}
+
+		}
+
+		catch(NullPointerException e){
+			System.out.println("Exception thrown  :" + e);
+		}
+		return -1;		
 	}
 
-	private int equalObjects() {
+	private int equalObjects() { //for total number of equal objects (doesn't account for size or fill)
 		int ans = 0;
 		try {
 			for (int i = 0; i < ravensObjects.size(); i++) {
@@ -84,11 +156,9 @@ public class ThreeByThree {
 		return -1;
 	}
 	
-	private int increaseObject(){
+	private int increaseObject(){ //when objects are increased, doesn't account for size or fill
 		int ans = 0;
-		int sizeE = RFE.getObjects().size();
-		int sizeF = RFF.getObjects().size();
-		int sizeH = RFH.getObjects().size();
+		NumberOfObjects();
 		int increment = sizeF - sizeE;
 		int anssize = 0; //potential answer size
 		if (increment == 1) {
@@ -108,8 +178,14 @@ public class ThreeByThree {
 		}
 		return -1;
 	}
-
 	
+	//total number of objects in E, F and H
+	private void NumberOfObjects(){
+		sizeE = RFE.getObjects().size();
+		sizeF = RFF.getObjects().size();
+		sizeH = RFH.getObjects().size();
+	}
+
 	//create ravens figure for question figure and answer choices
 	private void RFigures(RavensProblem problem) { //returns the object attributes in a list
 
@@ -146,6 +222,10 @@ public class ThreeByThree {
 		RO6 = RF6.getObjects();
 		RO7 = RF7.getObjects();
 		RO8 = RF8.getObjects();
+		
+		
+		
+		
 
 		//add answer ravens objects to a list
 		ravensObjects.add(RO1);
