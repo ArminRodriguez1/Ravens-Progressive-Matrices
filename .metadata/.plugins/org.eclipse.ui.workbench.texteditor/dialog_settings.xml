@@ -2,33 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="angleA_int" key="selection"/>
+		<item value="objects8" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="angleA_int"/>
-			<item value="angleB_int"/>
-			<item value="angleC_int"/>
-			<item value="angleC"/>
-			<item value="result"/>
-			<item value="sys"/>
-			<item value="test"/>
-			<item value=","/>
+			<item value="objects2"/>
+			<item value="NumberOfObjects"/>
+			<item value="objects1"/>
+			<item value="&quot;very large&quot;"/>
+			<item value="large"/>
+			<item value="))))"/>
+			<item value=")))))"/>
+			<item value="((objectsH"/>
 		</list>
 		<list key="replacehistory">
-			<item value="resultAttribute"/>
-			<item value=" = null;"/>
-			<item value="!=null"/>
-			<item value="RO3fa"/>
+			<item value="objects8"/>
+			<item value="objects7"/>
+			<item value="objects6"/>
+			<item value="objects5"/>
+			<item value="objects4"/>
+			<item value="objects3"/>
+			<item value="figureSize"/>
+			<item value="objects2"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="1122" key="DIALOG_X_ORIGIN"/>
-		<item value="95" key="DIALOG_Y_ORIGIN"/>
+		<item value="81" key="DIALOG_X_ORIGIN"/>
+		<item value="195" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

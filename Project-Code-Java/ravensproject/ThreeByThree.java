@@ -95,17 +95,12 @@ public class ThreeByThree {
 		return tempAns;
 	}
 
-	
+
 	private int oneObject(){ //C-06
 		int ans = -1;
 		figureSize();
 		objectMethod();
-//		
-//		System.out.println("size of object E " + objectsE.get(0).getAttributes().get("size"));
-//		System.out.println("size of object F " + objectsF.get(0).getAttributes().get("height"));
-//		System.out.println("size of object H " + objectsH.get(0).getAttributes().get("height"));
-//		System.out.println("size of object 7 " + objects7.get(0).getAttributes().get("size"));
-//		
+
 		try {
 			if (objectsE.get(0).getAttributes().get("size").equals(objectsF.get(0).getAttributes().get("height"))){ //C-06
 				if (objectsH.get(0).getAttributes().get("height").equals(objects1.get(0).getAttributes().get("size"))){
@@ -125,6 +120,31 @@ public class ThreeByThree {
 				} else if (objectsH.get(0).getAttributes().get("height").equals(objects8.get(0).getAttributes().get("size"))) {
 					ans = 8;
 				}				
+			} else if (objectsE.get(0).getAttributes().get("size").equals(objectsF.get(0).getAttributes().get("size"))) {
+				if (objects1.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects1.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects1.get(0).getAttributes().containsKey("above")) {
+					ans = 1;
+				} else if (objects2.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects2.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects2.get(0).getAttributes().containsKey("above")) {
+					ans = 2;
+				} else if (objects3.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects3.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects3.get(0).getAttributes().containsKey("above")) {
+					ans = 3;
+				} else if (objects4.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects4.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects4.get(0).getAttributes().containsKey("above")) {
+					ans = 4;
+				} else if (objects5.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects5.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects5.get(0).getAttributes().containsKey("above")) {
+					ans = 5;
+				} else if (objects6.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects6.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects6.get(0).getAttributes().containsKey("above")) {
+				} else if (objects7.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects7.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects7.get(0).getAttributes().containsKey("above")) {
+					ans = 7;
+				} else if (objects8.size() == 2 && objectsH.get(0).getAttributes().get("shape").equals(objects8.get(0).getAttributes().get("shape")) && 
+						objectsH.get(0).getAttributes().containsKey("above") && objects8.get(0).getAttributes().containsKey("above")) {
+					ans = 8;
+				}
 			} else {
 				ans = -1;
 			}
@@ -133,7 +153,7 @@ public class ThreeByThree {
 		}
 		return ans;
 	}
-	
+
 	private int increaseObject(){ //when objects are increased, doesn't account for size or fill
 		int ans = -1;
 		figureSize();
