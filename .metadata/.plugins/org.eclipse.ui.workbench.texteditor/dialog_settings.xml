@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="objects8" key="selection"/>
+		<item value="ROE" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ROE"/>
 			<item value="objects2"/>
 			<item value="NumberOfObjects"/>
 			<item value="objects1"/>
@@ -15,7 +16,6 @@
 			<item value="large"/>
 			<item value="))))"/>
 			<item value=")))))"/>
-			<item value="((objectsH"/>
 		</list>
 		<list key="replacehistory">
 			<item value="objects8"/>

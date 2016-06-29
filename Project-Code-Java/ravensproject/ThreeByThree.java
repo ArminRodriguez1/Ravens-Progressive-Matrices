@@ -16,9 +16,6 @@ public class ThreeByThree {
 
 	private RavensProblem problem;
 
-	//hash map for Ravens Figure
-	@SuppressWarnings("unused")
-	private HashMap<String, RavensFigure> RF;
 	//Ravens figure
 	private RavensFigure RFE, RFF, RFH, RF1, RF2, RF3, RF4, RF5, RF6, RF7, RF8;
 
@@ -49,22 +46,7 @@ public class ThreeByThree {
 	private List<RavensObject> objects8 = new ArrayList();
 
 	//Hash map of Ravens object
-	@SuppressWarnings("unused")
 	private HashMap<String, RavensObject> ROE, ROF, ROH, RO1, RO2, RO3, RO4, RO5, RO6, RO7, RO8;
-	//Ravens object in each figure
-	@SuppressWarnings("unused")
-	private RavensObject ROf, ROg, ROh, ROi, ROm, ROn, ROo;
-	//attributes for Ravens object
-	@SuppressWarnings("unused")
-	private HashMap<String, String> ROfa, ROga, ROha, ROia, ROma, ROna, ROoa;
-
-	@SuppressWarnings("unused")
-	private String shapeC, fillC, shapeB, fillB; //for the object c
-	@SuppressWarnings("unused")
-	private String shapeAns, fillAns, shapeAlignmentAns; //potential result
-
-	@SuppressWarnings("unused")
-	private String angleA, angleB, angleC, angleAns, shapeAlignmentA, shapeAlignmentC, shapeAlignmentB; //angle of C for rotation cases
 
 	private int sizeE, sizeF, sizeH; //number of objects in figure E, F and H
 
