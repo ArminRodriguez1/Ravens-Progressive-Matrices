@@ -64,6 +64,7 @@ public class TwoByTwoTwoObjects {
 
 		try {
 			int a = ROA.size();
+			@SuppressWarnings("unused")
 			int b = ROB.size();
 			int c = ROC.size();
 
