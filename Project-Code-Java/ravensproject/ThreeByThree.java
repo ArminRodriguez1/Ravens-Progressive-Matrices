@@ -15,7 +15,6 @@ import java.util.Map;
 public class ThreeByThree {
 
 	private RavensProblem problem;
-	private int tempAns;
 
 	//hash map for Ravens Figure
 	@SuppressWarnings("unused")
@@ -28,7 +27,15 @@ public class ThreeByThree {
 
 	private List<RavensObject> objectsE = new ArrayList();
 	private List<RavensObject> objectsF = new ArrayList();
-	private List<RavensObject> objectsG = new ArrayList();
+	private List<RavensObject> objectsH = new ArrayList();
+	private List<RavensObject> objects1 = new ArrayList();
+	private List<RavensObject> objects2 = new ArrayList();
+	private List<RavensObject> objects3 = new ArrayList();
+	private List<RavensObject> objects4 = new ArrayList();
+	private List<RavensObject> objects5 = new ArrayList();
+	private List<RavensObject> objects6 = new ArrayList();
+	private List<RavensObject> objects7 = new ArrayList();
+	private List<RavensObject> objects8 = new ArrayList();
 	
 	//Hash map of Ravens object
 	@SuppressWarnings("unused")
@@ -57,12 +64,12 @@ public class ThreeByThree {
 	public int ThreeByThreeRPM() {
 		RFigures(problem);
 		//System.out.println("Size of RFE/no of objects: " + RFE.getObjects().size());
-
+		int tempAns = -1;
 		RObjects();
 		NumberOfObjects();
 
 		try {
-			if (sizeE == sizeF) { //when the total number of objects are equal
+			if (sizeE == 2 && sizeF == 2) { //when the total number of objects are equal
 				tempAns = equalObjectsSize();
 			} else if (sizeE != sizeF) {//when the total number of objects are not equal
 				tempAns = increaseObject();
@@ -73,91 +80,8 @@ public class ThreeByThree {
 		return tempAns;
 	}
 	
-	private int equalObjectsSize() { //equal number of objects from left to right but account for the change in the size
-		int ans = 0;
-		NumberOfObjects();
-		RavensObject thisObject1 = null;
-		RavensObject thisObject2 = null;
-		RavensObject thisObject3 = null;
-		
-		try {
-			for (String objectName1 : RFE.getObjects().keySet()) { //objectName1 is for E
-				thisObject1 = RFE.getObjects().get(objectName1);
-				objectsE.add(thisObject1);
-				//System.out.println("size of E " + thisObject1.getAttributes().get("size") );
-			}
-
-			for (String objectName2 : RFF.getObjects().keySet()) { //objectName2 is for F
-				thisObject2 = RFF.getObjects().get(objectName2);
-				objectsF.add(thisObject2);
-				//System.out.println("size of F " + thisObject2.getAttributes().get("size") );
-			}
-
-			for (String objectName3 : RFH.getObjects().keySet()) {//for objectName3 is for H
-				thisObject3 = RFH.getObjects().get(objectName3);
-				objectsG.add(thisObject3);
-				System.out.println("size of H " + thisObject3.getAttributes().get("size") );
-				
-			}
-			
-			//System.out.println("size of H 2 " + objectsG.get(0).getAttributes().get("size"));
-
-			//System.out.println("Enter criteria " + thisObject1.getAttributes().get("size").equals(thisObject2.getAttributes().get("size")));
-			
-		
-			
-			for (int i = 0, j = 0; i < sizeE-1; i++, j++){
-				//System.out.println("value of i " + i);
-				//System.out.println("value of j " + j);
-				if (objectsE.get(i).getAttributes().get("size").equals(objectsF.get(j).getAttributes().get("size"))){//check the outer shape
-					//System.out.println("value of i " + i);
-					//System.out.println("value of j " + j);
-					if (objectsE.get(i+1).getAttributes().get("size").equals(objectsF.get(j+1).getAttributes().get("size"))){//check the inner shape
-						//System.out.println("value of i " + i);
-						//System.out.println("value of j " + j);
-						for (int k = 0; k < ravensObjects.size(); k++) {
-							
-							if (ravensObjects.get(k).size() == sizeH) {//only proceed when the size of the H and the answer choices are the same
-								System.out.println(ravensObjects.get(k).size() + "size H " +sizeH);
-								for (int l = 0; l < sizeH; l++){
-									if(objectsG.get(l).getAttributes().get("size").equals(ravensObjects.get(k).get("size"))) {
-										ans = k+1;
-										return ans;
-									}
-								}
-
-							}
-						}
-
-					}
-				}
-			}
-
-		}
-
-		catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
-		return -1;		
-	}
-
-	private int equalObjects() { //for total number of equal objects (doesn't account for size or fill)
-		int ans = 0;
-		try {
-			for (int i = 0; i < ravensObjects.size(); i++) {
-				if (RFH.getObjects().size() == ravensObjects.get(i).size()) {
-					ans = i+1;
-					return ans;
-				}
-			}
-		} catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
-		return -1;
-	}
-	
 	private int increaseObject(){ //when objects are increased, doesn't account for size or fill
-		int ans = 0;
+		int ans = -1;
 		NumberOfObjects();
 		int increment = sizeF - sizeE;
 		int anssize = 0; //potential answer size
@@ -176,7 +100,179 @@ public class ThreeByThree {
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return -1;
+		return ans;
+	}
+	
+	private int equalObjectsSize() { //equal number of objects from left to right but account for the change in the size
+		int ans = -1;
+		NumberOfObjects();
+		objectMethod();
+
+		try {
+			if (equalEF()){
+				//System.out.println("enter the statement");
+				if (sizeH == 3) {
+					if ((objectsH.get(0).getAttributes().get("size").equals(objects1.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects1.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects1.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects1.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects1.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects1.get(2).getAttributes().get("shape"))))) {
+						ans = 1;
+					} else if ((objectsH.get(0).getAttributes().get("size").equals(objects2.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects2.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects2.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects2.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects2.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects2.get(2).getAttributes().get("shape"))))) {
+						ans = 2;
+					} else if ((objectsH.get(0).getAttributes().get("size").equals(objects3.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects3.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects3.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects3.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects3.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects3.get(2).getAttributes().get("shape"))))) {
+						ans = 3;
+					} else if ((objectsH.get(0).getAttributes().get("size").equals(objects4.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects4.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects4.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects4.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects4.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects4.get(2).getAttributes().get("shape"))))) {
+						ans = 4;
+					} else if ((objectsH.get(0).getAttributes().get("size").equals(objects5.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects5.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects5.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects5.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects5.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects5.get(2).getAttributes().get("shape"))))) {
+						ans = 5;
+					} else if ((objectsH.get(0).getAttributes().get("size").equals(objects6.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects6.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects6.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects6.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects6.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects6.get(2).getAttributes().get("shape"))))) {
+						ans = 6;
+					} else if ((objectsH.get(0).getAttributes().get("size").equals(objects7.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects7.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects7.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects7.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects7.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects7.get(2).getAttributes().get("shape"))))) {
+						ans = 7;
+					} else if ((objectsH.get(0).getAttributes().get("size").equals(objects8.get(0).getAttributes().get("size"))) && 
+							(objectsH.get(0).getAttributes().get("shape").equals(objects8.get(0).getAttributes().get("shape"))) &&
+							((objectsH.get(1).getAttributes().get("size").equals(objects8.get(1).getAttributes().get("size"))) && 
+									(objectsH.get(1).getAttributes().get("shape").equals(objects8.get(1).getAttributes().get("shape")))) && 
+							((objectsH.get(2).getAttributes().get("size").equals(objects8.get(2).getAttributes().get("size"))) && 
+									(objectsH.get(2).getAttributes().get("shape").equals(objects8.get(2).getAttributes().get("shape"))))) {
+						ans = 8;
+					}
+				}
+				return ans;
+			}
+		} catch(NullPointerException e){
+			System.out.println("Exception thrown  :" + e);
+		}
+		return ans;
+	}
+	
+	//to check if E and F are same like in problem C-01
+	
+	private boolean equalEF(){ //C-01
+		NumberOfObjects();
+		if (sizeE == 2 && sizeF == 2) {
+			if ((objectsE.get(0).getAttributes().get("size").equals(objectsF.get(0).getAttributes().get("size"))) && 
+					(objectsE.get(0).getAttributes().get("shape").equals(objectsF.get(0).getAttributes().get("shape"))) &&
+					((objectsE.get(1).getAttributes().get("size").equals(objectsF.get(1).getAttributes().get("size"))) && 
+							(objectsE.get(1).getAttributes().get("shape").equals(objectsF.get(1).getAttributes().get("shape"))))) {
+				return true;
+			}
+		}
+		return false;
+	}
+		
+	//create objects for equal method
+	private void objectMethod() {
+		NumberOfObjects();
+		RavensObject thisObjectE = null;
+		RavensObject thisObjectF = null;
+		RavensObject thisObjectH = null;
+		RavensObject thisObject1 = null;
+		RavensObject thisObject2 = null;
+		RavensObject thisObject3 = null;
+		RavensObject thisObject4 = null;
+		RavensObject thisObject5 = null;
+		RavensObject thisObject6 = null;
+		RavensObject thisObject7 = null;
+		RavensObject thisObject8 = null;
+	
+		try {
+			for (String objectNameE : RFE.getObjects().keySet()) { //objectName1 is for E
+				thisObjectE = RFE.getObjects().get(objectNameE);
+				objectsE.add(thisObjectE);
+//				System.out.println("size of E " + thisObjectE.getAttributes().get("size"));
+//				System.out.println("shape of E " + thisObjectE.getAttributes().get("shape"));
+			}
+	
+			for (String objectNameF : RFF.getObjects().keySet()) { //objectName2 is for F
+				thisObjectF = RFF.getObjects().get(objectNameF);
+				objectsF.add(thisObjectF);
+//				System.out.println("size of F " + thisObjectF.getAttributes().get("size"));
+//				System.out.println("shape of F " + thisObjectF.getAttributes().get("shape"));
+			}
+	
+			for (String objectNameH : RFH.getObjects().keySet()) {//for objectName3 is for H
+				thisObjectH = RFH.getObjects().get(objectNameH);
+				objectsH.add(thisObjectH);
+//				System.out.println("size of H " + thisObjectH.getAttributes().get("size"));
+//				System.out.println("size H " + objectsH.get(0).getAttributes().get("shape"));
+			}
+			
+			for (String objectName1 : RF1.getObjects().keySet()) {
+				thisObject1 = RF1.getObjects().get(objectName1);
+				objects1.add(thisObject1);
+			}
+			
+			for (String objectName2 : RF2.getObjects().keySet()) {
+				thisObject2 = RF2.getObjects().get(objectName2);
+				objects2.add(thisObject2);
+			}
+			
+			for (String objectName3 : RF3.getObjects().keySet()) {
+				thisObject3 = RF3.getObjects().get(objectName3);
+				objects3.add(thisObject3);
+			}
+			
+			for (String objectName4 : RF4.getObjects().keySet()) {
+				thisObject4 = RF4.getObjects().get(objectName4);
+				objects4.add(thisObject4);
+			}
+			
+			for (String objectName5 : RF5.getObjects().keySet()) {
+				thisObject5 = RF5.getObjects().get(objectName5);
+				objects5.add(thisObject5);
+			}
+			
+			for (String objectName6 : RF6.getObjects().keySet()) {
+				thisObject6 = RF6.getObjects().get(objectName6);
+				objects6.add(thisObject6);
+			}
+			
+			for (String objectName7 : RF7.getObjects().keySet()) {
+				thisObject7 = RF7.getObjects().get(objectName7);
+				objects7.add(thisObject7);
+			}
+			
+			for (String objectName8 : RF8.getObjects().keySet()) {
+				thisObject8 = RF8.getObjects().get(objectName8);
+				objects8.add(thisObject8);
+			}
+			
+		} catch(NullPointerException e){
+			System.out.println("Exception thrown  :" + e);
+		}
 	}
 	
 	//total number of objects in E, F and H
@@ -223,10 +319,6 @@ public class ThreeByThree {
 		RO7 = RF7.getObjects();
 		RO8 = RF8.getObjects();
 		
-		
-		
-		
-
 		//add answer ravens objects to a list
 		ravensObjects.add(RO1);
 		ravensObjects.add(RO2);

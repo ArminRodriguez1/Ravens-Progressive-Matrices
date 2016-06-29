@@ -79,19 +79,22 @@ public class Agent {
 				
 				if (numberOfObjects == 1) {
 					ans = OneObject(problem); //2 by 2 RPM with one objects per figure
-					System.out.println("Answer is " + ans);
+					//System.out.println("Answer is " + ans);
 					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
 						ans = -1;
 					}
 				} else if (numberOfObjects == 2) {
 					ans = TwoObjects(problem);
-					System.out.println("Anser is " + ans);
+					//System.out.println("Answer is " + ans);
 					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
 						ans = -1;
 					}
 				} 
 			} else if (RF.size() == 16) { // 3 by 3 RPMs
 				ans = ThreeByThree(problem);
+				if (ans == 0) {
+					ans = -1;
+				}
 			} else {
 				ans = -1;
 			}
