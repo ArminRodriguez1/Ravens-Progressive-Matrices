@@ -100,37 +100,11 @@ public class ThreeByThree {
 		int ans = -1;
 		figureSize();
 		objectMethod();
-//		
-//		System.out.println("size of object E " + objectsE.get(0).getAttributes().get("size"));
-//		System.out.println("size of object F " + objectsF.get(0).getAttributes().get("height"));
-//		System.out.println("size of object H " + objectsH.get(0).getAttributes().get("height"));
-//		System.out.println("size of object 7 " + objects7.get(0).getAttributes().get("size"));
-//		
-		try {
-			if (objectsE.get(0).getAttributes().get("size").equals(objectsF.get(0).getAttributes().get("height"))){ //C-06
-				if (objectsH.get(0).getAttributes().get("height").equals(objects1.get(0).getAttributes().get("size"))){
-					ans = 1;
-				} else if (objectsH.get(0).getAttributes().get("height").equals(objects2.get(0).getAttributes().get("size"))) {
-					ans = 2;
-				} else if (objectsH.get(0).getAttributes().get("height").equals(objects3.get(0).getAttributes().get("size"))) {
-					ans = 3;
-				} else if (objectsH.get(0).getAttributes().get("height").equals(objects4.get(0).getAttributes().get("size"))) {
-					ans = 4;
-				} else if (objectsH.get(0).getAttributes().get("height").equals(objects5.get(0).getAttributes().get("size"))) {
-					ans = 5;
-				} else if (objectsH.get(0).getAttributes().get("height").equals(objects6.get(0).getAttributes().get("size"))) {
-					ans = 6;
-				} else if (objectsH.get(0).getAttributes().get("height").equals(objects7.get(0).getAttributes().get("size"))) {
-					ans = 7;
-				} else if (objectsH.get(0).getAttributes().get("height").equals(objects8.get(0).getAttributes().get("size"))) {
-					ans = 8;
-				}				
-			} else {
-				ans = -1;
-			}
-		} catch(NullPointerException e){
-			System.out.println("Exception thrown  :" + e);
-		}
+		
+		System.out.println("sizes of object E " + objectsE.get(0).getAttributes().get("size") + " shape of object in E " + objectsE.get(0).getAttributes().get("shape"));
+		
+		
+		
 		return ans;
 	}
 	

@@ -100,12 +100,12 @@ public class ThreeByThree {
 		int ans = -1;
 		figureSize();
 		objectMethod();
-//		
-//		System.out.println("size of object E " + objectsE.get(0).getAttributes().get("size"));
-//		System.out.println("size of object F " + objectsF.get(0).getAttributes().get("height"));
-//		System.out.println("size of object H " + objectsH.get(0).getAttributes().get("height"));
-//		System.out.println("size of object 7 " + objects7.get(0).getAttributes().get("size"));
-//		
+		
+		System.out.println("size of object E " + objectsE.get(0).getAttributes().get("size"));
+		System.out.println("size of object F " + objectsF.get(0).getAttributes().get("height"));
+		System.out.println("size of object H " + objectsH.get(0).getAttributes().get("height"));
+		System.out.println("size of object 7 " + objects7.get(0).getAttributes().get("size"));
+		
 		try {
 			if (objectsE.get(0).getAttributes().get("size").equals(objectsF.get(0).getAttributes().get("height"))){ //C-06
 				if (objectsH.get(0).getAttributes().get("height").equals(objects1.get(0).getAttributes().get("size"))){
@@ -131,6 +131,8 @@ public class ThreeByThree {
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
+		
+		
 		return ans;
 	}
 	

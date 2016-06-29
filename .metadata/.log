@@ -1583,3 +1583,8 @@ Binding(F5,
 !MESSAGE Unhandled event loop exception
 !STACK 0
 java.lang.NullPointerException
+
+!ENTRY org.eclipse.ui 4 0 2016-06-29 01:07:33.385
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException

@@ -131,6 +131,8 @@ public class ThreeByThree {
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
+		
+		
 		return ans;
 	}
 	
