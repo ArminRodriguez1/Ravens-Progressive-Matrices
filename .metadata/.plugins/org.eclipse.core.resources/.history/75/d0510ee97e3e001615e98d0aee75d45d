@@ -46,7 +46,6 @@ public class ThreeByThree {
 	private List<RavensObject> objects8 = new ArrayList();
 
 	//Hash map of Ravens object
-	@SuppressWarnings("unused")
 	private HashMap<String, RavensObject> ROE, ROF, ROH, RO1, RO2, RO3, RO4, RO5, RO6, RO7, RO8;
 
 	private int sizeE, sizeF, sizeH; //number of objects in figure E, F and H
