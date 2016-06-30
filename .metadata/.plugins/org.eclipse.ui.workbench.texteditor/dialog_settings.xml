@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="ROE" key="selection"/>
-		<item value="false" key="casesensitive"/>
+		<item value="keyLeft " key="selection"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="ROE"/>
-			<item value="objects2"/>
-			<item value="NumberOfObjects"/>
-			<item value="objects1"/>
+			<item value="keyleft"/>
+			<item value="keyleft "/>
+			<item value="getabove"/>
+			<item value="getheight"/>
+			<item value="getangle"/>
+			<item value="getshape"/>
+			<item value="getsize"/>
 			<item value="&quot;very large&quot;"/>
-			<item value="large"/>
-			<item value="))))"/>
-			<item value=")))))"/>
 		</list>
 		<list key="replacehistory">
-			<item value="objects8"/>
-			<item value="objects7"/>
-			<item value="objects6"/>
-			<item value="objects5"/>
-			<item value="objects4"/>
-			<item value="objects3"/>
-			<item value="figureSize"/>
-			<item value="objects2"/>
+			<item value="keyLeft "/>
+			<item value="getAbove"/>
+			<item value="getHeight"/>
+			<item value="getAngle"/>
+			<item value="getShape"/>
+			<item value="getSize"/>
+			<item value="valueVeryLarge"/>
+			<item value="valueHuge"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
