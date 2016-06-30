@@ -68,14 +68,12 @@ public class Agent {
 			 * 2 by 2 RPM problem have 9 Ravens Figure and 3 by 3 RPM have 16 Ravens Figure.
 			 * Find the total number of Ravens Figure and put check accordingly.
 			 */
-			//System.out.println("Size of the problem " + RF.size());
 			
 			if (RF.size() == 9) { // 2 by 2 RPMs
 				RFA = RF.get("A");
 				//get the Ravens Figure from the problem figures
 				ROA = RFA.getObjects();
 				int numberOfObjects = ROA.size(); //number of objects in Figure A
-				//System.out.println("The size of the hash map/number of objects is: " + numberOfObjects);
 				
 				if (numberOfObjects == 1) {
 					ans = OneObject(problem); //2 by 2 RPM with one objects per figure
@@ -122,7 +120,7 @@ public class Agent {
 	}
 	
 	/*
-	 * This method solves for 3 by 3 RPM that has two objects in a figure
+	 * This method solves for 3 by 3 RPM 
 	 */
 	
 	private int ThreeByThree (RavensProblem problem) {
