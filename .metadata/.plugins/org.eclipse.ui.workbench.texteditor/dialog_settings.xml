@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="keyLeft " key="selection"/>
-		<item value="true" key="casesensitive"/>
+		<item value="sizeG" key="selection"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="keyleft"/>
-			<item value="keyleft "/>
-			<item value="getabove"/>
-			<item value="getheight"/>
-			<item value="getangle"/>
-			<item value="getshape"/>
-			<item value="getsize"/>
-			<item value="&quot;very large&quot;"/>
+			<item value="sizeH"/>
+			<item value="sizeG"/>
+			<item value="02"/>
+			<item value="&quot;Exception thrown: &quot; + e"/>
+			<item value="size of G"/>
+			<item value="Exception e"/>
+			<item value="FisLargerE1"/>
+			<item value="C-05"/>
 		</list>
 		<list key="replacehistory">
-			<item value="keyLeft "/>
-			<item value="getAbove"/>
-			<item value="getHeight"/>
-			<item value="getAngle"/>
-			<item value="getShape"/>
-			<item value="getSize"/>
-			<item value="valueVeryLarge"/>
-			<item value="valueHuge"/>
+			<item value="sizeG"/>
+			<item value="e.printStackTrace()"/>
+			<item value="e.printStackTrace();"/>
+			<item value="NullPointerException e"/>
+			<item value="CisLargerA"/>
+			<item value="AandCequal"/>
+			<item value="objectsG"/>
+			<item value="objects8"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

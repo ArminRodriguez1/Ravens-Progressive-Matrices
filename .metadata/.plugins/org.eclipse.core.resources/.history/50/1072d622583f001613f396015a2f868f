@@ -87,8 +87,8 @@ public class ThreeByThree {
 		figureSize();
 		objectMethod();
 		getAngles();
-		
-		try {	
+		try {
+			
 			if (sizeA == 2 && sizeC == 2) { //for C-07 and C-09
 				//System.out.println("t or F " + objectsA.get(0).getAttributes().get(getSize) +" " + (objectsC.get(0).getAttributes().get(getSize)));
 				if (objectsA.get(1).getAttributes().containsKey("above") && objectsC.get(1).getAttributes().containsKey("above")) { //C-07
@@ -186,7 +186,7 @@ public class ThreeByThree {
 		return ans;
 	}
 	
-	//to check if A and C are same like in problem C-01
+	//to check if E and F are same like in problem C-01
 
 	private boolean equalAC(){ //C-01
 		if (sizeA == 1 && sizeC == 1) {

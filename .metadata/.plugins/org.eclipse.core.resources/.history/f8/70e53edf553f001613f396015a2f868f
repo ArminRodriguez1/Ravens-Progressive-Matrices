@@ -87,8 +87,8 @@ public class ThreeByThree {
 		figureSize();
 		objectMethod();
 		getAngles();
-		
-		try {	
+		try {
+			
 			if (sizeA == 2 && sizeC == 2) { //for C-07 and C-09
 				//System.out.println("t or F " + objectsA.get(0).getAttributes().get(getSize) +" " + (objectsC.get(0).getAttributes().get(getSize)));
 				if (objectsA.get(1).getAttributes().containsKey("above") && objectsC.get(1).getAttributes().containsKey("above")) { //C-07
@@ -186,7 +186,7 @@ public class ThreeByThree {
 		return ans;
 	}
 	
-	//to check if A and C are same like in problem C-01
+	//to check if E and F are same like in problem C-01
 
 	private boolean equalAC(){ //C-01
 		if (sizeA == 1 && sizeC == 1) {
@@ -199,6 +199,7 @@ public class ThreeByThree {
 	
 	private int AandCequal() { //for case C-01
 		int ans = -1;
+		System.out.println("size of G " + sizeG);
 		try {
 			if ((objectsG.get(0).getAttributes().get(getSize).equals(objects1.get(0).getAttributes().get(getSize))) &&
 					(objectsG.get(0).getAttributes().get(getShape).equals(objects1.get(0).getAttributes().get(getShape))) &&
@@ -319,21 +320,21 @@ public class ThreeByThree {
 
 	private int increaseObject(){ //when objects are increased, doesn't account for size or fill, C-03 C-04, C-05
 		int ans = -1;
-		int increment = 0; //increment
-		int anssize = 0; //potential answer size
-		
 		if (sizeC != 0 && sizeA != 0) {
-			increment = sizeC/sizeA; //factor times
+		int increment = sizeCsizeA;
 		}
+		int anssize = 0; //potential answer size
 
-		if (increment == 3) {
-			anssize = sizeG*increment; //increase of 1, C-04 and C-03
+		if (increment == 1 && sizeC == 3) { //C-11
+			ans = increaseObject2();
+			return ans;
+		}
+		else if (increment == 2) {
+			anssize = sizeH + increment; //increase of 1, C-04 and C-03
 			ans = increaseObject1(anssize);
 		} else if (increment == 2) {
-			anssize = sizeG + increment; //increase of 2,  C-05
+			anssize = sizeH + increment + 1; //increase of 2
 			ans = increaseObject1(anssize);
-		} else if (increment == 1) {
-			ans = increaseObject2();
 		}
 		return ans;
 	}
@@ -353,7 +354,7 @@ public class ThreeByThree {
 		return ans;
 	}
 	
-	private int increaseObject2(){ //C-11, hacky only works for the basic
+	private int increaseObject2(){ //C-11
 		int ans = -1;
 		
 		try {
@@ -379,7 +380,7 @@ public class ThreeByThree {
 				}
 			}
 		} catch (NullPointerException e) {
-			 e.printStackTrace();
+			System.out.println("Exception thrown: " + e);
 		}
 		return ans;
 	}

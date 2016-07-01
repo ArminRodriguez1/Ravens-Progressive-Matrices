@@ -88,7 +88,7 @@ public class ThreeByThree {
 		objectMethod();
 		getAngles();
 		
-		try {	
+		try {
 			if (sizeA == 2 && sizeC == 2) { //for C-07 and C-09
 				//System.out.println("t or F " + objectsA.get(0).getAttributes().get(getSize) +" " + (objectsC.get(0).getAttributes().get(getSize)));
 				if (objectsA.get(1).getAttributes().containsKey("above") && objectsC.get(1).getAttributes().containsKey("above")) { //C-07
@@ -118,75 +118,75 @@ public class ThreeByThree {
 		return tempAns;
 	}
 		
-	private int CisLargerA()  { //C-02
-		int ans = -1;
-		try {
-			if (objects1.size() == sizeH) { 
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects1.get(0).getAttributes().containsValue(valueHuge) && 
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects1.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects1.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects1.get(1).getAttributes().get(getShape))))) {
-					ans = 1;
-				}
-			} if (objects2.size() == sizeH) {
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects2.get(0).getAttributes().containsValue(valueHuge) &&  
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects2.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects2.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects2.get(1).getAttributes().get(getShape))))) {
-					ans = 2;
-				}
-			} if (objects3.size() == sizeH) {
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects3.get(0).getAttributes().containsValue(valueHuge) && 
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects3.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects3.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects3.get(1).getAttributes().get(getShape))))) {
-					ans = 3;
-				}
-			} if (objects4.size() == sizeH) {
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects4.get(0).getAttributes().containsValue(valueHuge) && 
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects4.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects4.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects4.get(1).getAttributes().get(getShape))))) {
-					ans = 4;
-				}
-			} if (objects5.size() == sizeH) {
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects5.get(0).getAttributes().containsValue(valueHuge) && 
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects5.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects5.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects5.get(1).getAttributes().get(getShape))))) {
-					ans = 5;
-				}
-			} if (objects6.size() == sizeH) {
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects6.get(0).getAttributes().containsValue(valueHuge) && 
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects6.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects6.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects6.get(1).getAttributes().get(getShape))))) {
-					ans = 6;
-				}
-			} if (objects7.size() == sizeH) {
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects7.get(0).getAttributes().containsValue(valueHuge) &&  
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects7.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects7.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects7.get(1).getAttributes().get(getShape))))) {
-					ans = 7;
-				}
-			} if (objects8.size() == sizeH) {
-				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects8.get(0).getAttributes().containsValue(valueHuge) && 
-						(objectsH.get(1).getAttributes().get(getShape).equals(objects8.get(0).getAttributes().get(getShape))) &&
-						((objectsH.get(0).getAttributes().get(getSize).equals(objects8.get(1).getAttributes().get(getSize))) && 
-								(objectsH.get(0).getAttributes().get(getShape).equals(objects8.get(1).getAttributes().get(getShape))))) {
-					ans = 8;
-				}
-			} else {
-				ans = -1;
-			}
-		} catch (NullPointerException e){
-			System.out.println("Exception thrown: " + e);
-		}
-		return ans;
-	}
+//	private int CisLargerA()  { //C-02
+//		int ans = -1;
+//		try {
+//			if (objects1.size() == sizeH) { 
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects1.get(0).getAttributes().containsValue(valueHuge) && 
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects1.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects1.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects1.get(1).getAttributes().get(getShape))))) {
+//					ans = 1;
+//				}
+//			} if (objects2.size() == sizeH) {
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects2.get(0).getAttributes().containsValue(valueHuge) &&  
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects2.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects2.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects2.get(1).getAttributes().get(getShape))))) {
+//					ans = 2;
+//				}
+//			} if (objects3.size() == sizeH) {
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects3.get(0).getAttributes().containsValue(valueHuge) && 
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects3.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects3.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects3.get(1).getAttributes().get(getShape))))) {
+//					ans = 3;
+//				}
+//			} if (objects4.size() == sizeH) {
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects4.get(0).getAttributes().containsValue(valueHuge) && 
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects4.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects4.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects4.get(1).getAttributes().get(getShape))))) {
+//					ans = 4;
+//				}
+//			} if (objects5.size() == sizeH) {
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects5.get(0).getAttributes().containsValue(valueHuge) && 
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects5.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects5.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects5.get(1).getAttributes().get(getShape))))) {
+//					ans = 5;
+//				}
+//			} if (objects6.size() == sizeH) {
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects6.get(0).getAttributes().containsValue(valueHuge) && 
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects6.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects6.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects6.get(1).getAttributes().get(getShape))))) {
+//					ans = 6;
+//				}
+//			} if (objects7.size() == sizeH) {
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects7.get(0).getAttributes().containsValue(valueHuge) &&  
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects7.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects7.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects7.get(1).getAttributes().get(getShape))))) {
+//					ans = 7;
+//				}
+//			} if (objects8.size() == sizeH) {
+//				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects8.get(0).getAttributes().containsValue(valueHuge) && 
+//						(objectsH.get(1).getAttributes().get(getShape).equals(objects8.get(0).getAttributes().get(getShape))) &&
+//						((objectsH.get(0).getAttributes().get(getSize).equals(objects8.get(1).getAttributes().get(getSize))) && 
+//								(objectsH.get(0).getAttributes().get(getShape).equals(objects8.get(1).getAttributes().get(getShape))))) {
+//					ans = 8;
+//				}
+//			} else {
+//				ans = -1;
+//			}
+//		} catch (NullPointerException e){
+//			System.out.println("Exception thrown: " + e);
+//		}
+//		return ans;
+//	}
 	
-	//to check if A and C are same like in problem C-01
+	//to check if E and F are same like in problem C-01
 
 	private boolean equalAC(){ //C-01
 		if (sizeA == 1 && sizeC == 1) {

@@ -186,7 +186,7 @@ public class ThreeByThree {
 		return ans;
 	}
 	
-	//to check if A and C are same like in problem C-01
+	//to check if E and F are same like in problem C-01
 
 	private boolean equalAC(){ //C-01
 		if (sizeA == 1 && sizeC == 1) {
