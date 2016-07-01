@@ -17,11 +17,18 @@ public class ThreeByThree {
 	private RavensProblem problem;
 
 	//Ravens figure
-	private RavensFigure RFE, RFF, RFH, RF1, RF2, RF3, RF4, RF5, RF6, RF7, RF8;
+	private RavensFigure RFA, RFC, RFG, RFE, RFF, RFH, RF1, RF2, RF3, RF4, RF5, RF6, RF7, RF8;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<Map> ravensObjects = new ArrayList(); //array to list the objects from a Ravens object
 
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private List<RavensObject> objectsA = new ArrayList();
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private List<RavensObject> objectsC = new ArrayList();
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private List<RavensObject> objectsG = new ArrayList();
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<RavensObject> objectsE = new ArrayList();
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -47,9 +54,9 @@ public class ThreeByThree {
 
 	//Hash map of Ravens object
 	@SuppressWarnings("unused")
-	private HashMap<String, RavensObject> ROE, ROF, ROH, RO1, RO2, RO3, RO4, RO5, RO6, RO7, RO8;
+	private HashMap<String, RavensObject> ROA, ROC, ROG, ROE, ROF, ROH, RO1, RO2, RO3, RO4, RO5, RO6, RO7, RO8;
 
-	private int sizeE, sizeF, sizeH; //number of objects in figure E, F and H
+	private int sizeA, sizeC, sizeG, sizeE, sizeF, sizeH; //number of objects in figure E, F and H
 	
 	private String getSize = "size";
 	private String getShape = "shape";
@@ -73,7 +80,7 @@ public class ThreeByThree {
 		figureSize();
 		objectMethod();
 		try {
-			if (sizeE == 2 && sizeF == 2) { //when the total number of objects are equal
+			if (sizeE == sizeF) { //when the total number of objects are equal
 				tempAns = equalObjectsSize();
 			} else if (sizeF > sizeE) {//when the total number of objects are not equal
 				tempAns = increaseObject();
@@ -95,7 +102,7 @@ public class ThreeByThree {
 		try {
 			if (objectsE.get(0).getAttributes().get(getSize).equals(objectsF.get(0).getAttributes().get(getHeight))){ //C-06
 				ans = oneObject1();																						//C-06
-			} else if (objectsE.get(0).getAttributes().get(getSize).equals(objectsF.get(0).getAttributes().get(getSize))) { //C-07
+			} else if (objectsA.get(1).getAttributes().containsKey("above") && objectsC.get(1).getAttributes().containsKey("above")) { //C-07
 				ans = oneObject2(); 																							  //C-07			
 			} else {
 				ans = -1;
@@ -132,31 +139,24 @@ public class ThreeByThree {
 		return ans;
 	}
 
-	private int oneObject2() { //C-07
+	private int oneObject2() { //C-07, this is general, figure C is reflection of figure A, look for same transformation from G to answers
 		int ans = -1;
 		try {
-			if (objects1.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects1.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects1.get(0).getAttributes().containsKey(getAbove)) {
+			if (objects1.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects1.get(0).getAttributes().containsKey(getAbove)) {
 				ans = 1;
-			} else if (objects2.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects2.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects2.get(0).getAttributes().containsKey(getAbove)) {
+			} else if (objects1.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects2.get(0).getAttributes().containsKey(getAbove)) {
 				ans = 2;
-			} else if (objects3.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects3.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects3.get(0).getAttributes().containsKey(getAbove)) {
+			} else if (objects2.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects3.get(0).getAttributes().containsKey(getAbove)) {
 				ans = 3;
-			} else if (objects4.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects4.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects4.get(0).getAttributes().containsKey(getAbove)) {
+			} else if (objects3.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects4.get(0).getAttributes().containsKey(getAbove)) {
 				ans = 4;
-			} else if (objects5.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects5.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects5.get(0).getAttributes().containsKey(getAbove)) {
+			} else if (objects4.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects5.get(0).getAttributes().containsKey(getAbove)) {
 				ans = 5;
-			} else if (objects6.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects6.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects6.get(0).getAttributes().containsKey(getAbove)) {
-			} else if (objects7.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects7.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects7.get(0).getAttributes().containsKey(getAbove)) {
+			} else if (objects5.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects6.get(0).getAttributes().containsKey(getAbove)) {
+				ans = 6;
+			} else if (objects6.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects7.get(0).getAttributes().containsKey(getAbove)) {
 				ans = 7;
-			} else if (objects8.size() == 2 && objectsH.get(0).getAttributes().get(getShape).equals(objects8.get(0).getAttributes().get(getShape)) && 
-					objectsH.get(0).getAttributes().containsKey(getAbove) && objects8.get(0).getAttributes().containsKey(getAbove)) {
+			} else if (objects7.size() == 2 && objectsG.get(0).getAttributes().containsKey(getAbove) && objects8.get(0).getAttributes().containsKey(getAbove)) {
 				ans = 8;
 			}
 		} catch (Exception e){
@@ -203,22 +203,22 @@ public class ThreeByThree {
 		int ans = -1;
 		
 		try {
-			if (sizeH == 2 && objectsH.get(0).getAttributes().containsKey(keyLeft )) {
-				if (objects1.size() == sizeE && objects1.get(0).getAttributes().containsKey(keyLeft ) && objects1.get(0).getAttributes().containsKey(keyLeft )) {
+			if (sizeH == 2 && objectsH.get(0).getAttributes().containsKey(keyLeft)) {
+				if (objects1.size() == sizeE && objects1.get(0).getAttributes().containsKey(keyLeft) && objects1.get(0).getAttributes().containsKey(keyLeft )) {
 					ans = 1;
-				} else if (objects2.size() == sizeE && objects2.get(0).getAttributes().containsKey(keyLeft ) && objects2.get(0).getAttributes().containsKey(keyLeft )) {
+				} else if (objects2.size() == sizeE && objects2.get(0).getAttributes().containsKey(keyLeft) && objects2.get(0).getAttributes().containsKey(keyLeft)) {
 					ans = 2;
-				} else if (objects3.size() == sizeE && objects3.get(0).getAttributes().containsKey(keyLeft ) && objects3.get(0).getAttributes().containsKey(keyLeft )) {
+				} else if (objects3.size() == sizeE && objects3.get(0).getAttributes().containsKey(keyLeft) && objects3.get(0).getAttributes().containsKey(keyLeft)) {
 					ans = 3;
-				} else if (objects4.size() == sizeE && objects4.get(0).getAttributes().containsKey(keyLeft ) && objects4.get(0).getAttributes().containsKey(keyLeft )) {
+				} else if (objects4.size() == sizeE && objects4.get(0).getAttributes().containsKey(keyLeft) && objects4.get(0).getAttributes().containsKey(keyLeft)) {
 					ans = 4;
-				} else if (objects5.size() == sizeE && objects5.get(0).getAttributes().containsKey(keyLeft ) && objects5.get(0).getAttributes().containsKey(keyLeft )) {
+				} else if (objects5.size() == sizeE && objects5.get(0).getAttributes().containsKey(keyLeft) && objects5.get(0).getAttributes().containsKey(keyLeft)) {
 					ans = 5;
-				} else if (objects6.size() == sizeE && objects6.get(0).getAttributes().containsKey(keyLeft ) && objects6.get(0).getAttributes().containsKey(keyLeft )) {
+				} else if (objects6.size() == sizeE && objects6.get(0).getAttributes().containsKey(keyLeft) && objects6.get(0).getAttributes().containsKey(keyLeft)) {
 					ans = 6;
-				} else if (objects7.size() == sizeE && objects7.get(0).getAttributes().containsKey(keyLeft ) && objects7.get(0).getAttributes().containsKey(keyLeft )) {
+				} else if (objects7.size() == sizeE && objects7.get(0).getAttributes().containsKey(keyLeft)  && objects7.get(0).getAttributes().containsKey(keyLeft)) {
 					ans = 7;
-				} else if (objects8.size() == sizeE && objects8.get(0).getAttributes().containsKey(keyLeft ) && objects8.get(0).getAttributes().containsKey(keyLeft )) {
+				} else if (objects8.size() == sizeE && objects8.get(0).getAttributes().containsKey(keyLeft) && objects8.get(0).getAttributes().containsKey(keyLeft)) {
 					ans = 8;
 				} else {
 					ans = -1;
@@ -227,7 +227,6 @@ public class ThreeByThree {
 		} catch (Exception e) {
 			System.out.println("Exception thrown: " + e);
 		}
-
 		return ans;
 	}
 
@@ -301,9 +300,6 @@ public class ThreeByThree {
 
 	private int FisLargerE1() { //C-02
 		int ans = -1;
-		
-		
-		
 		try {
 			if (objects1.size() == sizeH) { 
 				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge) && objects1.get(0).getAttributes().containsValue(valueHuge) && 
@@ -385,59 +381,60 @@ public class ThreeByThree {
 		}
 		return ans;
 	}
-
-	private int EandFEqual2() { //for case C-09
+	
+	private int EandFEqual2() { //for case C-09, figure C is reflection of figure A, look for the same from G to answers
 		int ans = -1;
+		String objectA1angle = null; 
+		String objectA2angle = null; 
+		String objectC1angle = null;
+		String objectC2angle = null;
+		String objectG1angle = null;
+		String objectG2angle = null;
 		
-		String objectE1angle = null; 
-		String objectE2angle = null; 
-		String objectF1angle = null;
-		String objectF2angle = null;
-		
-		String objectH1angle = null;
-		String objectH2angle = null;
-		
-		//get angles from objects in E
+		//get angles from objects in A, first object angle = 90, second object angle = 270
 		try {
-			objectE1angle = objectsE.get(0).getAttributes().get(getAngle);
-			objectE2angle = objectsE.get(1).getAttributes().get(getAngle);
+			objectA1angle = objectsA.get(0).getAttributes().get(getAngle);
+			objectA2angle = objectsA.get(1).getAttributes().get(getAngle);
+//			System.out.println("angle first A: " + objectA1angle + "   angle second A: " + objectA2angle);
 		} catch (Exception e){
 			System.out.println("Exception thrown: " + e);
 		}
 		
-		//get angles from objects in F
+		//get angles from objects in C, first object angle = 270, second object angle = 90
 		try {
-			objectF1angle = objectsF.get(0).getAttributes().get(getAngle);
-			objectF2angle = objectsF.get(1).getAttributes().get(getAngle);
+			objectC1angle = objectsC.get(0).getAttributes().get(getAngle);
+			objectC2angle = objectsC.get(1).getAttributes().get(getAngle);
+//			System.out.println("angle first C: " + objectC1angle + "   angle second C: " + objectC2angle);
 		} catch (Exception e){
 			System.out.println("Exception thrown: " + e);
 		}
 				
-		//get angles from objects in H
+		//get angles from objects in G, first object angle = 90, second object angle = 270
 		try {
-			objectH1angle = objectsH.get(0).getAttributes().get(getAngle);
-			objectH2angle = objectsH.get(1).getAttributes().get(getAngle);
+			objectG1angle = objectsG.get(0).getAttributes().get(getAngle);
+			objectG2angle = objectsG.get(1).getAttributes().get(getAngle);
+//			System.out.println("angle first G: " + objectG1angle + "   angle second G: " + objectG2angle);
 		} catch (Exception e){
 			System.out.println("Exception thrown: " + e);
 		}
 		
 		try {
-			if (objectE1angle.equals(objectF2angle) && (objectE2angle.equals(objectF1angle))){ //when the remainder is the same and equal to 0
-				if (objectH1angle.equals(objects1.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects1.get(1).getAttributes().get(getAngle))){
+			if (objectA1angle.equals(objectC2angle) && (objectA2angle.equals(objectC1angle))){ //when the remainder is the same and equal to 0
+				if (objects1.size() == sizeG && objectG1angle.equals(objects1.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects1.get(0).getAttributes().get(getAngle))){
 					ans = 1;
-				} else if (objectH1angle.equals(objects2.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects2.get(1).getAttributes().get(getAngle))){
+				} else if (objects2.size() == sizeG && objectG1angle.equals(objects2.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects2.get(0).getAttributes().get(getAngle))){
 					ans = 2;
-				} else if (objectH1angle.equals(objects3.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects3.get(1).getAttributes().get(getAngle))) {
+				} else if (objects3.size() == sizeG && objectG1angle.equals(objects3.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects3.get(0).getAttributes().get(getAngle))) {
 					ans = 3;
-				} else if (objectH1angle.equals(objects4.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects4.get(1).getAttributes().get(getAngle))) {
+				} else if (objects4.size() == sizeG && objectG1angle.equals(objects4.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects4.get(0).getAttributes().get(getAngle))) {
 					ans = 4;
-				} else if (objectH1angle.equals(objects5.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects5.get(1).getAttributes().get(getAngle))) {
+				} else if (objects5.size() == sizeG && objectG1angle.equals(objects5.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects5.get(0).getAttributes().get(getAngle))) {
 					ans = 5;
-				} else if (objectH1angle.equals(objects6.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects6.get(1).getAttributes().get(getAngle))) {
+				} else if (objects6.size() == sizeG && objectG1angle.equals(objects6.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects6.get(0).getAttributes().get(getAngle))) {
 					ans = 6;
-				} else if (objectH1angle.equals(objects7.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects7.get(1).getAttributes().get(getAngle))) {
+				} else if (objects7.size() == sizeG && objectG1angle.equals(objects7.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects7.get(0).getAttributes().get(getAngle))) {
 					ans = 7;
-				} else if (objectH1angle.equals(objects8.get(0).getAttributes().get(getAngle)) && objectH2angle.equals(objects8.get(1).getAttributes().get(getAngle))) {
+				} else if (objects8.size() == sizeG && objectG1angle.equals(objects8.get(1).getAttributes().get(getAngle)) && objectG2angle.equals(objects8.get(0).getAttributes().get(getAngle))) {
 					ans = 8;
 				} else {
 					ans = -1;
@@ -520,7 +517,9 @@ public class ThreeByThree {
 
 	//create objects for equal method
 	private void objectMethod() {
-		//figureSize();
+		RavensObject thisObjectA = null;
+		RavensObject thisObjectC = null;
+		RavensObject thisObjectG = null;
 		RavensObject thisObjectE = null;
 		RavensObject thisObjectF = null;
 		RavensObject thisObjectH = null;
@@ -534,6 +533,18 @@ public class ThreeByThree {
 		RavensObject thisObject8 = null;
 
 		try {
+			for (String objectNameA : RFA.getObjects().keySet()){
+				thisObjectA = RFA.getObjects().get(objectNameA);
+				objectsA.add(thisObjectA);
+			}
+			for (String objectNameC : RFC.getObjects().keySet()){
+				thisObjectC = RFC.getObjects().get(objectNameC);
+				objectsC.add(thisObjectC);
+			}
+			for (String objectNameG : RFG.getObjects().keySet()){
+				thisObjectG = RFG.getObjects().get(objectNameG);
+				objectsG.add(thisObjectG);
+			}
 			for (String objectNameE : RFE.getObjects().keySet()) { //objectName1 is for E
 				thisObjectE = RFE.getObjects().get(objectNameE);
 				objectsE.add(thisObjectE);
@@ -585,6 +596,9 @@ public class ThreeByThree {
 
 	//total number of objects in E, F and H
 	private void figureSize(){
+		sizeA = RFA.getObjects().size();
+		sizeC = RFC.getObjects().size();
+		sizeG = RFG.getObjects().size();
 		sizeE = RFE.getObjects().size();
 		sizeF = RFF.getObjects().size();
 		sizeH = RFH.getObjects().size();
@@ -594,6 +608,9 @@ public class ThreeByThree {
 	private void RFigures(RavensProblem problem) { //returns the object attributes in a list
 
 		//these are the Ravens Figure from the problem
+		RFA = problem.getFigures().get("A");
+		RFC = problem.getFigures().get("C");
+		RFG = problem.getFigures().get("G");
 		RFE = problem.getFigures().get("E");
 		RFF = problem.getFigures().get("F");
 		RFH = problem.getFigures().get("H");
@@ -613,6 +630,9 @@ public class ThreeByThree {
 	private void RObjects() {
 
 		//get the Ravens Objects from the problem figures
+		ROA = RFA.getObjects();
+		ROC = RFC.getObjects();
+		ROG = RFG.getObjects();
 		ROE = RFE.getObjects();
 		ROF = RFF.getObjects();
 		ROH = RFH.getObjects();
