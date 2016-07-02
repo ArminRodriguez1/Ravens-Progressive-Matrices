@@ -106,7 +106,7 @@ public class Agent {
 	 */
 
 	private int OneObject(RavensProblem problem) {
-		TwoByTwoOneObject oneObject = new TwoByTwoOneObject(problem);
+		TwoByTwoOne oneObject = new TwoByTwoOne(problem);
 		return oneObject.oneObjectRPM();
 	}
 
