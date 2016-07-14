@@ -21,8 +21,8 @@ public class VisualApproach {
 	//private int [][] pixelsA;
 	private int tempAns;
 
-	private float SIMILARITY_LOW = 0.998f;
-	private float SIMILARITY_HIGH = 1f;
+	private float SIMILARITY_LOW = 0.990f;
+	private float SIMILARITY_HIGH = 1.00372f;
 
 	public VisualApproach(RavensProblem problem){
 		this.problem = problem;
@@ -77,6 +77,7 @@ public class VisualApproach {
 		float similar12 = 0.0f;
 
 		similar12 = SimilarityFig1Fig2(fig1, fig2);
+		//System.out.println("Diagonal A and E for D 11: " + similar12);
 
 		if (similar12 >= SIMILARITY_LOW && similar12 <= SIMILARITY_HIGH) {
 			return true;
