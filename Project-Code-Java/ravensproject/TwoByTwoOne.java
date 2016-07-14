@@ -3,7 +3,6 @@ package ravensproject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -17,9 +16,6 @@ public class TwoByTwoOne {
 	private RavensProblem problem;
 
 	private RavensFigure RFA, RFB, RFC, RF1, RF2, RF3, RF4, RF5, RF6; 	//Ravens figure
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private List<Map> ravensObjects = new ArrayList(); //array to list the objects from a Ravens object
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<RavensObject> objectsA = new ArrayList();
@@ -44,54 +40,44 @@ public class TwoByTwoOne {
 	@SuppressWarnings("unused")
 	private HashMap<String, RavensObject> ROA, ROB, ROC, RO1, RO2, RO3, RO4, RO5, RO6;
 
-	private int sizeA, sizeB, sizeC; //number of objects in figure E, F and H
-	private int tempAns;
 	private String shapeA, shapeB, shapeC, fillA, fillB, fillC;
-
 	private String getShape = "shape";
 	private String getFill = "fill";
 	private String getAngle = "angle";
 	private String getAlignment = "alignment";
-
 	private String angleA, angleB, angleC, angle1, angle2, angle3, angle4, angle5, angle6;
+
 	private int angleP_int, angleQ_int, diffAB, diffAC; //angle of C for rotation cases
+	private int tempAns;
 
 	public TwoByTwoOne(RavensProblem problem) {
 		this.problem = problem;
 	}
 
 	public int oneObjectRPM() {
-		ravensFigures(problem);
-		ravensObjects();
-		figureSize();
-		objectMethod();
-		shapeAndFillChecker();
-		getAngles();
+		RavensFigures(problem);
+		ObjectMethod();
+		ShapeAndFillChecker();
+		CalculateAngles();
 		tempAns = -1;
 
 		try {
 			if (objectsA.get(0).getAttributes().equals(objectsB.get(0).getAttributes())) { //Figure A equals to B, B-01
-				System.out.println("enters here 1");
-				tempAns = figureAEqualsB();
+				tempAns = FigureAEqualsB();
 			} else if (objectsA.get(0).getAttributes().equals(objectsC.get(0).getAttributes())) { //Figure A equals to C, B-03, B-08
-				System.out.println("enters here 2");
-				tempAns = figureAEqualsC();;
+				tempAns = FigureAEqualsC();;
 			} else if (shapeA.equals(shapeB) && !fillA.equals(fillB) && !objectsA.get(0).getAttributes().containsKey("angle")) {// Figure A and B are same shape and differ on fill, B-09
-				System.out.println("enters here 3");
-				tempAns = figureAEqualsBDiffFill();
+				tempAns = FigureAEqualsBDiffFill();
 			} else if (shapeA.equals(shapeC) && !fillA.equals(fillC) && !objectsA.get(0).getAttributes().containsKey("angle")) {// Figure A and C are same shape and differ on fill, B-09 analogous ones
-				System.out.println("enters here 4");
-				tempAns = figureAEqualsCDiffFill();
+				tempAns = FigureAEqualsCDiffFill();
 			} else if (diffAB == 180) { //B-04, angle diff between A and B is reflection in y axis
 				if (fillA.equals(fillB)) { //for same fill between A and B, C and answer need to have the same fill
-					System.out.println("enters here");
 					tempAns = AB_YaxisSameFill();
 				} else if (!fillA.equals(fillB)){ //for different fill between A and B
 					tempAns = AB_YaxisDiffFill();
 				}
 			} else if (diffAC == 0 || diffAC == 90) { //reflection in x axis
 				if (objectsC.get(0).getAttributes().get(getAlignment).equals("top-right")) { //B-05
-					System.out.println("enter here 5");
 					tempAns = differentFigReflection();
 				} else if (fillA.equals(fillC)) {
 					tempAns = AC_XaxisSameFill();
@@ -105,32 +91,36 @@ public class TwoByTwoOne {
 		return tempAns;
 	}
 
+	/*
+	 * B-07 reflection across y axis
+	 * A and C are of same size, shape but different fill
+	 */
 	private int AC_XaxisDiffFill(){ //reflection across x axis, B-07, shape, size same and fill different
 		int ans = -1;
 		try {
 			if (shapeB.equals(objects1.get(0).getAttributes().get(getShape)) &&
 					!fillB.equals(objects1.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle1) == diffAC) {
+					SumAngle(angleB, angle1) == diffAC) {
 				ans = 1;
 			} else if (shapeB.equals(objects2.get(0).getAttributes().get(getShape)) &&
 					!fillB.equals(objects2.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle2) == diffAC) {
+					SumAngle(angleB, angle2) == diffAC) {
 				ans = 2;
 			} else if (shapeB.equals(objects3.get(0).getAttributes().get(getShape)) &&
 					!fillB.equals(objects3.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle3) == diffAC) {
+					SumAngle(angleB, angle3) == diffAC) {
 				ans = 3;
 			} else if (shapeB.equals(objects4.get(0).getAttributes().get(getShape)) &&
 					!fillB.equals(objects4.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle4) == diffAC) {
+					SumAngle(angleB, angle4) == diffAC) {
 				ans = 4;
 			} else if (shapeB.equals(objects5.get(0).getAttributes().get(getShape)) &&
 					!fillB.equals(objects5.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle5) == diffAC) {
+					SumAngle(angleB, angle5) == diffAC) {
 				ans = 5;
 			} else if (shapeB.equals(objects6.get(0).getAttributes().get(getShape)) &&
 					!fillB.equals(objects6.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle6) == diffAB) {
+					SumAngle(angleB, angle6) == diffAB) {
 				ans = 6;
 			}
 		} catch (NullPointerException e) {
@@ -139,32 +129,37 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int AC_XaxisSameFill(){ //reflection across x axis, B-04, shape, size and fill are the same
+	/*
+	 * B-04 reflection across x axis
+	 * A and C are of same size, shape and fill
+	 */
+
+	private int AC_XaxisSameFill(){ 
 		int ans = -1;
 		try {
 			if (shapeB.equals(objects1.get(0).getAttributes().get(getShape)) &&
 					fillB.equals(objects1.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle1) == diffAC) {
+					SumAngle(angleB, angle1) == diffAC) {
 				ans = 1;
 			} else if (shapeB.equals(objects2.get(0).getAttributes().get(getShape)) &&
 					fillB.equals(objects2.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle2) == diffAC) {
+					SumAngle(angleB, angle2) == diffAC) {
 				ans = 2;
 			} else if (shapeB.equals(objects3.get(0).getAttributes().get(getShape)) &&
 					fillB.equals(objects3.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle3) == diffAC) {
+					SumAngle(angleB, angle3) == diffAC) {
 				ans = 3;
 			} else if (shapeB.equals(objects4.get(0).getAttributes().get(getShape)) &&
 					fillB.equals(objects4.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle4) == diffAC) {
+					SumAngle(angleB, angle4) == diffAC) {
 				ans = 4;
 			} else if (shapeB.equals(objects5.get(0).getAttributes().get(getShape)) &&
 					fillB.equals(objects5.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle5) == diffAC) {
+					SumAngle(angleB, angle5) == diffAC) {
 				ans = 5;
 			} else if (shapeB.equals(objects6.get(0).getAttributes().get(getShape)) &&
 					fillB.equals(objects6.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleB, angle6) == diffAC) {
+					SumAngle(angleB, angle6) == diffAC) {
 				ans = 6;
 			}
 		} catch (NullPointerException e) {
@@ -173,32 +168,36 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int AB_YaxisDiffFill(){ //reflection across y axis, B-04, B-07 shape, size and fill are the same
+	/*
+	 * B-04, B-07, reflection across y axis
+	 * A and B are of same size, shape but different fill
+	 */
+	private int AB_YaxisDiffFill(){ 
 		int ans = -1;
 		try {
 			if (shapeC.equals(objects1.get(0).getAttributes().get(getShape)) &&
 					!fillC.equals(objects1.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle1) == diffAB) {
+					SumAngle(angleC, angle1) == diffAB) {
 				ans = 1;
 			} else if (shapeC.equals(objects2.get(0).getAttributes().get(getShape)) &&
 					!fillC.equals(objects2.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle2) == diffAB) {
+					SumAngle(angleC, angle2) == diffAB) {
 				ans = 2;
 			} else if (shapeC.equals(objects3.get(0).getAttributes().get(getShape)) &&
 					!fillC.equals(objects3.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle3) == diffAB) {
+					SumAngle(angleC, angle3) == diffAB) {
 				ans = 3;
 			} else if (shapeC.equals(objects4.get(0).getAttributes().get(getShape)) &&
 					!fillC.equals(objects4.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle4) == diffAB) {
+					SumAngle(angleC, angle4) == diffAB) {
 				ans = 4;
 			} else if (shapeC.equals(objects5.get(0).getAttributes().get(getShape)) &&
 					!fillC.equals(objects5.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle5) == diffAB) {
+					SumAngle(angleC, angle5) == diffAB) {
 				ans = 5;
 			} else if (shapeC.equals(objects6.get(0).getAttributes().get(getShape)) &&
 					!fillC.equals(objects6.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle6) == diffAB) {
+					SumAngle(angleC, angle6) == diffAB) {
 				ans = 6;
 			}
 		} catch (NullPointerException e) {
@@ -207,37 +206,42 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int AB_YaxisSameFill(){ //reflection across y axis, B-04, B-07 shape, size and fill are the same
+	/*
+	 * B-04, B-07, reflection across y axis
+	 * A and B are of same size, shape and fill
+	 */
+
+	private int AB_YaxisSameFill(){ 
 		int ans = -1;
 		try {
 			if (shapeC.equals(objects1.get(0).getAttributes().get(getShape)) &&
 					fillC.equals(objects1.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle1) == diffAB) {
+					SumAngle(angleC, angle1) == diffAB) {
 				System.out.println("enter 1");
 				ans = 1;
 			} else if (shapeC.equals(objects2.get(0).getAttributes().get(getShape)) &&
 					fillC.equals(objects2.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle2) == diffAB) {
+					SumAngle(angleC, angle2) == diffAB) {
 				System.out.println("enter 2");
 				ans = 2;
 			} else if (shapeC.equals(objects3.get(0).getAttributes().get(getShape)) &&
 					fillC.equals(objects3.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle3) == diffAB) {
+					SumAngle(angleC, angle3) == diffAB) {
 				System.out.println("enter 3");
 				ans = 3;
 			} else if (shapeC.equals(objects4.get(0).getAttributes().get(getShape)) &&
 					fillC.equals(objects4.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle4) == diffAB) {
+					SumAngle(angleC, angle4) == diffAB) {
 				System.out.println("enter 4");
 				ans = 4;
 			} else if (shapeC.equals(objects5.get(0).getAttributes().get(getShape)) &&
 					fillC.equals(objects5.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle5) == diffAB) {  
+					SumAngle(angleC, angle5) == diffAB) {  
 				System.out.println("enter 5");
 				ans = 5;
 			} else if (shapeC.equals(objects6.get(0).getAttributes().get(getShape)) &&
 					fillC.equals(objects6.get(0).getAttributes().get(getFill)) &&
-					sumAngle(angleC, angle6) == diffAB) {
+					SumAngle(angleC, angle6) == diffAB) {
 				System.out.println("enter 6");
 				ans = 6;
 			}
@@ -247,7 +251,10 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private void getAngles() { //get angles from objects
+	/*
+	 * get angles form the objects
+	 */
+	private void CalculateAngles() {
 		if (objectsA!=null){
 			try {
 				angleA = (String) objectsA.get(0).getAttributes().get(getAngle);
@@ -272,7 +279,7 @@ public class TwoByTwoOne {
 
 		if (angleA!=null && angleB!=null){
 			try {
-				diffAB = sumAngle(angleA, angleB); //diff between A and B, 180 equals reflection across y axis
+				diffAB = SumAngle(angleA, angleB); //diff between A and B, 180 equals reflection across y axis
 			} catch(NullPointerException e){
 				System.out.println("Exception thrown  :" + e);
 			}
@@ -280,7 +287,7 @@ public class TwoByTwoOne {
 
 		if (angleA!=null && angleC!=null) {
 			try {
-				diffAC = sumAngle(angleA, angleC); //diff between A and C, 0 equals reflection across x axis
+				diffAC = SumAngle(angleA, angleC); //diff between A and C, 0 equals reflection across x axis
 			} catch(NullPointerException e){
 				System.out.println("Exception thrown  :" + e);
 			}
@@ -330,7 +337,7 @@ public class TwoByTwoOne {
 		}
 	}
 
-	private int sumAngle(String p, String q) { //we get angle as string
+	private int SumAngle(String p, String q) { //we get angle as string
 		if (p!=null && p!= null) {
 			angleP_int = Integer.parseInt(p);
 			angleQ_int = Integer.parseInt(q);
@@ -338,13 +345,16 @@ public class TwoByTwoOne {
 		return Math.abs(angleP_int + angleQ_int)%360;
 	}
 
-	private int differentFigReflection() { //B-05
+	/*
+	 * combine the methods for B-05
+	 */
+	private int differentFigReflection() { 
 		int ans = -1;
 		try {
 			if (fillA.equals(fillC)) {
-				ans = differentFigReflectionSameFill();
+				ans = DifferentFigReflectionSameFill();
 			} else if (!fillA.equals(fillC)) {
-				ans = differentFigReflectionDiffFill();
+				ans = DifferentFigReflectionDiffFill();
 			}
 		} catch (NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
@@ -352,7 +362,12 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int differentFigReflectionSameFill(){ //reflection along x axis but different object on A and B (B-05) same fill on A and C
+	/*
+	 * B-05, reflection along x axis but different object on A and B
+	 * same fill on A and C
+	 */
+
+	private int DifferentFigReflectionSameFill(){ 
 		int ans = -1;
 		try {
 			if (shapeB.equals(objects1.get(0).getAttributes().get(getShape)) && 
@@ -392,7 +407,11 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int differentFigReflectionDiffFill(){ //reflection along x axis but different object on A and B (B-05) diff fill on A and C
+	/*
+	 * B-05 analogous, reflection along x axis but different object on A and B
+	 * different fill on A and C
+	 */
+	private int DifferentFigReflectionDiffFill(){ 
 		int ans = -1;
 		try {
 			if (shapeB.equals(objects1.get(0).getAttributes().get(getShape)) && 
@@ -432,7 +451,12 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int figureAEqualsCDiffFill() { // Figure A and C are same shape and differ on fill, analogous to B-09
+	/*
+	 * B-09, Figure A and C have same size, shape but differ on fill
+	 * Answer is B but on different fill
+	 */
+
+	private int FigureAEqualsCDiffFill() { 
 		int ans = -1;
 		try {
 			if (shapeB.equals(objects1.get(0).getAttributes().get(getShape)) && 
@@ -460,7 +484,12 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int figureAEqualsBDiffFill() { // Figure A and B are same shape and differ on fll, B-09
+	/*
+	 * B-09, Figure A and B have same size, shape but differ on fill
+	 * Answer is C but on different fill
+	 */
+
+	private int FigureAEqualsBDiffFill() { 
 		int ans = -1;
 		try {
 			if (shapeC.equals(objects1.get(0).getAttributes().get(getShape)) && 
@@ -488,7 +517,10 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private void shapeAndFillChecker() { //get shape and fill from objects
+	/*
+	 * get shape and fill from objects
+	 */
+	private void ShapeAndFillChecker() { 
 		if (objectsA!=null){
 			shapeA = (String) objectsA.get(0).getAttributes().get(getShape);
 			fillA = (String) objectsA.get(0).getAttributes().get(getFill);
@@ -503,9 +535,10 @@ public class TwoByTwoOne {
 		}
 	}
 
-
-
-	private int figureAEqualsB() { //if figure A is equal to figure B, B-01
+	/*
+	 * B-01, if figure A is equal to figure B then answer is equal to C
+	 */
+	private int FigureAEqualsB() { 
 		int ans = -1;
 		try {
 			if (objectsC.get(0).getAttributes().equals(objects1.get(0).getAttributes())) {
@@ -527,7 +560,10 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-	private int figureAEqualsC() { //if figure A is equal to figure C, B-03
+	/*
+	 * B-03, if figure A is equal to figure C, then the answer is B
+	 */
+	private int FigureAEqualsC() { 
 		int ans = -1;
 		try {
 			if (objectsB.get(0).getAttributes().equals(objects1.get(0).getAttributes())) {
@@ -549,10 +585,8 @@ public class TwoByTwoOne {
 		return ans;
 	}
 
-
-
-	//create objects for equal method
-	private void objectMethod() {
+	//create Ravens Objects
+	private void ObjectMethod() {
 		RavensObject thisObjectA = null;
 		RavensObject thisObjectB = null;
 		RavensObject thisObjectC = null;
@@ -605,15 +639,10 @@ public class TwoByTwoOne {
 		}
 	}
 
-	//total number of objects in A, B and C
-	private void figureSize(){
-		sizeA = RFA.getObjects().size();
-		sizeB = RFB.getObjects().size();
-		sizeC = RFC.getObjects().size();
-	}
-
-	//create ravens figure for question figure and answer choices
-	private void ravensFigures(RavensProblem problem) { //returns the object attributes in a list
+	/*
+	 * create Ravens Figure for question figure and answer choices
+	 */
+	private void RavensFigures(RavensProblem problem) { 
 		//these are the Ravens Figure from the problem
 		RFA = problem.getFigures().get("A");
 		RFB = problem.getFigures().get("B");
@@ -626,29 +655,5 @@ public class TwoByTwoOne {
 		RF4 = problem.getFigures().get("4");
 		RF5 = problem.getFigures().get("5");
 		RF6 = problem.getFigures().get("6");
-	}
-
-	//create ravens objects for each figure
-	private void ravensObjects() {
-		//get the Ravens Objects from the problem figures
-		ROA = RFA.getObjects();
-		ROB = RFB.getObjects();
-		ROB = RFC.getObjects();
-
-		//get the Ravens Objects from the problem solutions
-		RO1 = RF1.getObjects();
-		RO2 = RF2.getObjects();
-		RO3 = RF3.getObjects();
-		RO4 = RF4.getObjects();
-		RO5 = RF5.getObjects();
-		RO6 = RF6.getObjects();
-		//
-		//		//add answer ravens objects to a list
-		//		ravensObjects.add(RO1);
-		//		ravensObjects.add(RO2);
-		//		ravensObjects.add(RO3);
-		//		ravensObjects.add(RO4);
-		//		ravensObjects.add(RO5);
-		//		ravensObjects.add(RO6);
 	}
 }

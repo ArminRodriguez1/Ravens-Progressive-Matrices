@@ -1,0 +1,52 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.awt.Image;
+import java.io.File;
+import javax.imageio.*;
+import java.awt.image.*;
+
+public class VisualApproach {
+	
+	private RavensProblem problem;
+	private int tempAns;
+	
+	public VisualApproach(RavensProblem problem){
+		this.problem = problem;
+	}
+	
+	public int visualApproach() {
+		return -1;
+	}
+	
+	
+	
+	public int TestSolve() {
+		RavensFigure figureA = problem.getFigures().get("A");
+		//BufferedImage figAImage = null; 
+		BufferedImage figureAImage = null;
+		
+		try {
+			figureAImage = ImageIO.read(new File(figureA.getVisual()));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		
+		for(int i = 0 ; i < figureAImage.getWidth() ; i++) {
+
+			for(int j = 0 ; j < figureAImage.getHeight() ; j++) {
+
+			int thisPixel = figureAImage.getRGB(i,j);
+
+			}
+		}
+		
+		return -1;
+		
+	}
+	
+
+}

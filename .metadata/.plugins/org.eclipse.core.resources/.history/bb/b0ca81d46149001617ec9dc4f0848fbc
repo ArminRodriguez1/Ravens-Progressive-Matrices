@@ -1,0 +1,35 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.awt.Image;
+import java.io.File;
+import javax.imageio.ImageIO;
+
+public class VisualApproach {
+	
+	private RavensProblem problem;
+	private int tempAns;
+	
+	
+	
+	
+	RavensFigure figureA = problem.getFigures().get("A");
+
+	try { // Required by Java for ImageIO.read
+
+	} catch(Exception ex) {}
+
+	After loading a visual representation from a file into a BufferedImage, to iterate over all
+
+	pixels in the image:
+
+	for(int i = 0 ; i < figureAImage.getWidth() ; i++) {
+
+	}
+	
+	
+	
+
+}

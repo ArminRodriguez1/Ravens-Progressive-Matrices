@@ -96,6 +96,9 @@ public class Agent {
 			} else {
 				ans = -1;
 			}
+		} 
+		else {
+			ans = Visual(problem);
 		}
 		return ans;
 	}
@@ -115,7 +118,7 @@ public class Agent {
 	 */
 
 	private int TwoObjects(RavensProblem problem) {
-		TwoByTwoTwoObjects twoObjects = new TwoByTwoTwoObjects(problem);
+		TwoByTwoTwo twoObjects = new TwoByTwoTwo(problem);
 		return twoObjects.twoObjectRPM();
 	}
 	
@@ -126,5 +129,10 @@ public class Agent {
 	private int ThreeByThree (RavensProblem problem) {
 		ThreeByThree threebythree = new ThreeByThree(problem);
 		return threebythree.ThreeByThreeRPM();
+	}
+	
+	private int Visual (RavensProblem problem) {
+		VisualApproach Test = new VisualApproach(problem);
+		return Test.visualApproach();
 	}
 }

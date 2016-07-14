@@ -1,0 +1,159 @@
+package ravensproject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import java.awt.Image;
+import java.io.File;
+import javax.imageio.*;
+import java.awt.image.*;
+
+public class VisualApproach {
+
+	private RavensProblem problem;
+	//Figure names
+	private RavensFigure figureA, figureB, figureC, figureD, figureE, figureF, figureG, figureH; 
+	//buffered image for each figure
+	private BufferedImage figureAImage, figureBImage, figureCImage, figureDImage, figureEImage, figureFImage, figureGImage, figureHImage;
+	//2D array of black and white pixel for images
+	private int [][] pixelsA;
+	private int tempAns;
+
+	public VisualApproach(RavensProblem problem){
+		this.problem = problem;
+	}
+
+	public int visualApproach() {
+		CreateProblemArray("A");
+		CheckABCEquality();
+
+		return -1;
+	}
+
+
+	//returns if A, B and C are the same figures
+	private boolean CheckABCEquality() {
+
+		//int [][] pixels = new int[width][height];
+		int [][] pixelsA = CreateProblemArray("A");
+		int [][] pixelsB = CreateProblemArray("B");
+		int [][] pixelsC = CreateProblemArray("C");
+
+		//System.out.println("Print array A: " + Arrays.deepToString(pixelsA));
+
+//		System.out.println("print from A: " + pixelsA[183][183]);
+//		System.out.println("print from B: " + pixelsB[183][183]);
+//		System.out.println("print from C: " + pixelsC[183][183]);
+		int sum1 = 0;
+		int sum2 = 0;
+		
+		
+		for(int i = 0 ; i < pixelsA.length ; i++) {
+			for(int j = 0 ; j < pixelsA.length ; j++) {
+				sum1 += pixelsA[i][j];
+				
+			}	
+		}
+		
+		for(int i = 0 ; i < pixelsB.length ; i++) {
+			for(int j = 0 ; j < pixelsB.length ; j++) {
+				sum2 += pixelsB[i][j];
+				
+			}	
+		}
+		
+		
+		
+		
+		
+		System.out.println("value of Sum: " + sum1);
+		System.out.println("Total pixels: " + pixelsA.length*pixelsA.length);
+		System.out.println("value of Sum: " + ((float) sum2/(float) (pixelsA.length*pixelsA.length)));
+		System.out.println("*******");
+		
+		System.out.println("value of Sum: " + sum2);
+		System.out.println("Total pixels: " + pixelsB.length*pixelsB.length);
+		System.out.println("value of Sum: " + ((float) sum2/(float) (pixelsB.length*pixelsB.length)));
+		System.out.println("*******");
+		
+		System.out.println("value of Sum: " + sum3);
+		System.out.println("Total pixels: " + pixelsC.length*pixelsC.length);
+		System.out.println("value of Sum: " + ((float) sum2/(float) (pixelsC.length*pixelsC.length)));
+		System.out.println("*******");
+
+		if (Arrays.deepEquals(pixelsA, pixelsB) && Arrays.deepEquals(pixelsA, pixelsC)) {
+			System.out.println("true");
+			return true;
+		} else {
+			System.out.println("false");
+			return false;
+		}
+	}
+
+
+	//read the figure and return a 2D array of the values of white and black pixels
+	//takes the figure name with "" i.e CreateProblemArray("A")
+	private int[][] CreateProblemArray(String figureName) {
+
+		RavensFigure figure = problem.getFigures().get(figureName);
+		BufferedImage figureImage = null;
+
+		//		figureA = problem.getFigures().get("A"); 
+		//		figureB = problem.getFigures().get("B"); 
+		//		figureC = problem.getFigures().get("C"); 
+		//		figureD = problem.getFigures().get("D"); 
+		//		figureE = problem.getFigures().get("E"); 
+		//		figureF = problem.getFigures().get("F");
+		//		figureG = problem.getFigures().get("G"); 
+		//		figureH = problem.getFigures().get("H"); 
+		//
+		//		figureAImage = null; 
+		//		figureBImage = null; 
+		//		figureCImage = null; 
+		//		figureDImage = null; 
+		//		figureEImage = null; 
+		//		figureFImage = null;
+		//		figureGImage = null; 
+		//		figureHImage = null;
+
+		//List<BufferedImage> problemImages = new ArrayList<>();
+		//List<BufferedImage> answerImages = new ArrayList<>(); 
+
+		try {
+			figureImage = ImageIO.read(new File(figure.getVisual()));
+			//			figureAImage = ImageIO.read(new File(figureA.getVisual()));
+			//			figureBImage = ImageIO.read(new File(figureB.getVisual()));
+			//			figureCImage = ImageIO.read(new File(figureC.getVisual()));
+			//			figureDImage = ImageIO.read(new File(figureD.getVisual()));
+			//			figureEImage = ImageIO.read(new File(figureE.getVisual()));
+			//			figureFImage = ImageIO.read(new File(figureF.getVisual()));
+			//			figureGImage = ImageIO.read(new File(figureG.getVisual()));
+			//			figureHImage = ImageIO.read(new File(figureH.getVisual()));
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		// from here: http://stackoverflow.com/questions/15002706/convert-an-image-to-a-2d-array-and-then-get-the-image-back-in-java
+		Raster raster = figureImage.getData();
+
+		int width = raster.getWidth();
+		int height = raster.getHeight();
+		int [][] pixels = new int[width][height];
+		System.out.println("width: " + width + ", " + " height: " + height);
+
+		//0xFFFFFFFF is white. Store white as 0 and black as 1
+		for(int i = 0 ; i < width ; i++) {
+			for(int j = 0 ; j < height ; j++) {
+				pixels[i][j] = (figureImage.getRGB(i, j) == 0xFFFFFFFF ? 0 : 1); //http://stackoverflow.com/questions/5925426/java-how-would-i-load-a-black-and-white-image-into-binary
+				//System.out.println(pixels[0][0]);
+			}	
+		}
+		//System.out.println(pixels[183][183]);
+		return pixels;
+	}
+}
+
+
