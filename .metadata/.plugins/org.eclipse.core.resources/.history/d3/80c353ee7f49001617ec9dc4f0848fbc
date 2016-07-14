@@ -40,8 +40,8 @@ public class VisualApproach {
 
 		//int [][] pixels = new int[width][height];
 		int [][] pixelsA = CreateProblemArray("A");
-		int [][] pixelsB = CreateProblemArray("B");
-		int [][] pixelsC = CreateProblemArray("C");
+		int [][] pixelsB = CreateProblemArray("D");
+		int [][] pixelsC = CreateProblemArray("G");
 
 		//System.out.println("Print array A: " + Arrays.deepToString(pixelsA));
 

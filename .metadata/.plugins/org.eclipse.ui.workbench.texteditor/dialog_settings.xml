@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="print ob" key="selection"/>
+		<item value="pixelDiffBC" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="print ob"/>
-			<item value="sysout"/>
-			<item value="size"/>
-			<item value="B"/>
-			<item value="1"/>
-			<item value="resultAttribute"/>
-			<item value="result"/>
-			<item value="sizeH"/>
+			<item value="pixelDiffAC"/>
+			<item value="sum2"/>
+			<item value="sum12"/>
+			<item value="sum1"/>
+			<item value="getAngles"/>
+			<item value="sumAngle"/>
+			<item value="differentFigReflectionSameFill"/>
+			<item value="differentFigReflectionDiffFill"/>
 		</list>
 		<list key="replacehistory">
-			<item value="C"/>
-			<item value="6"/>
-			<item value="5"/>
-			<item value="4"/>
-			<item value="3"/>
-			<item value="2"/>
-			<item value="sizeG"/>
-			<item value="e.printStackTrace()"/>
+			<item value="pixelDiffBC"/>
+			<item value="pixelDiffAC"/>
+			<item value="pixelDiffAB"/>
+			<item value="CalculateAngles"/>
+			<item value="SumAngle"/>
+			<item value="DifferentFigReflectionSameFill"/>
+			<item value="DifferentFigReflectionDiffFill"/>
+			<item value="ShapeAndFillChecker"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -80,7 +80,7 @@ public class VisualApproach {
 		System.out.println("Similarity of B and C: " + similarityAC);
 		System.out.println("*******");
 
-		if (similarityAB >= SIMILARITY_LOW && similarityAB <= SIMILARITY_HIGH && similarityAC >= SIMILARITY_LOW && similarityAC <= SIMILARITY_HIGH) {
+		if (similarityAB >= SIMILARITY && similarityAC >= SIMILARITY) {
 			System.out.println("true");
 			return true;
 		} else {

@@ -5,13 +5,15 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="ravensproject.TwoByTwoTwoObjects"/>
-<fullyQualifiedTypeName name="ravensproject.RavensProblem"/>
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-<fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="ravensproject.RavensFigure"/>
 <fullyQualifiedTypeName name="ravensproject.ThreeByThree2Obj"/>
 <fullyQualifiedTypeName name="ravensproject.RavensObject"/>
 <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="ravensproject.RavensProblem"/>
+<fullyQualifiedTypeName name="ravensproject.VisualApproach"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>
