@@ -132,7 +132,7 @@ public class Agent {
 	}
 	
 	private int Visual (RavensProblem problem) {
-		VisualApproach Test = new VisualApproach(problem);
-		return Test.visualApproach();
+		VisualApproach visualRPMs = new VisualApproach(problem);
+		return visualRPMs.VisualApproachResults();
 	}
 }
