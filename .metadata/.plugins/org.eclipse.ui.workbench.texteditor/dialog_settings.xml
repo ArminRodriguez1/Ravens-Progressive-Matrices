@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="(&quot;G&quot;, &quot;H&quot;, &quot;1&quot;))" key="selection"/>
+		<item value="TwoFiguresDiffSimilarity" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="TwoFiguresDiffSimilarity"/>
+			<item value="TwoFiguresDiffSimilarity2"/>
+			<item value="twofig"/>
 			<item value="(&quot;C&quot;, &quot;F&quot;, &quot;1&quot;))"/>
 			<item value="&quot;C&quot;, &quot;F&quot;"/>
 			<item value="FigureCIsSumOfAandB"/>
 			<item value="&quot;G&quot;, &quot;H&quot;"/>
 			<item value="&quot;G&quot;, &quot;H&quot;, &quot;1&quot;"/>
-			<item value="String figA, String figB, String figC"/>
-			<item value="DiagonalsEqual"/>
-			<item value="FigureCIsSumOfAandB(String figA, String figB, String figC)"/>
 		</list>
 		<list key="replacehistory">
 			<item value="(&quot;G&quot;, &quot;H&quot;, &quot;1&quot;))"/>

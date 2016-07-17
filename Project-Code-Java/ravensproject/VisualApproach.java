@@ -79,14 +79,6 @@ public class VisualApproach {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
-				System.out.println("C=A-B " + TwoFiguresDiffSimilarity2("A", "B", "C"));
-		//		System.out.println("G-H = 1 " + TwoFiguresDiffSimilarity2("H", "G", "7"));
-		//		System.out.println("G-H = 5 " + TwoFiguresDiffSimilarity2("G", "H", "5"));
-		//		System.out.println("G-H = 2 " + TwoFiguresDiffSimilarity2("G", "H", "2"));
-		//		System.out.println("G-H = 4 " + TwoFiguresDiffSimilarity2("G", "H", "4"));
-
-
 		return tempAns;
 	}
 
@@ -143,6 +135,7 @@ public class VisualApproach {
 		}
 		return ans;
 	}
+	
 	//to check if figure C is sum of figure A and B
 	private boolean FigureCIsDiffAandB(String figA, String figB, String figC) {
 		float diffFig1Fig2 = 0.0f;
@@ -522,7 +515,7 @@ public class VisualApproach {
 	 * E-05
 	 */
 	
-	private float TwoFiguresDiffSimilarity2(String figA, String figB, String figC) {
+	private float TwoFiguresDiffSimilarity(String figA, String figB, String figC) {
 		float similarity = 0.0f;
 		int pixelDiffFig1Fig2 = 0;
 		int totalPixelsInFig = 0;
@@ -564,8 +557,9 @@ public class VisualApproach {
 	
 	
 	//this method helps to check if the figC is diff of figure A and B
+
 	@SuppressWarnings("unused")
-	private float TwoFiguresDiffSimilarity(String figA, String figB, String figC) {
+	private float TwoFiguresDiffSimilarity2(String figA, String figB, String figC) {
 		float similarBlackPixelFig1Fig2 = 0.0f;
 		int totalBlackPixelsFigA = 0;
 		int totalBlackPixelsFigB = 0;
