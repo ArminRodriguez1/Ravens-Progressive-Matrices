@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="CheckABCEquality3" key="selection"/>
+		<item value="(&quot;G&quot;, &quot;H&quot;, &quot;1&quot;))" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="CheckABCEquality1"/>
-			<item value="else if(CheckABCEquality1(&quot;G&quot;, &quot;H&quot;, &quot;3&quot;)){"/>
-			<item value="&#x09;if(CheckABCEquality1(&quot;G&quot;, &quot;H&quot;, &quot;1&quot;)){"/>
-			<item value="CheckABCEquality2"/>
-			<item value="&#x09;if(CheckABCEquality2(&quot;C&quot;, &quot;F&quot;, &quot;1&quot;)){"/>
-			<item value="FigureABCEqual"/>
-			<item value="FigureADGEqual"/>
-			<item value="CheckABCEquality"/>
+			<item value="(&quot;C&quot;, &quot;F&quot;, &quot;1&quot;))"/>
+			<item value="&quot;C&quot;, &quot;F&quot;"/>
+			<item value="FigureCIsSumOfAandB"/>
+			<item value="&quot;G&quot;, &quot;H&quot;"/>
+			<item value="&quot;G&quot;, &quot;H&quot;, &quot;1&quot;"/>
+			<item value="String figA, String figB, String figC"/>
+			<item value="DiagonalsEqual"/>
+			<item value="FigureCIsSumOfAandB(String figA, String figB, String figC)"/>
 		</list>
 		<list key="replacehistory">
-			<item value="CheckABCEquality3"/>
-			<item value="CheckABEquality2"/>
-			<item value="CheckABCEquality2"/>
-			<item value="FigureABCEqual1"/>
-			<item value="FigureADGEqual1"/>
-			<item value="CheckABCEquality1"/>
-			<item value="SIMILARITY_HIGH1"/>
-			<item value="SIMILARITY_LOW1"/>
+			<item value="(&quot;G&quot;, &quot;H&quot;, &quot;1&quot;))"/>
+			<item value="&quot;G&quot;, &quot;H&quot;"/>
+			<item value="FigureCIsDiffAandB"/>
+			<item value="&quot;C&quot;, &quot;F&quot;"/>
+			<item value="&quot;G&quot;, &quot;H&quot;, &quot;2&quot;"/>
+			<item value="&quot;G&quot;, &quot;H&quot;, &quot;1&quot;"/>
+			<item value="FigureCIsSumOfAandB(String figA, String figB, String figC)"/>
+			<item value="E"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -105,7 +105,7 @@ public class Agent {
 
 
 	/*
-	 * This method solves for 2 by 2 RPM that has one object in a figure
+	 * This method solves for 2 by 2 RPM that has one object in a figure using verbal approach
 	 */
 
 	private int OneObject(RavensProblem problem) {
@@ -114,7 +114,7 @@ public class Agent {
 	}
 
 	/*
-	 * This method solves for 2 by 2 RPM that has two objects in a figure
+	 * This method solves for 2 by 2 RPM that has two objects in a figure using verbal approach
 	 */
 
 	private int TwoObjects(RavensProblem problem) {
@@ -123,13 +123,17 @@ public class Agent {
 	}
 	
 	/*
-	 * This method solves for 3 by 3 RPM 
+	 * This method solves for 3 by 3 RPM using verbal approach
 	 */
 	
 	private int ThreeByThree (RavensProblem problem) {
 		ThreeByThree threebythree = new ThreeByThree(problem);
 		return threebythree.ThreeByThreeRPM();
 	}
+	
+	/*
+	 * This method solves for 3 by 3 RPM using visual approach
+	 */
 	
 	private int Visual (RavensProblem problem) {
 		VisualApproach visualRPMs = new VisualApproach(problem);
