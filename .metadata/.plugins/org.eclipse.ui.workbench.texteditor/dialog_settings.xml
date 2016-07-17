@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="pixelDiffBC" key="selection"/>
+		<item value="CheckABCEquality3" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="pixelDiffAC"/>
-			<item value="sum2"/>
-			<item value="sum12"/>
-			<item value="sum1"/>
-			<item value="getAngles"/>
-			<item value="sumAngle"/>
-			<item value="differentFigReflectionSameFill"/>
-			<item value="differentFigReflectionDiffFill"/>
+			<item value="CheckABCEquality1"/>
+			<item value="else if(CheckABCEquality1(&quot;G&quot;, &quot;H&quot;, &quot;3&quot;)){"/>
+			<item value="&#x09;if(CheckABCEquality1(&quot;G&quot;, &quot;H&quot;, &quot;1&quot;)){"/>
+			<item value="CheckABCEquality2"/>
+			<item value="&#x09;if(CheckABCEquality2(&quot;C&quot;, &quot;F&quot;, &quot;1&quot;)){"/>
+			<item value="FigureABCEqual"/>
+			<item value="FigureADGEqual"/>
+			<item value="CheckABCEquality"/>
 		</list>
 		<list key="replacehistory">
-			<item value="pixelDiffBC"/>
-			<item value="pixelDiffAC"/>
-			<item value="pixelDiffAB"/>
-			<item value="CalculateAngles"/>
-			<item value="SumAngle"/>
-			<item value="DifferentFigReflectionSameFill"/>
-			<item value="DifferentFigReflectionDiffFill"/>
-			<item value="ShapeAndFillChecker"/>
+			<item value="CheckABCEquality3"/>
+			<item value="CheckABEquality2"/>
+			<item value="CheckABCEquality2"/>
+			<item value="FigureABCEqual1"/>
+			<item value="FigureADGEqual1"/>
+			<item value="CheckABCEquality1"/>
+			<item value="SIMILARITY_HIGH1"/>
+			<item value="SIMILARITY_LOW1"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
