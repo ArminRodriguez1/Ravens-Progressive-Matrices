@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="TwoFiguresDiffSimilarity" key="selection"/>
+		<item value="LOW_SIMILARITY_UPPER_LIMIT" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="TwoFiguresDiffSimilarity"/>
-			<item value="TwoFiguresDiffSimilarity2"/>
-			<item value="twofig"/>
-			<item value="(&quot;C&quot;, &quot;F&quot;, &quot;1&quot;))"/>
-			<item value="&quot;C&quot;, &quot;F&quot;"/>
-			<item value="FigureCIsSumOfAandB"/>
-			<item value="&quot;G&quot;, &quot;H&quot;"/>
-			<item value="&quot;G&quot;, &quot;H&quot;, &quot;1&quot;"/>
+			<item value="SIMILARITY_HIGH2"/>
+			<item value="SIMILARITY_LOW2"/>
+			<item value="HIGH_SIMILARITY_CROPPED_UPPER"/>
+			<item value="HIGH_SIMILARITY_CROPPED_LOW"/>
+			<item value="HIGH_SIMILARITY_UPPER"/>
+			<item value="HIGH_SIMILARITY_LOW"/>
+			<item value="private int Visual"/>
+			<item value="Visual"/>
 		</list>
 		<list key="replacehistory">
-			<item value="(&quot;G&quot;, &quot;H&quot;, &quot;1&quot;))"/>
-			<item value="&quot;G&quot;, &quot;H&quot;"/>
-			<item value="FigureCIsDiffAandB"/>
-			<item value="&quot;C&quot;, &quot;F&quot;"/>
-			<item value="&quot;G&quot;, &quot;H&quot;, &quot;2&quot;"/>
-			<item value="&quot;G&quot;, &quot;H&quot;, &quot;1&quot;"/>
-			<item value="FigureCIsSumOfAandB(String figA, String figB, String figC)"/>
-			<item value="E"/>
+			<item value="LOW_SIMILARITY_UPPER_LIMIT"/>
+			<item value="LOW_SIMILARITY_LOWER_LIMIT"/>
+			<item value="HIGH_SIMILARITY_CROPPED_UPPER_LIMIT"/>
+			<item value="HIGH_SIMILARITY_CROPPED_LOWER_LIMIT"/>
+			<item value="HIGH_SIMILARITY_UPPER_LIMIT"/>
+			<item value="HIGH_SIMILARITY_LOWER_LIMIT"/>
+			<item value="private int VisualSolution"/>
+			<item value="VisualSolution"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

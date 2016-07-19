@@ -9,28 +9,31 @@ public class VisualApproach {
 	private RavensProblem problem;
 
 	private int tempAns;
-	//these two floating points for horizontal, vertical and diagonal similarities
-	private float SIMILARITY_LOW1 = 0.990f;
-	private float SIMILARITY_HIGH1 = 1.00372f;
 
-	//second similarity for diagonal case
-	private float SIMILARITY_DIAGONAL_LOW2 = 0.96f;
-	private float SIMILARITY_DIAGONAL_HIGH2 = 1.08f;
+	//create array of answer image names
+	private Integer [] answersChoices = new Integer [] {1,2,3,4,5,6,7,8};
+
+	//these two floating points for horizontal, vertical and diagonal similarities
+	private final float HIGH_SIMILARITY_LOWER_LIMIT = 0.998f;
+	private final float HIGH_SIMILARITY_UPPER_LIMIT = 1.006f;
+	
+	//for horizontal similarity for cropped images, D-04
+	private final float HIGH_SIMILARITY_CROPPED_LOWER_LIMIT = 0.98f;
+	private final float HIGH_SIMILARITY_CROPPED_UPPER_LIMIT = 1.0147f;
+
+	//these two floating points are for horizontal and vertical similarities when the similarity is lower
+	//D-05
+	private final float LOW_SIMILARITY_LOWER_LIMIT = 0.970f;
+	private final float LOW_SIMILARITY_UPPER_LIMIT = 0.974f;
 
 	//similarity for C=B-A or G=D-A
-	private float SIMILARITY_DIFF_LOW1 = 0.99f;
-	private float SIMILARITY_DIFF_HIGH1 = 1.0f;
-
-	//these two floating points are for horizontal and vertical similarities when the similarity is lower
-	//B-05
-	private float SIMILARITY_LOW2 = 0.960f;
-	private float SIMILARITY_HIGH2 = 0.980f;
-
-	//these two floating points are for horizontal and vertical similarities when the similarity is lower
-	//B-06
-	private float SIMILARITY_LOW3 = 0.962f;
-	private float SIMILARITY_HIGH3 = 1.0384f;
-
+	private final float SIMILARITY_DIFF_LOW1 = 0.99f;
+	private final float SIMILARITY_DIFF_HIGH1 = 1.0f;
+	
+	//where to start and end the crop
+	private final int CROP_START = 50;
+	private final int CROP_END = 130;
+	
 	//this is to check if third image is sum of two images
 	private float SIMILARITY_SUM1 = 0.98f;
 
@@ -41,356 +44,143 @@ public class VisualApproach {
 	public int VisualApproachResults() {
 		tempAns = -1;
 		//figure C is sum of figure A and B
+		System.out.println("Sim A and B: " + SimilarityCropImageFig1Fig2("A", "B", CROP_START, CROP_END));
+		System.out.println("Sim A and C: " + SimilarityCropImageFig1Fig2("A", "C", CROP_START, CROP_END));
+		System.out.println("***********");
+		System.out.println("Sim G and H: " + SimilarityCropImageFig1Fig2("G", "H", CROP_START, CROP_END));
+		System.out.println("Sim G and 1: " + SimilarityCropImageFig1Fig2("G", "1", CROP_START, CROP_END));
+		System.out.println("Sim H and 1: " + SimilarityCropImageFig1Fig2("H", "1", CROP_START, CROP_END));
+		System.out.println("***********");
 		try {
-			if (FigureCIsSumOfAandB("A", "B", "C")) {
-				System.out.println("Solved by the figure C is sum of A and B method");
-				tempAns = FigureAnsIsSumGandH();
-			} else if (FigureCIsSumOfAandB("A", "D", "G")){ //figure G is sum of A and D
-				System.out.println("Solved by the figure G is sum of A and D method");
-				tempAns = FigureAnsIsSumCandF();
+			if (CheckABCEquality1("A", "B", "C")) { //Case D-01
+				System.out.println("Solved using A, B and C are equal logic, high match");
+				tempAns = FigureABCEqualHighSimilarityAns("G", "H");
 			} 
-			else if (FigureCIsDiffAandB("A", "B", "C")) {//C=A-B
-				System.out.println("Solved by C=A-B");
-				tempAns = FigureCIsAMinusB();
-			} else if (FigureCIsDiffAandB("A", "D", "G")) {//G=A-D
-				System.out.println("Solved by G=A-D");
-				tempAns = FigureGIsAMinusD();
+			else if (CheckABCEquality1("A", "D", "G")) { //Analogous to D-01 vertically
+				System.out.println("Solved using A, D and G are equal logic, high match");
+				tempAns = FigureABCEqualHighSimilarityAns("C", "F");
+			} 
+			else if (CheckEqualityCropped("A", "B", "C")){ //check equal ABC when cropped
+				System.out.println("Solved using cropped figures are same across ABC");
+				tempAns = CheckEqualityCroppedAns("G", "H");
 			}
-
-			else if (CheckABCEquality1("A", "B", "C")) { //Case D-01
-				System.out.println("Solved using A, B and C are equal logic");
-				tempAns = FigureABCEqual1();
-			} else if (CheckABCEquality1("A", "D", "G")){ //Analogous to D-01
-				System.out.println("Solved using A, D and G are equal logic");
-				//System.out.println("true");
-				tempAns = FigureADGEqual1();
-			} else if (CheckABCEquality3("A", "B", "C")) {//D-06
-				System.out.println("Solved using A, B and C are equal (lower equality)");
-				tempAns = FigureABCEqual3();
+			else if (CheckDiagonalEquality("A", "E")) {// diagonals are equal
+				System.out.println("Solved using diagonals are equal logic");
+				tempAns = DiagonalEqualityAns("A");
+			} 
+			else if (CheckDiagonalEqualityCropped("A", "E")) {//equal diagonals when cropped
+				System.out.println("Solved using cropped diagonals A and E are equal");
+				tempAns = CheckDiagonalEqualityCroppedAns("E");
 			}
-			else if (CheckABEquality2("A", "G")) { //D-05
+			else if (CheckACEquality2("A", "G")) { //D-05
+				System.out.println("Solved using A and G are equal logic");
+				tempAns = FigureADGEqual2("C");
+			}
+			else if (CheckACEquality2("A", "C")) { //Analogous D-05
 				System.out.println("Solved using A and C are equal logic");
-				tempAns = FigureADGEqual2();;
+				tempAns = FigureADGEqual2("G");
 			} 
-			else if (DiagonalsEqual("A", "E")) {
-				System.out.println("Solved using diagonal logic");
-				tempAns = FigureAEEqual();
-			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return tempAns;
 	}
-
-	//to find the answer when G = A-D
-	private int FigureGIsAMinusD(){
+	
+	/*
+	 * Returns answer for cases when figure A, D and G are same, D-05
+	 */
+	private int FigureADGEqual2(String figA){
 		int ans = -1;
 		try {
-			if(FigureCIsDiffAandB("C", "F", "1")){
-				ans = 1;
-			} else if(FigureCIsDiffAandB("C", "F", "2")){
-				ans = 2;
-			} else if(FigureCIsDiffAandB("C", "F", "3")){
-				ans = 3;
-			} else if(FigureCIsDiffAandB("C", "F", "4")){
-				ans = 4;
-			} else if(FigureCIsDiffAandB("C", "F", "5")){
-				ans = 5;
-			} else if(FigureCIsDiffAandB("C", "F", "6")){
-				ans = 6;
-			} else if(FigureCIsDiffAandB("C", "F", "7")){
-				ans = 7;
-			} else if(FigureCIsDiffAandB("C", "F", "8")){
-				ans = 8;
-			}  
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return ans;
-	}
-
-	//to find the answer when C = A-B
-	private int FigureCIsAMinusB(){
-		int ans = -1;
-		try {
-			if(FigureCIsDiffAandB("G", "H", "8")){
-				ans = 8;
-			} else if(FigureCIsDiffAandB("G", "H", "2")){
-				ans = 2;
-			} else if(FigureCIsDiffAandB("G", "H", "3")){
-				ans = 3;
-			} else if(FigureCIsDiffAandB("G", "H", "4")){
-				ans = 4;
-			} else if(FigureCIsDiffAandB("G", "H", "5")){
-				ans = 5;
-			} else if(FigureCIsDiffAandB("G", "H", "6")){
-				ans = 6;
-			} else if(FigureCIsDiffAandB("G", "H", "7")){
-				ans = 7;
-			} else if(FigureCIsDiffAandB("G", "H", "1")){
-				ans = 1;
-			}  
-		} catch (Exception ex) {
+			for (int i = 0; i < 8; i++){
+				if(CheckACEquality2(figA, answersChoices[i].toString())){
+					ans = answersChoices[i];
+				}
+			}
+		}  catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return ans;
 	}
 	
-	//to check if figure C is sum of figure A and B
-	private boolean FigureCIsDiffAandB(String figA, String figB, String figC) {
-		float diffFig1Fig2 = 0.0f;
-		Boolean bool = null;
-		diffFig1Fig2 = TwoFiguresDiffSimilarity(figA, figB, figC);
-		if (diffFig1Fig2 >= SIMILARITY_DIFF_LOW1) {
-			bool = true;
-		}  else {
-			bool = false;
-		}
-		return bool;
-	}
-
-	//to find the answer when figure G is the sum of figure A and D
-	private int FigureAnsIsSumCandF(){
-		int ans = -1;
-		try {
-			if(FigureCIsSumOfAandB("C", "F", "1")){
-				ans = 1;
-			} else if(FigureCIsSumOfAandB("C", "F", "2")){
-				ans = 2;
-			} else if(FigureCIsSumOfAandB("C", "F", "3")){
-				ans = 3;
-			} else if(FigureCIsSumOfAandB("C", "F", "4")){
-				ans = 4;
-			} else if(FigureCIsSumOfAandB("C", "F", "5")){
-				ans = 5;
-			} else if(FigureCIsSumOfAandB("C", "F", "6")){
-				ans = 6;
-			} else if(FigureCIsSumOfAandB("C", "F", "7")){
-				ans = 7;
-			} else if(FigureCIsSumOfAandB("C", "F", "8")){
-				ans = 8;
-			} 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return ans;
-	}
-
-	//to find the answer when figure C is the sum of figure A and B
-	private int FigureAnsIsSumGandH(){
-		int ans = -1;
-		try {
-			if(FigureCIsSumOfAandB("G", "H", "1")){
-				ans = 1;
-			} else if(FigureCIsSumOfAandB("G", "H", "2")){
-				ans = 2;
-			} else if(FigureCIsSumOfAandB("G", "H", "3")){
-				ans = 3;
-			} else if(FigureCIsSumOfAandB("G", "H", "4")){
-				ans = 4;
-			} else if(FigureCIsSumOfAandB("G", "H", "5")){
-				ans = 5;
-			} else if(FigureCIsSumOfAandB("G", "H", "6")){
-				ans = 6;
-			} else if(FigureCIsSumOfAandB("G", "H", "7")){
-				ans = 7;
-			} else if(FigureCIsSumOfAandB("G", "H", "8")){
-				ans = 8;
-			} 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return ans;
-	}
-
-	//to check if figure C is sum of figure A and B
-	private boolean FigureCIsSumOfAandB(String figA, String figB, String figC) {
-		float sumFig1Fig2 = 0.0f;
-		Boolean bool = null;
-		sumFig1Fig2 = TwoFiguresSumSimilarity(figA, figB, figC);
-		if (sumFig1Fig2 >= SIMILARITY_SUM1) {
-			bool = true;
-		}  else {
-			bool = false;
-		}
-		return bool;
-	}
-
-	//return answer if figure A and E are the same
-	//Case D-02, D-03
-	private int FigureAEEqual(){
-		int ans = -1;
-		try {
-			if(DiagonalsEqual("E", "1")){
-				ans = 1;
-			} else if(DiagonalsEqual("E", "2")){
-				ans = 2;
-			} else if(DiagonalsEqual("E", "3")){
-				ans = 3;
-			} else if(DiagonalsEqual("E", "4")){
-				ans = 4;
-			} else if(DiagonalsEqual("E", "5")){
-				ans = 5;
-			} else if(DiagonalsEqual("E", "6")){
-				ans = 6;
-			} else if(DiagonalsEqual("E", "7")){
-				ans = 7;
-			} else if(DiagonalsEqual("E", "8")){
-				ans = 8;
-			} 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return ans;
-	}
-
 	/*
-	 * Check if the diagonals are the same (figure A and E)
-	 * Case D-02, D-03, D-11
+	 *When A and G have lower similarity, D-05 
 	 */
-
-	private boolean DiagonalsEqual(String fig1, String fig2) {
+	private boolean CheckACEquality2(String fig1, String fig2) {
 		float similar12 = 0.0f;
 		Boolean bool = null;
-		similar12 = SimilarityFig1Fig2(fig1, fig2);
-		if (similar12 >= SIMILARITY_LOW1 && similar12 <= SIMILARITY_HIGH1) {
-			bool = true;
-		} 
-		//		else if (similar12 >= SIMILARITY_LOW1 && similar12 <= SIMILARITY_DIAGONAL_HIGH2) {
-		//			bool = true;
-		//		} 
-		//		else if (similar12 >= SIMILARITY_DIAGONAL_LOW2 && similar12 <= SIMILARITY_DIAGONAL_HIGH2) {
-		//			bool = true;
-		//		}
-		else {
-			bool = false;
+
+		try {
+			similar12 = SimilarityAllPixelsFig1Fig2(fig1, fig2);
+			if (similar12 >= LOW_SIMILARITY_LOWER_LIMIT && similar12 <= LOW_SIMILARITY_UPPER_LIMIT) {
+				bool = true;
+			} else {
+				bool = false;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 		return bool;
 	}
 
 	/*
-	 * Returns answer for cases when figure A, D and G are same
+	 * Returns answer if figure diagonals are same
+	 * D-02, D-03
+	 */
+	private int DiagonalEqualityAns(String figA){
+		int ans = -1;
+		try {
+			for (int i = 0; i < 8; i++){
+				if(CheckDiagonalEquality(figA, answersChoices[i].toString())){
+					ans = answersChoices[i];
+				}
+			}
+		}  catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return ans;
+	}
+
+	/*
+	 * Check if diagonals are equal or not, D-02, D0-3
+	 */
+	private boolean CheckDiagonalEquality(String fig1, String fig2) {
+		float similar12 = 0.0f;
+		Boolean bool = null;
+
+		try {
+			similar12 = SimilarityAllPixelsFig1Fig2(fig1, fig2);
+			if (similar12 >= HIGH_SIMILARITY_LOWER_LIMIT && similar12 <= HIGH_SIMILARITY_UPPER_LIMIT) {
+				bool = true;
+			} else {
+				bool = false;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return bool;
+	}
+
+	/*
+	 * Returns answer if figure A, B and C are same or figure A, D and G are same
 	 * D-01
 	 */
-	private int FigureADGEqual2(){
+	private int FigureABCEqualHighSimilarityAns(String figA, String figB){
 		int ans = -1;
 		try {
-			if(CheckABEquality2("C", "1")){
-				ans = 1;
-			} else if(CheckABEquality2("C", "2")){
-				ans = 2;
-			} else if(CheckABEquality2("C", "3")){
-				ans = 3;
-			} else if(CheckABEquality2("C", "4")){
-				ans = 4;
-			} else if(CheckABEquality2("C", "5")){
-				ans = 5;
-			} else if(CheckABEquality2("C", "6")){
-				ans = 6;
-			} else if(CheckABEquality2("C", "7")){
-				ans = 7;
-			} else if(CheckABEquality2("C", "8")){
-				ans = 8;
-			} 
-		} catch (Exception ex) {
+			for (int i = 0; i < 8; i++){
+				if(CheckABCEquality1(figA, figB, answersChoices[i].toString())){
+					ans = answersChoices[i];
+				}
+			}
+		}  catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return ans;
 	}
-
+	
 	/*
-	 * Returns answer for cases when figure A, D and G are same
-	 * Analogous to D-01, lower similarity case
-	 */
-	private int FigureADGEqual1(){
-		int ans = -1;
-		try {
-			if(CheckABCEquality1("C", "F", "1")){
-				ans = 1;
-			} else if(CheckABCEquality1("C", "F", "2")){
-				ans = 2;
-			} else if(CheckABCEquality1("C", "F", "3")){
-				ans = 3;
-			} else if(CheckABCEquality1("C", "F", "4")){
-				ans = 4;
-			} else if(CheckABCEquality1("C", "F", "5")){
-				ans = 5;
-			} else if(CheckABCEquality1("C", "F", "6")){
-				ans = 6;
-			} else if(CheckABCEquality1("C", "F", "7")){
-				ans = 7;
-			} else if(CheckABCEquality1("C", "F", "8")){
-				ans = 8;
-			} 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return ans;
-	}
-
-	/*
-	 * Returns answer if figure A, B and C are same
-	 * D-06, lower similarity case
-	 */
-	private int FigureABCEqual3(){
-		int ans = -1;
-		try {
-			if(CheckABCEquality3("G", "H", "1")){
-				ans = 1;
-			} else if(CheckABCEquality3("G", "H", "2")){
-				ans = 2;
-			} else if(CheckABCEquality3("G", "H", "3")){
-				ans = 3;
-			} else if(CheckABCEquality3("G", "H", "4")){
-				ans = 4;
-			} else if(CheckABCEquality3("G", "H", "5")){
-				ans = 5;
-			} else if(CheckABCEquality3("G", "H", "6")){
-				ans = 6;
-			} else if(CheckABCEquality3("G", "H", "7")){
-				ans = 7;
-			} else if(CheckABCEquality3("G", "H", "8")){
-				ans = 8;
-			} 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return ans;
-	}
-
-	/*
-	 * Returns answer if figure A, B and C are same
-	 * D-01
-	 */
-	private int FigureABCEqual1(){
-		int ans = -1;
-		try {
-			if(CheckABCEquality1("G", "H", "1")){
-				ans = 1;
-			} else if(CheckABCEquality1("G", "H", "2")){
-				ans = 2;
-			} else if(CheckABCEquality1("G", "H", "3")){
-				ans = 3;
-			} else if(CheckABCEquality1("G", "H", "4")){
-				ans = 4;
-			} else if(CheckABCEquality1("G", "H", "5")){
-				ans = 5;
-			} else if(CheckABCEquality1("G", "H", "6")){
-				ans = 6;
-			} else if(CheckABCEquality1("G", "H", "7")){
-				ans = 7;
-			} else if(CheckABCEquality1("G", "H", "8")){
-				ans = 8;
-			} 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return ans;
-	}
-
-	/* 
-	 * returns answer if the three figures are similar
-	 * takes the figure name like "A"
+	 * Check if three figures are equal or not, D-01
 	 */
 	private boolean CheckABCEquality1(String fig1, String fig2, String fig3) {
 		float similar12 = 0.0f;
@@ -398,10 +188,10 @@ public class VisualApproach {
 		Boolean bool = null;
 
 		try {
-			similar12 = SimilarityFig1Fig2(fig1, fig2);
-			similar13 = SimilarityFig1Fig2(fig1, fig3);
-			if (similar12 >= SIMILARITY_LOW1 && similar12 <= SIMILARITY_HIGH1 && 
-					similar13 >= SIMILARITY_LOW1 && similar13 <= SIMILARITY_HIGH1) {
+			similar12 = SimilarityAllPixelsFig1Fig2(fig1, fig3);
+			similar13 = SimilarityAllPixelsFig1Fig2(fig2, fig3);
+			if (similar12 >= HIGH_SIMILARITY_LOWER_LIMIT && similar12 <= HIGH_SIMILARITY_UPPER_LIMIT &&
+					similar13 >= HIGH_SIMILARITY_LOWER_LIMIT && similar13 <= HIGH_SIMILARITY_UPPER_LIMIT) {
 				bool = true;
 			} else {
 				bool = false;
@@ -411,45 +201,40 @@ public class VisualApproach {
 		}
 		return bool;
 	}
-
+	
 	/*
-	 * returns true if the three figures are similar
-	 * takes the figure name as "A"
-	 * D-05
+	 * returns answer when cropped ABC are equal
 	 */
-	private boolean CheckABEquality2(String fig1, String fig2) {
-		float similar12 = 0.0f;
-		Boolean bool = null;
 
+	private int CheckEqualityCroppedAns(String figA, String figB){
+		int ans = -1;
 		try {
-			similar12 = SimilarityFig1Fig2(fig1, fig2);
-			if (similar12 >= SIMILARITY_LOW2 && similar12 <= SIMILARITY_HIGH2) {
-				bool = true;
-			} else {
-				bool = false;
+			for (int i = 0; i < 8; i++){
+				if(CheckEqualityCropped(figA, figB, answersChoices[i].toString())){
+					return answersChoices[i];
+				}
 			}
-		} catch (Exception ex) {
+		}  catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		return bool;
+		return ans;
 	}
-
-
+	
+	
 	/*
-	 * returns true if the three figures are similar
-	 * takes the figure name with "A"
-	 * B-06
+	 * compares cropped image ABC
 	 */
-	private boolean CheckABCEquality3(String fig1, String fig2, String fig3) {
+	
+	private boolean CheckEqualityCropped(String fig1, String fig2, String fig3) {
 		float similar12 = 0.0f;
 		float similar13 = 0.0f;
 		Boolean bool = null;
 
 		try {
-			similar12 = SimilarityFig1Fig2(fig1, fig2);
-			similar13 = SimilarityFig1Fig2(fig1, fig3);
-			if (similar12 >= SIMILARITY_LOW3 && similar12 <= SIMILARITY_HIGH3 && 
-					similar13 >= SIMILARITY_LOW3 && similar13 <= SIMILARITY_HIGH3) {
+			similar12 = SimilarityCropImageFig1Fig2(fig1, fig3, CROP_START, CROP_END);
+			similar13 = SimilarityCropImageFig1Fig2(fig2, fig3, CROP_START, CROP_END);
+			if (similar12 >= HIGH_SIMILARITY_CROPPED_LOWER_LIMIT && similar12 <= HIGH_SIMILARITY_CROPPED_UPPER_LIMIT &&
+					similar13 >= HIGH_SIMILARITY_CROPPED_LOWER_LIMIT && similar13 <= HIGH_SIMILARITY_CROPPED_UPPER_LIMIT) {
 				bool = true;
 			} else {
 				bool = false;
@@ -459,11 +244,83 @@ public class VisualApproach {
 		}
 		return bool;
 	}
+	
+	/*
+	 * Returns answer when cropped diagonals are equal, D-06
+	 */
+	
+	private int CheckDiagonalEqualityCroppedAns(String figA){
+		int ans = -1;
+		try {
+			for (int i = 0; i < 8; i++){
+				if(CheckDiagonalEqualityCropped(figA, answersChoices[i].toString())){
+					return answersChoices[i];
+				}
+			}
+		}  catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return ans;
+	}
+	
+	/*
+	 * Check if two cropped figures are equal or not diagonally, D-06
+	 */
+	private boolean CheckDiagonalEqualityCropped(String fig1, String fig2) {
+		float similar12 = 0.0f;
+		Boolean bool = null;
+
+		try {
+			similar12 = SimilarityCropImageFig1Fig2(fig1, fig2, CROP_START, CROP_END);
+			if (similar12 >= HIGH_SIMILARITY_LOWER_LIMIT && similar12 <= HIGH_SIMILARITY_UPPER_LIMIT) {
+				bool = true;
+			} else {
+				bool = false;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return bool;
+	}
+	
+	
+	/*
+	 * finds similarity between two figures A and B when cropped
+	 * D-04, D-06
+	 */
+	private float SimilarityCropImageFig1Fig2(String fig1, String fig2, int start, int end) {
+
+		int pixelDiffFig1Fig2 = 0;
+		float similarFig1Fig2 = 0.0f;
+		int totalPixelsInFig = 0;
+		try {
+			int [][] pixelsFig1 = CreateProblemArray(fig1);
+			int [][] pixelsFig2 = CreateProblemArray(fig2);
+			for(int i = start ; i < end ; i++) {
+				for(int j = start ; j < end ; j++) {
+					pixelDiffFig1Fig2 += (pixelsFig1[i][j] - pixelsFig2[i][j]);
+				}
+			}
+
+			totalPixelsInFig = (end-start)*(end-start);
+
+			if (pixelDiffFig1Fig2 < totalPixelsInFig) {
+				similarFig1Fig2 = (float) (1.0 - ((float) pixelDiffFig1Fig2/(float) (totalPixelsInFig)));
+			} else {
+				similarFig1Fig2 = (float) (1.0 - ((float) (totalPixelsInFig)/(float) pixelDiffFig1Fig2));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return similarFig1Fig2;
+	}
+	
+
 
 	/*
-	 * finds similarity between two figures A and B
+	 * finds similarity between two figures A and B taking all pixels
 	 */
-	private float SimilarityFig1Fig2(String fig1, String fig2) {
+	private float SimilarityAllPixelsFig1Fig2(String fig1, String fig2) {
 
 		int pixelDiffFig1Fig2 = 0;
 		float similarFig1Fig2 = 0.0f;
@@ -490,134 +347,8 @@ public class VisualApproach {
 		return similarFig1Fig2;
 	}
 
-	@SuppressWarnings("unused")
-	private int PixelDifference(String figureA, String figureB) {
-		int pixelDiffFig1Fig2 = 0;
-
-		try {
-			int [][] pixelsFig1 = CreateProblemArray(figureA);
-			int [][] pixelsFig2 = CreateProblemArray(figureB);
-			for(int i = 0 ; i < pixelsFig1.length ; i++) {
-				for(int j = 0 ; j < pixelsFig1.length ; j++) {
-					pixelDiffFig1Fig2 += (pixelsFig1[i][j] - pixelsFig2[i][j]);
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return pixelDiffFig1Fig2;
-	}
-
-	
-	/*
-	 * this method returns similarity between difference between fig A and B (A-B)
-	 * and C. 
-	 * E-05
-	 */
-	
-	private float TwoFiguresDiffSimilarity(String figA, String figB, String figC) {
-		float similarity = 0.0f;
-		int pixelDiffFig1Fig2 = 0;
-		int totalPixelsInFig = 0;
-
-		try {
-			int [][] pixelsFigA = CreateProblemArray(figA);
-			int [][] pixelsFigB = CreateProblemArray(figB);
-			int [][] pixelsFigC = CreateProblemArray(figC);
-			int [][] pixelsADiffB = pixelsFigA;
-
-			for(int i = 0 ; i < pixelsFigA.length ; i++) {
-				for(int j = 0 ; j < pixelsFigB.length ; j++) {
-					if (pixelsFigA[i][j] == 1 && pixelsFigB[i][j] == 1) {
-						pixelsADiffB[i][j] = 0;
-					}
-				}
-			}
-			
-			for(int i = 0 ; i < pixelsFigC.length ; i++) {
-				for(int j = 0 ; j < pixelsADiffB.length ; j++) {
-					pixelDiffFig1Fig2 += (pixelsFigC[i][j] - pixelsADiffB[i][j]);
-				}
-			}
-
-			totalPixelsInFig = pixelsFigA.length*pixelsFigA.length;
-
-			if (pixelDiffFig1Fig2 < totalPixelsInFig) {
-				similarity = (float) (1.0 - ((float) pixelDiffFig1Fig2/(float) (totalPixelsInFig)));
-			} else {
-				similarity = (float) (1.0 - ((float) (totalPixelsInFig)/(float) pixelDiffFig1Fig2));
-			}
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
-		return similarity;
-	}
-	
-	
-	//this method helps to check if the figC is diff of figure A and B
-
-	@SuppressWarnings("unused")
-	private float TwoFiguresDiffSimilarity2(String figA, String figB, String figC) {
-		float similarBlackPixelFig1Fig2 = 0.0f;
-		int totalBlackPixelsFigA = 0;
-		int totalBlackPixelsFigB = 0;
-		int totalBlackPixelsFigC = 0;
-		int totalBlackPixelsDiffAB = 0; //sum of pixels in figure A and B
-
-		try {
-			totalBlackPixelsFigA = SumBlackPixels(figA);
-			totalBlackPixelsFigB = SumBlackPixels(figB);
-			totalBlackPixelsFigC = SumBlackPixels(figC);
-
-			totalBlackPixelsDiffAB = totalBlackPixelsFigA - totalBlackPixelsFigB;
-
-			if (totalBlackPixelsDiffAB <= totalBlackPixelsFigC) {
-				similarBlackPixelFig1Fig2 = ((float) totalBlackPixelsDiffAB) / ((float) totalBlackPixelsFigC);
-			} else {
-				similarBlackPixelFig1Fig2 = ((float) totalBlackPixelsFigC) / ((float) totalBlackPixelsDiffAB);
-			}	
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return similarBlackPixelFig1Fig2;
-	}
-
-	//this method helps to check if the figC is the sum of figA and figB
-	private float TwoFiguresSumSimilarity(String figA, String figB, String figC) {
-		float similarBlackPixelFig1Fig2 = 0.0f;
-		int totalBlackPixelsFigC = 0;
-		int totalBlackPixelsSumAB = 0; //sum of pixels in figure A and B
-
-		try {
-			totalBlackPixelsFigC = SumBlackPixels(figC);
-
-			int [][] pixelsFigA = CreateProblemArray(figA);
-			int [][] pixelsFigB = CreateProblemArray(figB);
-
-			for(int i = 0 ; i < pixelsFigA.length ; i++) {
-				for(int j = 0 ; j < pixelsFigB.length ; j++) {
-					if (pixelsFigA[i][j] != pixelsFigB[i][j]) {
-						totalBlackPixelsSumAB += 1;
-					} else if (pixelsFigA[i][j] == 1 && pixelsFigB[i][j] == 1) {
-						totalBlackPixelsSumAB += 1;
-					}
-				}
-			}
-
-			if (totalBlackPixelsSumAB <= totalBlackPixelsFigC) {
-				similarBlackPixelFig1Fig2 = ((float) totalBlackPixelsSumAB) / ((float) totalBlackPixelsFigC);
-			} else {
-				similarBlackPixelFig1Fig2 = ((float) totalBlackPixelsFigC) / ((float) totalBlackPixelsSumAB);
-			}	
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return similarBlackPixelFig1Fig2;
-	}
-
 	//sums the black pixels in a figure
+	@SuppressWarnings("unused")
 	private int SumBlackPixels(String figureName) {
 
 		int totalBlackPixels = 0;
@@ -658,7 +389,7 @@ public class VisualApproach {
 		try {
 			for(int i = 0 ; i < width ; i++) {
 				for(int j = 0 ; j < height ; j++) {
-					pixels[i][j] = (figureImage.getRGB(i, j) == 0xFFFFFFFF ? 0 : 1); 	
+					pixels[i][j] = (figureImage.getRGB(i, j) == 0xFFFFFFFF ? 0 : 1);
 				}
 			}
 		} catch (Exception ex) {

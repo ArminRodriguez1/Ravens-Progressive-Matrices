@@ -31,13 +31,11 @@ public class Agent {
 	 * main().
 	 *
 	 */
-	//private RavensProblem problem;
 	HashMap<String, RavensFigure> RF;
 	private int ans;
 	private RavensFigure RFA;
 	private HashMap<String, RavensObject> ROA;
 	Random rand;
-	//private List ravensFigure = new ArrayList();
 
 	public Agent() {
 
@@ -59,11 +57,9 @@ public class Agent {
 		System.out.println("************");
 		System.out.println("Problem name: " + problem.getName());
 
-		//check if the problem has verbal or not
-		if (problem.hasVerbal()) {
-			//these are the Ravens Figure from the problem
-			RF = problem.getFigures();
-			
+		if (problem.hasVerbal()) { //check if the problem has verbal or not
+			RF = problem.getFigures(); //these are the Ravens Figure from the problem
+
 			/*
 			 * 2 by 2 RPM problem have 9 Ravens Figure and 3 by 3 RPM have 16 Ravens Figure.
 			 * Find the total number of Ravens Figure and put check accordingly.
@@ -71,38 +67,39 @@ public class Agent {
 			
 			if (RF.size() == 9) { // 2 by 2 RPMs
 				RFA = RF.get("A");
-				//get the Ravens Figure from the problem figures
-				ROA = RFA.getObjects();
+				ROA = RFA.getObjects(); 				//get the Ravens Figure from the problem figures
 				int numberOfObjects = ROA.size(); //number of objects in Figure A
-				
+			
 				if (numberOfObjects == 1) {
 					ans = OneObject(problem); //2 by 2 RPM with one objects per figure
-					//System.out.println("Answer is " + ans);
 					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
 						ans = -1;
 					}
 				} else if (numberOfObjects == 2) {
 					ans = TwoObjects(problem);
-					//System.out.println("Answer is " + ans);
 					if (ans == 0) { //if ans = 0 from the method set it to -1 to skip the problem
 						ans = -1;
 					}
 				} 
-			} else if (RF.size() == 16) { // 3 by 3 RPMs
+			} 
+			else if (RF.size() == 16) { // 3 by 3 RPMs
 				ans = ThreeByThree(problem);
 				if (ans == 0) {
 					ans = -1;
 				}
-			} else {
+			} 
+			else {
 				ans = -1;
 			}
 		} 
 		else {
-			ans = Visual(problem);
+			ans = VisualSolution(problem);
+			if (ans == 0) {
+				ans = -1;
+			}
 		}
 		return ans;
 	}
-
 
 	/*
 	 * This method solves for 2 by 2 RPM that has one object in a figure using verbal approach
@@ -135,7 +132,7 @@ public class Agent {
 	 * This method solves for 3 by 3 RPM using visual approach
 	 */
 	
-	private int Visual (RavensProblem problem) {
+	private int VisualSolution(RavensProblem problem) {
 		VisualApproach visualRPMs = new VisualApproach(problem);
 		return visualRPMs.VisualApproachResults();
 	}

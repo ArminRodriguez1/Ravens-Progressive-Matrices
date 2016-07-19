@@ -81,8 +81,6 @@ public class ThreeByThree {
 
 	public int ThreeByThreeRPM() {
 		RFigures(problem);
-		// System.out.println("Size of RFE/no of objects: " +
-		// RFE.getObjects().size());
 		int tempAns = -1;
 		RObjects();
 		figureSize();
@@ -129,26 +127,6 @@ public class ThreeByThree {
 
 	private int CisLargerA() { // C-02
 		int ans = -1;
-		
-		System.out.println("true or false 4: " + (objectsH.get(1).getAttributes().containsValue(valueVeryLarge)
-				&& objects4.get(0).getAttributes().containsValue(valueHuge)
-				&& (objectsH.get(1).getAttributes().get(getShape)
-						.equals(objects4.get(0).getAttributes().get(getShape)))
-				&& ((objectsH.get(0).getAttributes().get(getSize)
-						.equals(objects4.get(1).getAttributes().get(getSize)))
-						&& (objectsH.get(0).getAttributes().get(getShape)
-								.equals(objects4.get(1).getAttributes().get(getShape))))));
-
-		
-//		System.out.println("size bool 1: " + objects1.size());
-//		System.out.println("size bool 2: " + objects2.size());
-//		System.out.println("size bool 3: " + objects3.size());
-//		System.out.println("size bool 4: " + objects4.size());
-//		System.out.println("size bool 5: " + objects5.size());
-//		System.out.println("size bool 6: " + objects6.size());
-//		System.out.println("size bool 7: " + objects7.size());
-//		System.out.println("size bool 8: " + objects8.size());
-
 		
 		try {
 			if (objects1.size() == sizeH) {
@@ -470,7 +448,6 @@ public class ThreeByThree {
 		if (sizeC != 0 && sizeA != 0) {
 			increment = sizeC / sizeA; // factor times
 		}
-
 		if (increment == 3) {
 			anssize = sizeG * increment; // increase of 1, C-04 and C-03
 			ans = increaseObject1(anssize);
@@ -657,19 +634,15 @@ public class ThreeByThree {
 				thisObjectG = RFG.getObjects().get(objectNameG);
 				objectsG.add(thisObjectG);
 			}
-			for (String objectNameE : RFE.getObjects().keySet()) { // objectName1
-				// is for E
+			for (String objectNameE : RFE.getObjects().keySet()) {
 				thisObjectE = RFE.getObjects().get(objectNameE);
 				objectsE.add(thisObjectE);
 			}
-			for (String objectNameF : RFF.getObjects().keySet()) { // objectName2
-				// is for F
+			for (String objectNameF : RFF.getObjects().keySet()) { 
 				thisObjectF = RFF.getObjects().get(objectNameF);
 				objectsF.add(thisObjectF);
 			}
-			for (String objectNameH : RFH.getObjects().keySet()) {// for
-				// objectName3
-				// is for H
+			for (String objectNameH : RFH.getObjects().keySet()) {
 				thisObjectH = RFH.getObjects().get(objectNameH);
 				objectsH.add(thisObjectH);
 			}
