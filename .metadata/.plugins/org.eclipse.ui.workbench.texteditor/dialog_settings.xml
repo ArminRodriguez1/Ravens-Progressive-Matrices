@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="SimilarityAllPixelsFig1Fig2" key="selection"/>
+		<item value="SIMILARITY_SUM_DIFFERENCE_MEDIUM" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="SimilarityAllPixelsFig1Fig2"/>
-			<item value="DiagonalEqualityAns"/>
-			<item value="CheckDiagonalEqualityCropped"/>
-			<item value="CheckDiagonalEqualityCroppedAns"/>
-			<item value="CheckDiagonalEquality"/>
-			<item value="SIMILARITY_SUM_DIFFERENCE"/>
-			<item value="SIMILARITY_SUM1"/>
-			<item value="TwoFiguresSumSimilarity"/>
+			<item value="TEST"/>
+			<item value="E-07"/>
+			<item value="pixelsFigA[i][j] == 1 &amp;&amp; pixelsFigB[i][j] == 1"/>
+			<item value="SumOfTwoFigures"/>
+			<item value="SumOfTwoFigures2"/>
+			<item value="SumOfTwoFiguresAns2"/>
+			<item value="SIMILARITY_SUM_DIFFERENCE_MEDIUM"/>
+			<item value="sumof"/>
 		</list>
 		<list key="replacehistory">
+			<item value="SIMILARITY_SUM_DIFFERENCE_MEDIUM"/>
+			<item value="SIMILARITY_SUM_DIFFERENCE_LOW"/>
+			<item value="Plus"/>
+			<item value="SIMILARITY_SUM_DIFFERENCE_HIGH"/>
 			<item value="SIMILARITY_SUM_DIFFERENCE"/>
 			<item value="SumOfTwoFigures"/>
 			<item value="LOW_SIMILARITY"/>
 			<item value="HIGH_SIMILARITY"/>
-			<item value="LOW_SIMILARITY_UPPER_LIMIT"/>
-			<item value="LOW_SIMILARITY_LOWER_LIMIT"/>
-			<item value="HIGH_SIMILARITY_CROPPED_UPPER_LIMIT"/>
-			<item value="HIGH_SIMILARITY_CROPPED_LOWER_LIMIT"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

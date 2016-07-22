@@ -52,99 +52,99 @@ public class VisualApproach {
 	public int VisualApproachResults() {
 		tempAns = -1;
 		//figure C is sum of figure A and B
-//		System.out.println("Sim ABC: " + TwoFiguresSumSimilarity3("A", "B", "C"));
-//		System.out.println("Sim AG-Ans: " + TwoFiguresSumSimilarity3("G", "H", "8"));
-//		System.out.println("*******");
-//		System.out.println("Sim ADG: " + TwoFiguresSumSimilarity2("A", "D", "G"));
-//		System.out.println("Sim CF-Ans: " + TwoFiguresSumSimilarity2("C", "F", "8"));
+		System.out.println("Sim ABC: " + TwoFiguresSumSimilarity3("A", "B", "C"));
+		System.out.println("Sim AG-Ans: " + TwoFiguresSumSimilarity3("G", "H", "8"));
+		System.out.println("*******");
+		System.out.println("Sim ADG: " + TwoFiguresSumSimilarity2("A", "D", "G"));
+		System.out.println("Sim CF-Ans: " + TwoFiguresSumSimilarity2("C", "F", "8"));
 	
 		try {
 			if (SumOfTwoFigures("A", "B", "C")){ //E-01, E-02, E-03
-//				System.out.println("Solved using A+B=C logic");
+				System.out.println("Solved using A+B=C logic");
 				tempAns = SumOfTwoFiguresAns("G", "H");
 			}
 			else if (SumOfTwoFigures("A", "D", "G")){ //Analogous E-01, E-02, E-03
-//				System.out.println("Solved using A+D=G logic");
+				System.out.println("Solved using A+D=G logic");
 				tempAns = SumOfTwoFiguresAns("C", "F");
 			}
 			else if (DiffOfTwoFigures("A", "B", "C")){ //E-05
-//				System.out.println("Solved using A-B=C logic");
+				System.out.println("Solved using A-B=C logic");
 				tempAns = DiffOfTwoFiguresAns("G", "H");
 			}
 			else if (DiffOfTwoFigures("A", "D", "G")){ //Analogous E-05
-//				System.out.println("Solved using A-D=G logic");
+				System.out.println("Solved using A-D=G logic");
 				tempAns = DiffOfTwoFiguresAns("C", "F");
 			}
 			else if (CheckABCEquality1("A", "B", "C")) { //Case D-01
-//				System.out.println("Solved using A, B and C are equal logic, high match");
+				System.out.println("Solved using A, B and C are equal logic, high match");
 				tempAns = FigureABCEqualHighSimilarityAns("G", "H");
 			}
 			else if (CheckABCEquality1("A", "D", "G")) { //Analogous to D-01 vertically
-//				System.out.println("Solved using A, D and G are equal logic, high match");
+				System.out.println("Solved using A, D and G are equal logic, high match");
 				tempAns = FigureABCEqualHighSimilarityAns("C", "F");
 			}
 			else if (DiffOfTwoFigures2("A", "B", "C")){ //E-06
-//				System.out.println("Solved using B-A=C logic");
+				System.out.println("Solved using B-A=C logic");
 				tempAns = DiffOfTwoFiguresAns2("G", "H");
 			}
 			else if (DiffOfTwoFigures2("A", "D", "G")){ //Analogous to E-06
-//				System.out.println("Solved using B-A=C logic");
+				System.out.println("Solved using B-A=C logic");
 				tempAns = DiffOfTwoFiguresAns2("C", "F");
 			}
 			else if (CheckABCEquality1("B", "F", "G")) { //Case D-09, these are also diagonal case
-//				System.out.println("Solved using diagonal are equal (B, F and G are equal logic), high match");
+				System.out.println("Solved using diagonal are equal (B, F and G are equal logic), high match");
 				tempAns = FigureABCEqualHighSimilarityAns("A", "E");
 			}
 			else if (CheckABCEquality1("C", "E", "G")) { //Analogous Case D-09, also a diagonal case
-//				System.out.println("Solved using diagonal are equal (C, E and G are equal logic), high match");
+				System.out.println("Solved using diagonal are equal (C, E and G are equal logic), high match");
 				tempAns = FigureABCEqualHighSimilarityAns("B", "D");
 			}
 			else if (CheckEqualityCropped("A", "B", "C")){ //check equal ABC when cropped
-//				System.out.println("Solved using cropped figures are same across ABC");
+				System.out.println("Solved using cropped figures are same across ABC");
 				tempAns = CheckEqualityCroppedAns("G", "H");
 			}
 			else if (CheckEqualityCropped("A", "D", "G")){ //check equal ADG when cropped
-//				System.out.println("Solved using cropped figures are same across ADG");
+				System.out.println("Solved using cropped figures are same across ADG");
 				tempAns = CheckEqualityCroppedAns("C", "F");
 			}
 			else if (SumOfTwoFigures3("A", "B", "C")) { //E-10 and E-11
-//				System.out.println("Solved using A+B=C, take both in A and B logic");
+				System.out.println("Solved using A+B=C, take both in A and B logic");
 				tempAns = SumOfTwoFiguresAns3("G", "H");
 			}
 			else if (SumOfTwoFigures3("A", "D", "G")) { //E-10 and E-11
-//				System.out.println("Solved using A+D=G, take both in A and D logic");
+				System.out.println("Solved using A+D=G, take both in A and D logic");
 				tempAns = SumOfTwoFiguresAns3("C", "F");
 			}
 			else if (SumOfTwoFigures2("A", "B", "C")){ //E-07
-//				System.out.println("Solved using A+B=C, take A and B not in each other but don't take the common logic");
+				System.out.println("Solved using A+B=C, take A and B not in each other but don't take the common logic");
 				tempAns = SumOfTwoFiguresAns2("G", "H");
 			}
 			else if (SumOfTwoFigures2("A", "D", "G")){ //Analogous E-07
-//				System.out.println("Solved using A+D=G, take C and F not in each other but don't take the common logic");
+				System.out.println("Solved using A+D=G, take C and F not in each other but don't take the common logic");
 				tempAns = SumOfTwoFiguresAns2("C", "F");
 			}
 			else if (CheckDiagonalEquality("A", "E")) {// diagonals are equal
-//				System.out.println("Solved using diagonals are equal logic");
+				System.out.println("Solved using diagonals are equal logic");
 				tempAns = DiagonalEqualityAns("E");
 			}
 			else if (CheckDiagonalEqualityCropped("A", "E")) {//equal diagonals when cropped
-//				System.out.println("Solved using cropped diagonals A and E are equal");
+				System.out.println("Solved using cropped diagonals A and E are equal");
 				tempAns = CheckDiagonalEqualityCroppedAns("E");
 			}
 			else if (CheckACEquality2("A", "G")) { //D-05
-//				System.out.println("Solved using A and G are equal logic");
+				System.out.println("Solved using A and G are equal logic");
 				tempAns = FigureADGEqual2("C");
 			}
 			else if (CheckACEquality2("A", "C")) { //Analogous D-05
-//				System.out.println("Solved using A and C are equal logic");
+				System.out.println("Solved using A and C are equal logic");
 				tempAns = FigureADGEqual2("G");
 			}
 			else if (DiffOfTwoFigures1("A", "B", "C")){ //E-04
-//				System.out.println("Solved using A-B=C logic, difference of sum of pixels");
+				System.out.println("Solved using A-B=C logic, difference of sum of pixels");
 				tempAns = DiffOfTwoFiguresAns1("G", "H");
 			}
 			else if (DiffOfTwoFigures1("A", "D", "G")){ //Analogous E-04
-//				System.out.println("Solved using A-D=G logic, difference of sum of pixels");
+				System.out.println("Solved using A-D=G logic, difference of sum of pixels");
 				tempAns = DiffOfTwoFiguresAns1("C", "F");
 			}
 		} catch (Exception ex) {

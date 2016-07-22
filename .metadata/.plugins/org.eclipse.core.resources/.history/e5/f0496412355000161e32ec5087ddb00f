@@ -54,8 +54,9 @@ public class Agent {
 	 * @return your Agent's answer to this problem
 	 */
 	public int Solve(RavensProblem problem) {
-//		System.out.println("************");
-//		System.out.println("Problem name: " + problem.getName());
+		System.out.println("************");
+		System.out.println("Problem name: " + problem.getName());
+		
 
 		if (problem.hasVerbal()) { //check if the problem has verbal or not
 			RF = problem.getFigures(); //these are the Ravens Figure from the problem
