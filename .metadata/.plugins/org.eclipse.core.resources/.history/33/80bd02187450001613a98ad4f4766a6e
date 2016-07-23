@@ -46,11 +46,6 @@ public class VisualApproach {
 
 	public int VisualApproachResults() {
 		tempAns = -1;
-		System.out.println("Sim ABC: " + TwoFiguresSumSimilarity3("A", "B", "C"));
-		System.out.println("Sim AG-Ans: " + TwoFiguresSumSimilarity3("G", "H", "5"));
-		System.out.println("*******");
-//		System.out.println("Sim ADG: " + TwoFiguresSumSimilarity2("A", "D", "G"));
-//		System.out.println("Sim CF-Ans: " + TwoFiguresSumSimilarity2("C", "F", "8"));
 	
 		try {
 			if (SumOfTwoFigures("A", "B", "C")){ //E-01, E-02, E-03
