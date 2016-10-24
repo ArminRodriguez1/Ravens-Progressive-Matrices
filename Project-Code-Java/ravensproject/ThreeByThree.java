@@ -89,21 +89,21 @@ public class ThreeByThree {
 
 		try {
 			if (sizeA == 2 && sizeC == 2) { // for C-07 and C-09
-				System.out.println("enters here 1");
+				//System.out.println("enters here 1");
 				if (objectsA.get(1).getAttributes().containsKey("above")
 						&& objectsC.get(1).getAttributes().containsKey("above")) { // C-07
-					System.out.println("enters here 7");
+					//System.out.println("enters here 7");
 					tempAns = ACReflection();
 				} else if (!objectsA.get(1).getAttributes().get("size").equals(objectsC.get(0).getAttributes().get("size"))) {
-					System.out.println("enter for c-02");
+					//System.out.println("enter for c-02");
 					tempAns = CisLargerA();
 					//System.out.println("ans " + tempAns);
 				}
 				else if ((objectA1angle.equals(objectC2angle) && (objectA2angle.equals(objectC1angle)))) { // C-09
-					System.out.println("enters here 9");
+					//System.out.println("enters here 9");
 					tempAns = ACTranslation();
 				} else { // C-02
-					System.out.println("enters here 2");
+					//System.out.println("enters here 2");
 					//tempAns = CisLargerA();
 				}
 			} else if (sizeA == 1 && sizeC == 1) {
@@ -130,7 +130,7 @@ public class ThreeByThree {
 		
 		try {
 			if (objects1.size() == sizeH) {
-				System.out.println("enter after size 1");
+				//System.out.println("enter after size 1");
 				if (objectsH.get(1).getAttributes().containsValue(valueVeryLarge)
 						&& objects1.get(0).getAttributes().containsValue(valueHuge)
 						&& (objectsH.get(1).getAttributes().get(getShape)
@@ -172,7 +172,7 @@ public class ThreeByThree {
 								.equals(objects4.get(1).getAttributes().get(getSize)))
 								&& (objectsH.get(0).getAttributes().get(getShape)
 										.equals(objects4.get(1).getAttributes().get(getShape))))) {
-					System.out.println("enters here for 4");
+					//System.out.println("enters here for 4");
 					ans = 4;
 				}
 			} if (objects5.size() == sizeH) {
@@ -443,17 +443,17 @@ public class ThreeByThree {
 		// account for size or fill, C-03 C-04, C-05
 		int ans = -1;
 		int increment = 0; // increment
-		int anssize = 0; // potential answer size
+		int ansSize = 0; // potential answer size
 
 		if (sizeC != 0 && sizeA != 0) {
 			increment = sizeC / sizeA; // factor times
 		}
 		if (increment == 3) {
-			anssize = sizeG * increment; // increase of 1, C-04 and C-03
-			ans = increaseObject1(anssize);
+			ansSize = sizeG * increment; // increase of 1, C-04 and C-03
+			ans = increaseObject1(ansSize);
 		} else if (increment == 2) {
-			anssize = sizeG + increment; // increase of 2, C-05
-			ans = increaseObject1(anssize);
+			ansSize = sizeG + increment; // increase of 2, C-05
+			ans = increaseObject1(ansSize);
 		} else if (increment == 1) {
 			ans = increaseObject2();
 		}
@@ -518,16 +518,16 @@ public class ThreeByThree {
 		// account for size or fill
 		int ans = -1;
 		int decrease = sizeE - sizeF;
-		int anssize = 0; // potential answer size
+		int ansSize = 0; // potential answer size
 
 		if (decrease == 1) {
-			anssize = sizeH - decrease; // decrease by 1
+			ansSize = sizeH - decrease; // decrease by 1
 		} else if (decrease == 2) {
-			anssize = sizeH - decrease - 1; // decrease by 3
+			ansSize = sizeH - decrease - 1; // decrease by 3
 		}
 		try {
 			for (int i = 0; i < ravensObjects.size(); i++) {
-				if (ravensObjects.get(i).size() == anssize) {
+				if (ravensObjects.get(i).size() == ansSize) {
 					ans = i + 1;
 					return ans;
 				}
@@ -606,20 +606,20 @@ public class ThreeByThree {
 
 	// create objects for equal method
 	private void objectMethod() {
-		RavensObject thisObjectA = null;
-		RavensObject thisObjectC = null;
-		RavensObject thisObjectG = null;
-		RavensObject thisObjectE = null;
-		RavensObject thisObjectF = null;
-		RavensObject thisObjectH = null;
-		RavensObject thisObject1 = null;
-		RavensObject thisObject2 = null;
-		RavensObject thisObject3 = null;
-		RavensObject thisObject4 = null;
-		RavensObject thisObject5 = null;
-		RavensObject thisObject6 = null;
-		RavensObject thisObject7 = null;
-		RavensObject thisObject8 = null;
+		RavensObject thisObjectA;
+		RavensObject thisObjectC;
+		RavensObject thisObjectG;
+		RavensObject thisObjectE;
+		RavensObject thisObjectF;
+		RavensObject thisObjectH;
+		RavensObject thisObject1;
+		RavensObject thisObject2;
+		RavensObject thisObject3;
+		RavensObject thisObject4;
+		RavensObject thisObject5;
+		RavensObject thisObject6;
+		RavensObject thisObject7;
+		RavensObject thisObject8;
 
 		try {
 			for (String objectNameA : RFA.getObjects().keySet()) {

@@ -23,10 +23,10 @@ public class TwoByTwoTwo {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<Map> ravensObjects = new ArrayList(); //array to list the objects from a Ravens Figure
 
-	private String angleObjecta, angleObjectb, angleObjectc, angleObjectd, angleObjecte, angleObjectf, angleObjectAns1, angleObjectAns2, fillObjectd; //attributes of object f
-	private String shapeObjectf, shapeObjectd, shapeObjectAns, angleObjectAns; //attributes of object from the potential answer
+	private String angleObjectA, angleObjectB, angleObjectC, angleObjectD, angleObjectE, angleObjectF, angleObjectAns1, angleObjectAns2, fillObjectD; //attributes of object f
+	private String shapeObjectF, shapeObjectD, shapeObjectAns, angleObjectAns; //attributes of object from the potential answer
 
-	private int angleDiff1, angleDiff2, AdiffE, BdiffF; //difference between angle for c and first object in answer and d and second object
+	private int angleDiff1, angleDiff2, angleADiffE, angleBDiffF; //difference between angle for c and first object in answer and d and second object
 
 	public TwoByTwoTwo(RavensProblem problem){
 		this.problem = problem;
@@ -55,12 +55,11 @@ public class TwoByTwoTwo {
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-
 		return tempAns;
 	}
 
 	private int addition() {//B-10, increase from A to C
-		int ans = 0;
+		int ans = -1;
 
 		try {
 			int a = ROA.size();
@@ -68,9 +67,9 @@ public class TwoByTwoTwo {
 			int b = ROB.size();
 			int c = ROC.size();
 
-			if (c==a+1) {
+			if (c == a+1) {
 				for (int i = 0; i < ravensObjects.size(); i++) {
-					if (c== ravensObjects.get(i).size()) {
+					if (c == ravensObjects.get(i).size()) {
 						ans = i+1;
 						return ans;
 					}
@@ -79,24 +78,24 @@ public class TwoByTwoTwo {
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return -1;
+		return ans;
 	}
 
 	private int reflection() { //B-06
-		int ans = 0;
+		int ans = -1;
 
 		try{
-			angleObjecta = ROaa.get("angle");
-			angleObjectb = ROba.get("angle");
-			angleObjectc = ROca.get("angle");
-			angleObjectd = ROda.get("angle");
-			angleObjecte = ROea.get("angle");
-			angleObjectf = ROfa.get("angle");
+			angleObjectA = ROaa.get("angle");
+			angleObjectB = ROba.get("angle");
+			angleObjectC = ROca.get("angle");
+			angleObjectD = ROda.get("angle");
+			angleObjectE = ROea.get("angle");
+			angleObjectF = ROfa.get("angle");
 
-			AdiffE = sumAngle(angleObjecta, angleObjecte) % 360;
-			BdiffF = sumAngle(angleObjectb, angleObjectf) % 360;
+			angleADiffE = sumAngle(angleObjectA, angleObjectE) % 360;
+			angleBDiffF = sumAngle(angleObjectB, angleObjectF) % 360;
 
-			fillObjectd = ROda.get("fill");
+			fillObjectD = ROda.get("fill");
 
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
 				ans+=1;
@@ -104,21 +103,21 @@ public class TwoByTwoTwo {
 				angleObjectAns2 = (String) resultAttribute.get(i+1).get("angle");
 				String fillAns2 = (String) resultAttribute.get(i+1).get("fill");
 
-				angleDiff1 = sumAngle(angleObjectAns1, angleObjectc) % 360;
-				angleDiff2= sumAngle(angleObjectAns2, angleObjectd) % 360;
+				angleDiff1 = sumAngle(angleObjectAns1, angleObjectC) % 360;
+				angleDiff2= sumAngle(angleObjectAns2, angleObjectD) % 360;
 
-				if (AdiffE == angleDiff1 && BdiffF == angleDiff2 && fillObjectd.equals(fillAns2)) {
+				if (angleADiffE == angleDiff1 && angleBDiffF == angleDiff2 && fillObjectD.equals(fillAns2)) {
 					return ans;
 				}
 			}
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return -1;
+		return ans;
 	}
 
 	private int figureAEqualsB() {//if figure A equals object B, then object D is equal to object C
-		int ans = 0;
+		int ans = -1;
 
 		try{
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
@@ -126,14 +125,14 @@ public class TwoByTwoTwo {
 
 				if ((ROea.equals(resultAttribute.get(i)))) { //can only compare on the object e to make it more generic
 					if (ROfa!=null){
-						shapeObjectf = ROfa.get("shape");
-						angleObjectf = ROfa.get("angle");
+						shapeObjectF = ROfa.get("shape");
+						angleObjectF = ROfa.get("angle");
 					}
 					if (resultAttribute.get(i+1) != null){
 						shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
 						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
 					}
-					if ((shapeObjectf.equals(shapeObjectAns)) && (angleObjectf.equals(angleObjectAns))) {
+					if ((shapeObjectF.equals(shapeObjectAns)) && (angleObjectF.equals(angleObjectAns))) {
 						return ans;
 					}
 				} 
@@ -141,11 +140,11 @@ public class TwoByTwoTwo {
 		}catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return -1;
+		return ans;
 	}
 
 	private int figureAEqualsC() {//if figure A equals figure C, then Figure D is equal to Figure C
-		int ans = 0;
+		int ans = -1;
 
 		try{
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
@@ -153,14 +152,14 @@ public class TwoByTwoTwo {
 
 				if ((ROca.equals(resultAttribute.get(i)))) { //can only compare on the object c to make it more generic
 					if (ROda!=null){
-						shapeObjectd = ROda.get("shape");
-						angleObjectd = ROda.get("angle");
+						shapeObjectD = ROda.get("shape");
+						angleObjectD = ROda.get("angle");
 					}
 					if (resultAttribute.get(i+1) != null){
 						shapeObjectAns = (String) (resultAttribute.get(i+1)).get("shape");
 						angleObjectAns = (String) (resultAttribute.get(i+1)).get("angle");
 					}
-					if ((shapeObjectd.equals(shapeObjectAns)) && (angleObjectd.equals(angleObjectAns))) {
+					if ((shapeObjectD.equals(shapeObjectAns)) && (angleObjectD.equals(angleObjectAns))) {
 						return ans;
 					}
 				} 
@@ -168,11 +167,11 @@ public class TwoByTwoTwo {
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return -1;
+		return ans;
 	}
 
 	private int figureCDeletesA() {//if figure C has inside object deleted, B-11
-		int ans = 0;
+		int ans = -1;
 
 		try{
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
@@ -186,11 +185,11 @@ public class TwoByTwoTwo {
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return -1;
+		return ans;
 	}
 
 	private int figureBDeletesA() {//if figure B has inside object deleted
-		int ans = 0;
+		int ans = -1;
 
 		try{
 			for (int i = 0; i < resultAttribute.size(); i=i+2){
@@ -204,7 +203,7 @@ public class TwoByTwoTwo {
 		} catch(NullPointerException e){
 			System.out.println("Exception thrown  :" + e);
 		}
-		return -1;
+		return ans;
 	}
 
 	private int sumAngle(String p, String q) { //we get angle as string
@@ -219,7 +218,7 @@ public class TwoByTwoTwo {
 		return sum;
 	}
 
-	//TO DO: decompose this
+	//TODO: decompose this
 	@SuppressWarnings("rawtypes")
 	private List<Map> getObjectAttributes(RavensProblem problem) { //returns the object attributes in a list
 		RF = problem.getFigures();
